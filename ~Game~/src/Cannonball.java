@@ -18,7 +18,7 @@ public class Cannonball {
 
 	double ballHorizontalSpeed;
 	double ballVerticalSpeed;
-	
+	 
 	double ballSpeed;
 	double ballAngle;
 	
