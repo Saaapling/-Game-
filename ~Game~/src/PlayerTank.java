@@ -14,74 +14,13 @@ import java.io.IOException;
 import java.awt.Color;
 import java.util.ArrayList;
 
-public class PlayerTank {
+public class PlayerTank extends Tank{
 
-	Color tankColor;
-	
-	double tankHorizontalSpeed;
-	double tankVerticalSpeed;
-	
-	double barrelSpeed;
-	double barrelAngle;
-	
-	
 	public PlayerTank() {
 		
-		
-		/*
-		myPanel.addKeyListener(new KeyListener(){
-
-			@Override
-			public void keyTyped(KeyEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void keyPressed(KeyEvent e) {
-				// TODO Auto-generated method stub
-
-				int keyCode = e.getKeyCode();
-
-				System.out.println("In keypressed: "+keyCode);
-
-				switch( keyCode ) { 
-				case KeyEvent.VK_A:
-					// handle left
-					break;
-				case KeyEvent.VK_W:
-					// handle up
-					break;
-				case KeyEvent.VK_D :
-					// handle right
-				
-					break;
-				case KeyEvent.VK_S:
-					// handle down
-					break;
-				case KeyEvent.VK_SPACE : 
-					
-					break;
-				}
-			}
-
-			@Override
-			public void keyReleased(KeyEvent e) {
-
-				
-
-			}
-
-		});
-		*/
-		 
 	}
 	
-	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-		
 		
 	}
 

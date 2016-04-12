@@ -10,7 +10,7 @@ public class Tester implements KeyListener{
 	static Tester test;
 	JFrame frame=new JFrame("Gottem");
 	static Board board=new Board();
-	
+
 	public Tester(){
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		board.setPreferredSize(new Dimension(1200,500));
@@ -20,17 +20,26 @@ public class Tester implements KeyListener{
 		frame.pack();
 		frame.setVisible(true);
 	}
-	
-	public void keyPressed(KeyEvent arg0) {
+
+	public void keyTyped(KeyEvent keyboard) {
+
+	}
+
+	public void keyPressed(KeyEvent keyboard) {
+		/* -> 39
+		 * <- 37
+		 * down 40
+		 * up 38
+		 * space 32
+		 */
+		if (keyboard.getKeyCode()==39){
+			
+		}
 		
 	}
 
-	public void keyReleased(KeyEvent arg0) {
-		
-	}
+	public void keyReleased(KeyEvent keyboard) {
 
-	public void keyTyped(KeyEvent arg0) {
-		
 	}
 
 	public static void main (String[]args){
