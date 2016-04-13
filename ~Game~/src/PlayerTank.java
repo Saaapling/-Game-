@@ -16,8 +16,8 @@ import java.util.ArrayList;
 
 public class PlayerTank extends Tank{
 
-	public PlayerTank() {
-		
+	public PlayerTank(int xstart, int ystart, Board board, int identity){
+		super(xstart, ystart, board, identity);
 	}
 	
 	public static void main(String[] args) {

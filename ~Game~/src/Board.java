@@ -17,16 +17,15 @@ public class Board extends JPanel{
 		}
 	}
 	
-	public  void terraingeneration(){
-		for (int x=0;x<600;x++){
-			for (int y=150;y<250;y++){
-				board[x][y]=1;
-			}
-		}
+	public void drawtank(Tank tank, Graphics g){
+		g.drawLine(tank.xpos*2, tank.ypos*2, tank.xpos*2, tank.ypos*2+10);
+		g.drawLine(tank.xpos*2+1, tank.ypos*2, tank.xpos*2+1, tank.ypos*2+10);
+		g.drawLine(tank.xpos*2+2, tank.ypos*2+1, tank.xpos*2+2, tank.ypos*2+10);
+		g.drawLine(tank.xpos*2+3, tank.ypos*2+1, tank.xpos*2+3, tank.ypos*2+10);
+		g.drawLine(tank.xpos*2+4, tank.ypos*2+2, tank.xpos*2+4, tank.ypos*2+8);
 	}
 	
 	public void paintComponent(Graphics g){
-		terraingeneration();
 		for (int x=0;x<600;x++){
 			for (int y=0;y<250;y++){
 				if (board[x][y]==1){
