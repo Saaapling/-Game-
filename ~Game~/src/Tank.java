@@ -10,38 +10,51 @@ public class Tank {
 	
 	double barrelSpeed;
 	double barrelAngle;
+	Board board;
 	
-	int xpos;			//Coordinate defined as bottom left hand corner of tank
+	int xpos;				//Coordinate defined as bottom left hand corner of tank
 	int ypos;
 	
 	int id;
 	
-	public Tank(int xstart, int ystart, Board board, int identity){
+	public Tank(int xstart, int ystart, Board newboard, int identity){
 		xpos=xstart;
 		ypos=ystart;
 		id=identity;
-		for (int i=0; i<10;i++){
-			board.board[xpos+i][ypos]=id;
-			board.board[xpos+i][ypos+1]=id;
-		}
-		for (int i=0; i<9;i++){
-			board.board[xpos+i+1][ypos+2]=id;
-			board.board[xpos+i+1][ypos+3]=id;
-		}
-		for (int i=0; i<6;i++){
-			board.board[xpos+i+2][ypos+4]=id;
-		}
+		board=newboard;
+		boardadjust();
 	}
 	
 	public void movement(int direction, int[][] board){
+		System.out.println("why garn?");
 		if (direction==1){
-			if (board[xpos+5][ypos]==0){
+			System.out.println("HA!");
+			//if (board[xpos+5][ypos]==0){
+				System.out.println("Whatta joke");
 				xpos+=1;
-			}
+			//}
 		}else{
-			if (board[xpos-1][ypos]==0){
+			System.out.println("Hm...");
+			//if (board[xpos-1][ypos]==0){
+				System.out.println("Cuz he's a scrub");
 				xpos-=1;
-			}
+			//}
+		}
+	}
+	
+	public void boardadjust(){
+		for (int i=0; i<10;i++){
+			board.board[xpos][ypos+i]=id;
+			board.board[xpos+1][ypos+i]=id;
+		}
+		for (int i=0; i<9;i++){
+			board.board[xpos+2][ypos+i+1]=id;
+		}
+		for (int i=0; i<8;i++){
+			board.board[xpos+3][ypos+i+1]=id;
+		}
+		for (int i=0; i<6;i++){
+			board.board[xpos+4][ypos+i+2]=id;
 		}
 	}
 }

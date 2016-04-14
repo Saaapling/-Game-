@@ -12,20 +12,20 @@ import javax.swing.Timer;
 public class Tester implements KeyListener{
 
 	static Tester test;
-	JFrame frame=new JFrame("Garn");
+	static JFrame frame=new JFrame("Garn");
 	static Board board=new Board();
-	Tank tank;
+	static Tank tank;
 
 	static ActionListener timertask = new ActionListener() {
 		public void actionPerformed(ActionEvent evt) {
-			
+			refresh();
 		}
 	};
 	static Timer timer=new Timer(50, timertask)	;
 	
 	public Tester(){
 		terraingeneration();
-		tank=new Tank(300,151, board, 1);
+		tank=new Tank(300,149, board, 1);
 		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		board.setPreferredSize(new Dimension(1200,500));
@@ -46,13 +46,14 @@ public class Tester implements KeyListener{
 		}
 	}
 	
-	public void refresh(){
+	public static void refresh(){
 		frame.remove(board);
-		int[][] tempboard=new int[200][200];
+		int[][] tempboard=new int[600][250];
 		for (int x=0;x<600;x++)											//Copying the board over
 			for (int y=0;y<250;y++)
 				tempboard[x][y]=board.board[x][y];
 		board=new Board();
+		board.setPreferredSize(new Dimension(1200,500));
 		board.board=tempboard;
 		frame.add(board);
 		frame.pack();
@@ -70,9 +71,9 @@ public class Tester implements KeyListener{
 		 * space 32
 		 */
 		if (keyboard.getKeyCode()==37){
-			
+			tank.movement(2, board.board);
 		}else if (keyboard.getKeyCode()==39){
-
+			tank.movement(1, board.board);
 		}
 		
 	}
