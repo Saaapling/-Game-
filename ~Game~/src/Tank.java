@@ -17,7 +17,7 @@ public class Tank {
 	
 	int id;
 	
-	public Tank(int xstart, int ystart, Board newboard, int identity){
+	public Tank(int ystart, int xstart, Board newboard, int identity){
 		xpos=xstart;
 		ypos=ystart;
 		id=identity;
@@ -39,11 +39,11 @@ public class Tank {
 	
 	public void boardadjust(){
 		for (int i=0; i<5;i++){
-			board.board[xpos][ypos+i]=id;
-			board.board[xpos-1][ypos+i]=id;
+			board.board[ypos+i][xpos]=id;
+			board.board[ypos+i][xpos-1]=id;
 		}
 		for (int i=0; i<4;i++){
-			board.board[xpos-2][ypos+i+1]=id;
+			board.board[ypos+i+1][xpos-2]=id;
 		}
 	}
 }

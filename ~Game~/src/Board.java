@@ -39,11 +39,8 @@ public class Board extends JPanel{
 	}
 
 	public void drawCannonball(Cannonball cannonball, Graphics g) {
-
 		g.fillOval(cannonball.xpos*3,200, 10, 10);
-
 		//g.fillArc(300,100,30,30,60,60);
-
 	}
 
 	public void paintComponent(Graphics g){
@@ -66,9 +63,7 @@ public class Board extends JPanel{
 
 		g.setColor(new Color(47,170,42));
 		drawtank(Tester.tank, g);
-
 	}
-
 
 }
 

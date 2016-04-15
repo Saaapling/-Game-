@@ -15,10 +15,7 @@ public class Tester implements KeyListener{
 	static JFrame frame=new JFrame("Garn");
 	static Board board=new Board();
 	static Tank tank;
-
-	
 	static Cannonball cannonball;
-
 
 	static ActionListener timertask = new ActionListener() {
 		public void actionPerformed(ActionEvent evt) {
@@ -30,12 +27,9 @@ public class Tester implements KeyListener{
 	public Tester(){
 		terraingeneration();
 
-		tank=new Tank(300,149, board, 1);
-		
+		tank=new Tank(149,300, board, 1);
 		cannonball = new Cannonball(300,200,board,1);
-
 		tank=new Tank(300,149, board, 10);
-
 		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		board.setPreferredSize(new Dimension(1200,500));
