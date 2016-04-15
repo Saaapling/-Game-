@@ -26,35 +26,24 @@ public class Tank {
 	}
 	
 	public void movement(int direction, int[][] board){
-		System.out.println("why garn?");
 		if (direction==1){
-			System.out.println("HA!");
 			//if (board[xpos+5][ypos]==0){
-				System.out.println("Whatta joke");
 				xpos+=1;
 			//}
 		}else{
-			System.out.println("Hm...");
 			//if (board[xpos-1][ypos]==0){
-				System.out.println("Cuz he's a scrub");
 				xpos-=1;
 			//}
 		}
 	}
 	
 	public void boardadjust(){
-		for (int i=0; i<10;i++){
+		for (int i=0; i<5;i++){
 			board.board[xpos][ypos+i]=id;
-			board.board[xpos+1][ypos+i]=id;
+			board.board[xpos-1][ypos+i]=id;
 		}
-		for (int i=0; i<9;i++){
-			board.board[xpos+2][ypos+i+1]=id;
-		}
-		for (int i=0; i<8;i++){
-			board.board[xpos+3][ypos+i+1]=id;
-		}
-		for (int i=0; i<6;i++){
-			board.board[xpos+4][ypos+i+2]=id;
+		for (int i=0; i<4;i++){
+			board.board[xpos-2][ypos+i+1]=id;
 		}
 	}
 }

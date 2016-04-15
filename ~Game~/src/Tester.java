@@ -25,7 +25,7 @@ public class Tester implements KeyListener{
 	
 	public Tester(){
 		terraingeneration();
-		tank=new Tank(300,149, board, 1);
+		tank=new Tank(300,149, board, 10);
 		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		board.setPreferredSize(new Dimension(1200,500));
