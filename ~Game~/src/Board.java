@@ -36,8 +36,6 @@ public class Board extends JPanel{
 		g.drawLine(tank.xpos*2+1, tank.ypos*2-3, tank.xpos*2+9, tank.ypos*2-3);
 		g.drawLine(tank.xpos*2+2, tank.ypos*2-4, tank.xpos*2+8, tank.ypos*2-4);
 
-
-
 	}
 
 	public void drawCannonball(Cannonball cannonball, Graphics g) {
@@ -45,7 +43,7 @@ public class Board extends JPanel{
 		g.fillOval(cannonball.xpos*3,200, 10, 10);
 
 		//g.fillArc(300,100,30,30,60,60);
-		
+
 	}
 
 	public void paintComponent(Graphics g){
@@ -53,15 +51,26 @@ public class Board extends JPanel{
 			for (int y=0;y<250;y++){
 				if (board[x][y]==1){
 					g.setColor(Color.GREEN);
+				}else if(board[x][y]>=10){
+					g.setColor(Color.BLUE);
 				}else{
 					g.setColor(new Color(0,240,240));
 				}
 				g.drawRect(x*2, y*2, 1, 1);
 			}
 		}
+
 		g.setColor(Color.black);
 		drawtank(Tester.tank, g);
 		drawCannonball(Tester.cannonball, g);
+
+		g.setColor(new Color(47,170,42));
+		drawtank(Tester.tank, g);
+
 	}
 
+
 }
+
+
+

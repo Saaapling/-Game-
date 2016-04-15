@@ -15,8 +15,10 @@ public class Tester implements KeyListener{
 	static JFrame frame=new JFrame("Garn");
 	static Board board=new Board();
 	static Tank tank;
+
 	
 	static Cannonball cannonball;
+
 
 	static ActionListener timertask = new ActionListener() {
 		public void actionPerformed(ActionEvent evt) {
@@ -27,9 +29,13 @@ public class Tester implements KeyListener{
 	
 	public Tester(){
 		terraingeneration();
+
 		tank=new Tank(300,149, board, 1);
 		
 		cannonball = new Cannonball(300,200,board,1);
+
+		tank=new Tank(300,149, board, 10);
+
 		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		board.setPreferredSize(new Dimension(1200,500));
@@ -78,8 +84,10 @@ public class Tester implements KeyListener{
 			tank.movement(2, board.board);
 		}else if (keyboard.getKeyCode()==39){
 			tank.movement(1, board.board);
+
 		} else if (keyboard.getKeyCode()==32) {
 			cannonball.movement(1, board.board);
+
 		}
 		
 	}
