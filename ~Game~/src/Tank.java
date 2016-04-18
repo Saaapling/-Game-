@@ -39,11 +39,11 @@ public class Tank {
 	
 	public void boardadjust(){
 		for (int i=0; i<5;i++){
-			board.board[ypos+i][xpos]=id;
-			board.board[ypos+i][xpos-1]=id;
+			board.board[ypos][xpos+i]=id;
+			board.board[ypos-1][xpos+i]=id;
 		}
 		for (int i=0; i<4;i++){
-			board.board[ypos+i+1][xpos-2]=id;
+			board.board[ypos-2][xpos+1+i]=id;
 		}
 	}
 }

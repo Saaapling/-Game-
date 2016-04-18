@@ -29,7 +29,7 @@ public class Tester implements KeyListener{
 
 		tank=new Tank(149,300, board, 1);
 		cannonball = new Cannonball(300,200,board,1);
-		tank=new Tank(300,149, board, 10);
+		//tank=new Tank(300,149, board, 10);
 		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		board.setPreferredSize(new Dimension(1200,500));
@@ -45,17 +45,17 @@ public class Tester implements KeyListener{
 	public  void terraingeneration(){
 		for (int x=0;x<600;x++){
 			for (int y=150;y<250;y++){
-				board.board[x][y]=1;
+				board.board[y][x]=1;
 			}
 		}
 	}
 	
 	public static void refresh(){
 		frame.remove(board);
-		int[][] tempboard=new int[600][250];
+		int[][] tempboard=new int[250][600];
 		for (int x=0;x<600;x++)											//Copying the board over
 			for (int y=0;y<250;y++)
-				tempboard[x][y]=board.board[x][y];
+				tempboard[y][x]=board.board[y][x];
 		board=new Board();
 		board.setPreferredSize(new Dimension(1200,500));
 		board.board=tempboard;
