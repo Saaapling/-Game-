@@ -35,7 +35,6 @@ public class Board extends JPanel{
 		g.drawLine(tank.xpos*2+1, tank.ypos*2-2, tank.xpos*2+10, tank.ypos*2-2);
 		g.drawLine(tank.xpos*2+1, tank.ypos*2-3, tank.xpos*2+9, tank.ypos*2-3);
 		g.drawLine(tank.xpos*2+2, tank.ypos*2-4, tank.xpos*2+8, tank.ypos*2-4);
-
 	}
 
 	public void drawCannonball(Cannonball cannonball, Graphics g) {

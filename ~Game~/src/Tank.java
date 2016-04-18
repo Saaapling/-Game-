@@ -10,18 +10,16 @@ public class Tank {
 	
 	double barrelSpeed;
 	double barrelAngle;
-	Board board;
 	
 	int xpos;				//Coordinate defined as bottom left hand corner of tank
 	int ypos;
 	
 	int id;
 	
-	public Tank(int ystart, int xstart, Board newboard, int identity){
+	public Tank(int ystart, int xstart, int identity){
 		xpos=xstart;
 		ypos=ystart;
 		id=identity;
-		board=newboard;
 		boardadjust();
 	}
 	
@@ -35,15 +33,20 @@ public class Tank {
 				xpos-=1;
 			//}
 		}
+		if (xpos>600)
+			xpos=600;
+		if (xpos>0)
+			xpos=0;
+		boardadjust();
 	}
 	
 	public void boardadjust(){
 		for (int i=0; i<5;i++){
-			board.board[ypos][xpos+i]=id;
-			board.board[ypos-1][xpos+i]=id;
+			Tester.board.board[ypos][xpos+i]=id;
+			Tester.board.board[ypos-1][xpos+i]=id;
 		}
 		for (int i=0; i<4;i++){
-			board.board[ypos-2][xpos+1+i]=id;
+			Tester.board.board[ypos-2][xpos+1+i]=id;
 		}
 	}
 }
