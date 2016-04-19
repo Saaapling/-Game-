@@ -35,7 +35,7 @@ public class Tank {
 		}
 		if (xpos>600)
 			xpos=600;
-		if (xpos>0)
+		if (xpos<0)
 			xpos=0;
 		boardadjust();
 	}
