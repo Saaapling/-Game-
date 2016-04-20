@@ -20,16 +20,17 @@ public class Tester implements KeyListener{
 	static ActionListener timertask = new ActionListener() {
 		public void actionPerformed(ActionEvent evt) {
 			refresh();
+			tank.falling();
 		}
 	};
 	static Timer timer=new Timer(50, timertask)	;
-	
+
 	public Tester(){
 		terraingeneration();
 
-		tank=new Tank(149,300,10);
+		tank=new Tank(149,100,10);
 		cannonball = new Cannonball(300,200,board,1);
-		
+
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		board.setPreferredSize(new Dimension(1200,500));
 		frame.addKeyListener(this);
@@ -37,7 +38,7 @@ public class Tester implements KeyListener{
 		frame.add(board);
 		frame.pack();
 		frame.setVisible(true);
-		
+
 		timer.start();
 	}
 
@@ -47,8 +48,17 @@ public class Tester implements KeyListener{
 				board.board[y][x]=1;
 			}
 		}
+		//y=-.003(x-300)^2+75
+		for (int x=0;x<600;x++){
+			int yval=(int)(-.003*Math.pow(x-300, 2)+75);
+			if (yval>0){
+				for (int y=149;y>149-yval;y--){
+					board.board[y][x]=2;
+				}
+			}
+		}
 	}
-	
+
 	public static void refresh(){
 		frame.remove(board);
 		int[][] tempboard=new int[250][600];
@@ -61,7 +71,7 @@ public class Tester implements KeyListener{
 		frame.add(board);
 		frame.pack();
 	}
-	
+
 	public void keyTyped(KeyEvent keyboard) {
 
 	}
@@ -82,7 +92,7 @@ public class Tester implements KeyListener{
 			cannonball.movement(1, board.board);
 
 		}
-		
+
 	}
 
 	public void keyReleased(KeyEvent keyboard) {
