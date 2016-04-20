@@ -38,8 +38,8 @@ public class Tank {
 						ypos-=2;
 					}else{
 						System.out.println("a");
-						System.out.println(Tester.board.board[xpos+5][10]);
-						if (Tester.board.board[xpos+5][ypos-30]==0){
+						System.out.println(Tester.board.board[xpos+5][ypos-3]);
+						if (Tester.board.board[xpos+5][ypos-3]==0){
 							xpos+=1;
 							ypos-=3;
 						}
