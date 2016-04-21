@@ -43,7 +43,7 @@ public class Tester implements KeyListener{
 		terraingeneration();
 
 		tank=new Tank(149,100,10);
-		cannonball = new Cannonball(originalX, originalY,board,1);
+		cannonball = new Cannonball(originalX, originalY,1);
 
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		board.setPreferredSize(new Dimension(1200,500));
