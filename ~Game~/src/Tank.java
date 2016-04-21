@@ -30,6 +30,7 @@ public class Tank {
 				xpos+=1;
 			}else{
 				if (Tester.board.board[xpos+5][ypos-1]==0){
+					System.out.println("THIS IS RIGGED");
 					xpos+=1;
 					ypos-=1;
 				}else{
