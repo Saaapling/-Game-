@@ -1,5 +1,3 @@
-
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicTreeUI.TreeIncrementAction;
@@ -38,7 +36,7 @@ public class Board extends JPanel{
 	}
 
 	public void drawCannonball(Cannonball cannonball, Graphics g) {
-		g.fillOval(cannonball.xpos*3,200, 10, 10);
+		g.fillOval(cannonball.xpos,500-cannonball.ypos, 10, 10);
 		//g.fillArc(300,100,30,30,60,60);
 	}
 
@@ -67,6 +65,3 @@ public class Board extends JPanel{
 	}
 
 }
-
-
-

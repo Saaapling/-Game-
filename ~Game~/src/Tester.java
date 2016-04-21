@@ -1,3 +1,4 @@
+
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,8 +18,21 @@ public class Tester implements KeyListener{
 	static Tank tank;
 	static Cannonball cannonball;
 
+	private static boolean cannonballFlying = false;
+
+	private static int originalX = 100;
+	private static int originalY = 200;
+
+
 	static ActionListener timertask = new ActionListener() {
 		public void actionPerformed(ActionEvent evt) {
+
+			if (cannonballFlying) {
+				cannonballFlying = cannonball.movement(1, board.board, originalX, originalY);
+			} else {
+				cannonballFlying = false;
+			}
+
 			refresh();
 			tank.falling();
 		}
@@ -29,7 +43,7 @@ public class Tester implements KeyListener{
 		terraingeneration();
 
 		tank=new Tank(149,100,10);
-		cannonball = new Cannonball(300,200,board,1);
+		cannonball = new Cannonball(originalX, originalY,board,1);
 
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		board.setPreferredSize(new Dimension(1200,500));
@@ -89,8 +103,7 @@ public class Tester implements KeyListener{
 			tank.movement(1, board.board);
 
 		} else if (keyboard.getKeyCode()==32) {
-			cannonball.movement(1, board.board);
-
+			cannonballFlying = true;
 		}
 
 	}
