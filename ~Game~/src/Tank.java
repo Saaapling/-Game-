@@ -21,9 +21,13 @@ public class Tank {
 		ypos=ystart;
 		id=identity;
 		boardadjust();
-		barrelAngle=180;
+		barrelAngle=0;
 	}
 
+	public double conversion(double angle){
+		return angle/180*Math.PI;
+	}
+	
 	public void movement(int direction, int[][] board){
 		clearboard();
 		if (direction==1){
