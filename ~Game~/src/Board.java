@@ -33,8 +33,10 @@ public class Board extends JPanel{
 		g.drawLine(tank.xpos*2+1, tank.ypos*2-2, tank.xpos*2+10, tank.ypos*2-2);
 		g.drawLine(tank.xpos*2+1, tank.ypos*2-3, tank.xpos*2+9, tank.ypos*2-3);
 		g.drawLine(tank.xpos*2+2, tank.ypos*2-4, tank.xpos*2+8, tank.ypos*2-4);
-		g.drawLine(tank.xpos*2+3, tank.ypos*2-5, tank.xpos*2+15, tank.ypos*2-5);
-		g.drawLine(tank.xpos*2+3, tank.ypos*2-6, tank.xpos*2+15, tank.ypos*2-6);
+		g.drawLine(tank.xpos*2+3, tank.ypos*2-5, tank.xpos*2+13, tank.ypos*2-5);
+		g.setColor(Color.BLACK);
+		g.drawLine(tank.xpos*2+12, tank.ypos*2-5, tank.xpos*2+13, tank.ypos*2-5);
+
 	}
 
 	public void drawCannonball(Cannonball cannonball, Graphics g) {
