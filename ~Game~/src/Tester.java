@@ -42,7 +42,7 @@ public class Tester implements KeyListener{
 	public Tester(){
 		terraingeneration();
 
-		tank=new Tank(149,100,10);
+		tank=new Tank(49,300,10);
 		cannonball = new Cannonball(originalX, originalY,1);
 
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -84,8 +84,18 @@ public class Tester implements KeyListener{
 		board.board=tempboard;
 		frame.add(board);
 		frame.pack();
+		//printgrid();
 	}
 
+	public static void printgrid(){
+		for (int y=0;y<250;y++){
+			for (int x=0;x<600;x++){
+				System.out.print(board.board[y][x]);
+			}
+			System.out.println();
+		}
+	}
+	
 	public void keyTyped(KeyEvent keyboard) {
 
 	}

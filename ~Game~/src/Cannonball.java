@@ -14,7 +14,7 @@ public class Cannonball {
 	int xpos;				//Coordinate defined as bottom left hand corner of tank
 	int ypos;
 
-	private final int MAX_POWER = 63;
+	private final int MAX_POWER = 120;
 	//private double totalFlightTime = (200 * Math.sqrt(2)) / MAX_POWER;
 	private double totalFlightTime;
 	private double flightTimer = 0;

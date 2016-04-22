@@ -21,26 +21,24 @@ public class Tank {
 		ypos=ystart;
 		id=identity;
 		boardadjust();
+		barrelAngle=180;
 	}
 
 	public void movement(int direction, int[][] board){
 		clearboard();
 		if (direction==1){
-			if (Tester.board.board[xpos+5][ypos]==0){
+			if (Tester.board.board[ypos][xpos+5]==0){
 				xpos+=1;
 			}else{
-				if (Tester.board.board[xpos+5][ypos-1]==0){
-					System.out.println("THIS IS RIGGED");
+				if (Tester.board.board[ypos-1][xpos+5]==0){
 					xpos+=1;
 					ypos-=1;
 				}else{
-					if (Tester.board.board[xpos+5][ypos-2]==0){
+					if (Tester.board.board[ypos-2][xpos+5]==0){
 						xpos+=1;
 						ypos-=2;
 					}else{
-						System.out.println("a");
-						System.out.println(Tester.board.board[xpos+5][ypos-3]);
-						if (Tester.board.board[xpos+5][ypos-3]==0){
+						if (Tester.board.board[ypos-3][xpos+5]==0){
 							xpos+=1;
 							ypos-=3;
 						}
@@ -48,8 +46,23 @@ public class Tank {
 				}
 			}
 		}else{
-			if (Tester.board.board[xpos-1][ypos]==0){
+			if (Tester.board.board[ypos][xpos-1]==0){
 				xpos-=1;
+			}else{
+				if (Tester.board.board[ypos-1][xpos-1]==0){
+					xpos-=1;
+					ypos-=1;
+				}else{
+					if (Tester.board.board[ypos-2][xpos-1]==0){
+						xpos-=1;
+						ypos-=2;
+					}else{
+						if (Tester.board.board[ypos-3][xpos-1]==0){
+							xpos-=1;
+							ypos-=3;
+						}
+					}
+				}
 			}
 		}
 
