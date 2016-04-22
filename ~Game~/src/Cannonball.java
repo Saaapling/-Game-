@@ -1,6 +1,6 @@
 import java.math.*;
 
-//import javax.swing.plaf.basic.BasicInternalFrameTitlePane.MaximizeAction; 
+//import javax.swing.plaf.basic.BasicInternalFrameTitlePane.MaximizeAction;  
 
 public class Cannonball {
 

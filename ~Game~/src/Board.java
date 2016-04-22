@@ -20,7 +20,7 @@ public class Board extends JPanel{
 
 	public Board(){
 		super();
-		for (int x=0;x<600;x++){
+		for (int x=0;x<600;x++){ 
 			for (int y=0;y<250;y++){
 				board[y][x]=0;
 			}
