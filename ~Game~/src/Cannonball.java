@@ -14,7 +14,7 @@ public class Cannonball {
 	int xpos;				//Coordinate defined as bottom left hand corner of tank
 	int ypos;
 
-	private final int MAX_POWER = 120;
+	private final int MAX_POWER = 63;
 	//private double totalFlightTime = (200 * Math.sqrt(2)) / MAX_POWER;
 	private double totalFlightTime;
 	private double flightTimer = 0;
@@ -33,6 +33,8 @@ public class Cannonball {
 		//boardadjust();
 	}
 
+	//http://www.wired.com/2010/09/maximum-range-in-projectile-motion/
+	
 	public boolean movement(int direction, int[][] board, int origX, int origY){
 		//if (direction==1){
 		//if (board[xpos+5][ypos]==0){
@@ -41,7 +43,6 @@ public class Cannonball {
 		int originalY = origY;
 
 		System.out.println("Before XPOS: "+xpos);
-		System.out.println("Before YPos: "+ ypos);
 		System.out.println("In cannonball movement");
 
 		//xpos = (int) ( originalX+ (finalVelocity * flightTimer) ) ;
@@ -51,8 +52,8 @@ public class Cannonball {
 		totalFlightTime = (originalX + totalHorizontalDistanceTraveled) / finalVelocity;
 		//ypos = (int) ( originalY + ( 0.5 * (GRAVITY) * ( Math.pow(flightTimer, 2)) ) ) ;
 		xpos = (int)  (originalX + ( finalVelocity * flightTimer * Math.cos(radian) ) );
-		ypos = (int) (originalY + ( (finalVelocity * flightTimer * Math.sin(radian) ) 
-				- 0.5 * GRAVITY * (Math.pow(flightTimer, 2) ) ) );
+		ypos = (int)  (    (originalY) + (finalVelocity * flightTimer * Math.sin(radian) ) 
+				- (0.5 * GRAVITY * (Math.pow(flightTimer, 2) ) )     );
 
 
 		
