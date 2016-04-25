@@ -1,4 +1,4 @@
-  
+
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.Timer;
- 
+
 
 public class Tester implements KeyListener{
 
@@ -95,18 +95,14 @@ public class Tester implements KeyListener{
 			System.out.println();
 		}
 	}
-	
+
 	public void keyTyped(KeyEvent keyboard) {
 
 	}
 
+	/*
 	public void keyPressed(KeyEvent keyboard) {
-		/* -> 39
-		 * <- 37
-		 * down 40
-		 * up 38
-		 * space 32
-		 */
+
 		if (keyboard.getKeyCode()==37){
 			tank.movement(2, board.board);
 		}else if (keyboard.getKeyCode()==39){
@@ -117,6 +113,33 @@ public class Tester implements KeyListener{
 		}
 
 	}
+	 */
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		// TODO Auto-generated method stub
+
+		int keyCode = e.getKeyCode();
+
+		System.out.println("In keypressed: "+keyCode);
+
+		switch( keyCode ) { 
+		case KeyEvent.VK_LEFT:
+			// handle left
+			tank.movement(2, board.board);
+			break;
+		case KeyEvent.VK_RIGHT :
+			tank.movement(1, board.board);
+			break;
+		case KeyEvent.VK_SPACE : 
+			cannonballFlying = true;
+			break;
+		}
+	}
+
+
+
+
 
 	public void keyReleased(KeyEvent keyboard) {
 
