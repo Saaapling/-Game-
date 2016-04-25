@@ -38,11 +38,11 @@ public class Board extends JPanel{
 		}else{
 			g.drawLine(tank.xpos*2+5, tank.ypos*2-5, tank.xpos*2+8, tank.ypos*2-4);
 		}
-		g.drawLine(tank.xpos*2+5, tank.ypos*2-5, (int)(tank.xpos*2+3+(10*Math.cos(tank.conversion(tank.barrelAngle)))),
-				(int)(tank.ypos*2-5-(10*Math.sin(tank.conversion(tank.barrelAngle)))));
+		g.drawLine(tank.xpos*2+5, tank.ypos*2-5, (int)(tank.xpos*2+5+(9*Math.cos(tank.conversion(tank.barrelAngle)))),
+				(int)(tank.ypos*2-5-(9*Math.sin(tank.conversion(tank.barrelAngle)))));
 		g.setColor(Color.BLACK);
-		g.drawLine(tank.xpos*2+12, tank.ypos*2-5, (int)(tank.xpos*2+3+(10*Math.cos(tank.conversion(tank.barrelAngle)))),
-				(int)(tank.ypos*2-5-(10*Math.sin(tank.conversion(tank.barrelAngle)))));
+		g.drawLine((int)(tank.xpos*2+5+(8*Math.cos(tank.conversion(tank.barrelAngle)))), (int)(tank.ypos*2-5-(8*Math.sin(tank.conversion(tank.barrelAngle)))),
+				(int)(tank.xpos*2+5+(9*Math.cos(tank.conversion(tank.barrelAngle)))), (int)(tank.ypos*2-5-(9*Math.sin(tank.conversion(tank.barrelAngle)))));
 	}
 
 	public void drawCannonball(Cannonball cannonball, Graphics g) {

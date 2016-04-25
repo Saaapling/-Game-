@@ -21,7 +21,7 @@ public class Tank {
 		ypos=ystart;
 		id=identity;
 		boardadjust();
-		barrelAngle=0;
+		barrelAngle=45;
 	}
 
 	public double conversion(double angle){
