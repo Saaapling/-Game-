@@ -115,9 +115,7 @@ public class Tester implements KeyListener{
 	}
 	 */
 
-	@Override
 	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
 
 		int keyCode = e.getKeyCode();
 
@@ -125,7 +123,6 @@ public class Tester implements KeyListener{
 
 		switch( keyCode ) { 
 		case KeyEvent.VK_LEFT:
-			// handle left
 			tank.movement(2, board.board);
 			break;
 		case KeyEvent.VK_RIGHT :
