@@ -11,7 +11,7 @@ public class Tank {
 	double barrelSpeed;
 	double barrelAngle;
 
-	int xpos;				//Coordinate defined as bottom left hand corner of tank
+	int xpos;				 //Coordinate defined as bottom left hand corner of tank
 	int ypos;
 
 	int id;
