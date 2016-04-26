@@ -86,12 +86,14 @@ public class Tank {
 	}
 	
 	public void clearboard(){
-		for (int i=0; i<5;i++){
+		for (int i=0; i<8;i++){
 			Tester.board.board[ypos][xpos+i]=0;
 			Tester.board.board[ypos-1][xpos+i]=0;
 		}
-		for (int i=0; i<4;i++){
-			Tester.board.board[ypos-2][xpos+1+i]=0;
+		for (int i=0; i<6;i++){
+			Tester.board.board[ypos-2][xpos+2+i]=0;
+			Tester.board.board[ypos-3][xpos+2+i]=0;
+
 		}
 	}
 
