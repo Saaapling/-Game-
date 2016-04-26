@@ -35,8 +35,8 @@ public class Cannonball {
 		angle=newangle;
 		MAX_POWER=power;
 		xVelocity = Math.cos(conversion(angle)) * MAX_POWER;
-		//yVelocity = Math.sin(conversion(angle)) * MAX_POWER;
-		yVelocity=50;
+		yVelocity = Math.sin(conversion(angle)) * MAX_POWER;
+		//yVelocity=50;
 		totalFlightTime = (2*yVelocity/GRAVITY);
 		totalHorizontalDistanceTraveled = (int) (xVelocity*totalFlightTime+.5);
 	}
@@ -62,10 +62,9 @@ public class Cannonball {
 		System.out.println("FlightTimer: " + flightTimer);
 		System.out.println("Total flight time: " + totalFlightTime);
 		System.out.println("TotalHorz " + totalHorizontalDistanceTraveled);
-		//flightTimer += (Tester.interval/1000);
-		flightTimer += 1;
-		System.out.println("sin: " + Math.sin(2*radian));
-
+		flightTimer *=1000;
+		flightTimer += ((double)(Tester.interval));
+		flightTimer /=1000;
 		
 		if (flightTimer > totalFlightTime) {
 			cannonballFlying = false;
