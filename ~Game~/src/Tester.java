@@ -17,33 +17,28 @@ public class Tester implements KeyListener{
 	static Board board=new Board();
 	static Tank tank;
 	static Cannonball cannonball;
-
 	private static boolean cannonballFlying = false;
-
-	private static int originalX = 100;
-	private static int originalY = 200;
 
 
 	static ActionListener timertask = new ActionListener() {
 		public void actionPerformed(ActionEvent evt) {
-
 			if (cannonballFlying) {
-				cannonballFlying = cannonball.movement(1, board.board, originalX, originalY);
+				cannonballFlying = cannonball.movement(1, board.board);
 			} else {
 				cannonballFlying = false;
 			}
-
 			refresh();
 			tank.falling();
 		}
 	};
-	static Timer timer=new Timer(50, timertask)	;
+	static int interval=50;
+	static Timer timer=new Timer(interval, timertask)	;
 
 	public Tester(){
 		terraingeneration();
 
 		tank=new Tank(49,300,10);
-		cannonball = new Cannonball(originalX, originalY,1);
+		cannonball = new Cannonball(100,300,1,45,63);
 
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		board.setPreferredSize(new Dimension(1200,500));
@@ -100,26 +95,26 @@ public class Tester implements KeyListener{
 
 	}
 
-	/*
+	
 	public void keyPressed(KeyEvent keyboard) {
-
+		//System.out.println("In keypressed: "+keyboard.getKeyCode());
 		if (keyboard.getKeyCode()==37){
 			tank.movement(2, board.board);
-		}else if (keyboard.getKeyCode()==39){
+		}if (keyboard.getKeyCode()==39){
 			tank.movement(1, board.board);
-
-		} else if (keyboard.getKeyCode()==32) {
+		}if (keyboard.getKeyCode()==32) {
 			cannonballFlying = true;
+		}if (keyboard.getKeyCode()==81) {
+			tank.barrelrotate(1);
+		}if (keyboard.getKeyCode()==61) {
+			tank.barrelrotate(-1);
 		}
-
 	}
-	 */
-
+	 
+/*
 	public void keyPressed(KeyEvent e) {
 
 		int keyCode = e.getKeyCode();
-
-		System.out.println("In keypressed: "+keyCode);
 
 		switch( keyCode ) { 
 		case KeyEvent.VK_LEFT:
@@ -132,17 +127,14 @@ public class Tester implements KeyListener{
 			cannonballFlying = true;
 			break;
 		case KeyEvent.VK_Q : 
-			tank.barrelrotate(1);;
+			tank.barrelrotate(1);
 			break;
 		case KeyEvent.VK_E : 
-			tank.barrelrotate(-1);;
+			tank.barrelrotate(-1);
 			break;
 		}
 	}
-
-
-
-
+*/
 
 	public void keyReleased(KeyEvent keyboard) {
 

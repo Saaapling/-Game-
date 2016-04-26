@@ -11,79 +11,70 @@ public class Cannonball {
 	double ballAngle;
 
 	Cannonball cannonball;
+	int xstart;
+	int ystart;
 	int xpos;				//Coordinate defined as bottom left hand corner of tank
 	int ypos;
-
-	private final int MAX_POWER = 63;
-	//private double totalFlightTime = (200 * Math.sqrt(2)) / MAX_POWER;
+	
+	private final int MAX_POWER;
 	private double totalFlightTime;
 	private double flightTimer = 0;
-	private double finalVelocity = (Math.sqrt(2) / 2) * MAX_POWER;
+	private double xVelocity;
 	private double yVelocity;
 	private final int GRAVITY = 10;
 	private boolean cannonballFlying = false;
-	private int angle = 45;
+	private int angle;
 	private int totalHorizontalDistanceTraveled;
 	private double radian = angle * (Math.PI / 180);
 
-	public Cannonball(int xstart, int ystart, int identity){
+	public Cannonball(int xstartpos, int ystartpos, int identity, int newangle, int power){
+		xstart=xstartpos;
+		ystart=ystartpos;
 		xpos=xstart;
 		ypos=ystart;
-		//id=identity;
-		//boardadjust();
+		angle=newangle;
+		MAX_POWER=power;
+		xVelocity = Math.cos(conversion(angle)) * MAX_POWER;
+		//yVelocity = Math.sin(conversion(angle)) * MAX_POWER;
+		yVelocity=50;
+		totalFlightTime = (2*yVelocity/GRAVITY);
+		totalHorizontalDistanceTraveled = (int) (xVelocity*totalFlightTime+.5);
 	}
 
 	//http://www.wired.com/2010/09/maximum-range-in-projectile-motion/
 	
-	public boolean movement(int direction, int[][] board, int origX, int origY){
-		//if (direction==1){
-		//if (board[xpos+5][ypos]==0){
+	public double conversion(double angle){
+		return angle/180*Math.PI;
+	}
+	
+	public boolean movement(int direction, int[][] board){
+		//System.out.println("Before XPOS: "+xpos);
+		//System.out.println("In cannonball movement");
+		//System.out.println("XPOS: "+xpos);
 
-		int originalX = origX;
-		int originalY = origY;
-
-		System.out.println("Before XPOS: "+xpos);
-		System.out.println("In cannonball movement");
-
-		//xpos = (int) ( originalX+ (finalVelocity * flightTimer) ) ;
-
-		System.out.println("XPOS: "+xpos);
-		totalHorizontalDistanceTraveled = (int) ( (Math.pow(finalVelocity, 2) * Math.sin(2*radian) ) / (GRAVITY) ) ;
-		totalFlightTime = (originalX + totalHorizontalDistanceTraveled) / finalVelocity;
-		//ypos = (int) ( originalY + ( 0.5 * (GRAVITY) * ( Math.pow(flightTimer, 2)) ) ) ;
-		xpos = (int)  (originalX + ( finalVelocity * flightTimer * Math.cos(radian) ) );
-		ypos = (int)  (    (originalY) + (finalVelocity * flightTimer * Math.sin(radian) ) 
-				- (0.5 * GRAVITY * (Math.pow(flightTimer, 2) ) )     );
-
-
+		xpos = (int)(xstart + (xVelocity * flightTimer));
+		ypos = (int)(ystart + (-(yVelocity * flightTimer)+ (0.5 * GRAVITY * (Math.pow(flightTimer, 2)))));
 		
-		//yVelocity = Math.sqrt( (2*GRAVITY*originalX) ); no
-		//ypos = (int) ( originalY + (yVelocity * flightTimer) ) ; no
+		System.out.println("\n\n\n");
+		System.out.println("XPOS: "+xpos);
 		System.out.println("YPos: "+ ypos);
-		System.out.println("Finalvel: " +finalVelocity);
+		System.out.println("xVel: " +xVelocity);
 		System.out.println("FlightTimer: " + flightTimer);
 		System.out.println("Total flight time: " + totalFlightTime);
 		System.out.println("TotalHorz " + totalHorizontalDistanceTraveled);
-		flightTimer += 0.25;
+		//flightTimer += (Tester.interval/1000);
+		flightTimer += 1;
 		System.out.println("sin: " + Math.sin(2*radian));
 
 		
-		if (flightTimer >= totalFlightTime) {
+		if (flightTimer > totalFlightTime) {
 			cannonballFlying = false;
 			flightTimer = 0;
 		} else {
 			cannonballFlying  = true;
 		}
+		
 		return(cannonballFlying);
-
-		//xpos+=1;
-
-		//}
-		//}else{
-		//if (board[xpos-1][ypos]==0){
-		//xpos-=1;
-		//}
-		//}
 	}
 
 }
