@@ -47,21 +47,20 @@ public class Cannonball {
 		return angle/180*Math.PI;
 	}
 	
-	public boolean movement(int direction, int[][] board){
-		//System.out.println("Before XPOS: "+xpos);
-		//System.out.println("In cannonball movement");
-		//System.out.println("XPOS: "+xpos);
-
-		xpos = (int)(xstart + (xVelocity * flightTimer));
-		ypos = (int)(ystart + (-(yVelocity * flightTimer)+ (0.5 * GRAVITY * (Math.pow(flightTimer, 2)))));
-		
-		System.out.println("\n\n\n");
+	public void debugstats(){
 		System.out.println("XPOS: "+xpos);
 		System.out.println("YPos: "+ ypos);
 		System.out.println("xVel: " +xVelocity);
 		System.out.println("FlightTimer: " + flightTimer);
 		System.out.println("Total flight time: " + totalFlightTime);
 		System.out.println("TotalHorz " + totalHorizontalDistanceTraveled);
+		System.out.println("\n\n\n");
+	}
+	
+	public boolean movement(int direction, int[][] board){
+		xpos = (int)(xstart + (xVelocity * flightTimer));
+		ypos = (int)(ystart + (-(yVelocity * flightTimer)+ (0.5 * GRAVITY * (Math.pow(flightTimer, 2)))));
+
 		flightTimer *=1000;
 		flightTimer += ((double)(Tester.interval));
 		flightTimer /=1000;
