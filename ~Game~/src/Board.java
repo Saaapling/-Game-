@@ -28,21 +28,20 @@ public class Board extends JPanel{
 	}
 
 	public void drawtank(Tank tank, Graphics g){
-		g.drawLine(tank.xpos*2, tank.ypos*2, tank.xpos*2+10, tank.ypos*2);
-		g.drawLine(tank.xpos*2, tank.ypos*2-1, tank.xpos*2+10, tank.ypos*2-1);
-		g.drawLine(tank.xpos*2+1, tank.ypos*2-2, tank.xpos*2+10, tank.ypos*2-2);
-		g.drawLine(tank.xpos*2+1, tank.ypos*2-3, tank.xpos*2+9, tank.ypos*2-3);
-		g.drawLine(tank.xpos*2+2, tank.ypos*2-4, tank.xpos*2+8, tank.ypos*2-4);
-		if (tank.barrelAngle<90){
-			g.drawLine(tank.xpos*2+3, tank.ypos*2-5, tank.xpos*2+6, tank.ypos*2-4);
-		}else{
-			g.drawLine(tank.xpos*2+5, tank.ypos*2-5, tank.xpos*2+8, tank.ypos*2-4);
-		}
-		g.drawLine(tank.xpos*2+5, tank.ypos*2-5, (int)(tank.xpos*2+5+(7*Math.cos(tank.conversion(tank.barrelAngle)))),
-				(int)(tank.ypos*2-5-(7*Math.sin(tank.conversion(tank.barrelAngle)))));
+		g.drawLine(tank.xpos*2+3, tank.ypos*2+1, tank.xpos*2+15, tank.ypos*2+1);
+		g.drawLine(tank.xpos*2+2, tank.ypos*2, tank.xpos*2+16, tank.ypos*2);
+		g.drawLine(tank.xpos*2+1, tank.ypos*2-1, tank.xpos*2+16, tank.ypos*2-1);
+		g.drawLine(tank.xpos*2+1, tank.ypos*2-2, tank.xpos*2+16, tank.ypos*2-2);
+		g.drawLine(tank.xpos*2+3, tank.ypos*2-3, tank.xpos*2+15, tank.ypos*2-3);
+		g.drawLine(tank.xpos*2+5, tank.ypos*2-4, tank.xpos*2+14, tank.ypos*2-4);
+		g.drawLine(tank.xpos*2+5, tank.ypos*2-5, tank.xpos*2+14, tank.ypos*2-5);
+		g.drawLine(tank.xpos*2+8, tank.ypos*2-6, tank.xpos*2+14, tank.ypos*2-6);
+		//Drawing teh barrel
+		g.drawLine(tank.xpos*2+12, tank.ypos*2-6, (int)(tank.xpos*2+12+(9*Math.cos(tank.conversion(tank.barrelAngle)))+.5),
+				(int)(tank.ypos*2-6-(9*Math.sin(tank.conversion(tank.barrelAngle))-.5)));
 		g.setColor(Color.BLACK);
-		g.drawLine((int)(tank.xpos*2+5+(6*Math.cos(tank.conversion(tank.barrelAngle)))), (int)(tank.ypos*2-5-(6*Math.sin(tank.conversion(tank.barrelAngle)))),
-				(int)(tank.xpos*2+5+(7*Math.cos(tank.conversion(tank.barrelAngle)))), (int)(tank.ypos*2-5-(7*Math.sin(tank.conversion(tank.barrelAngle)))));
+		//g.drawLine((int)(tank.xpos*2+5+(6*Math.cos(tank.conversion(tank.barrelAngle)))), (int)(tank.ypos*2-5-(6*Math.sin(tank.conversion(tank.barrelAngle)))),
+		//		(int)(tank.xpos*2+5+(7*Math.cos(tank.conversion(tank.barrelAngle)))), (int)(tank.ypos*2-5-(7*Math.sin(tank.conversion(tank.barrelAngle)))));
 	}
 
 	public void drawCannonball(Cannonball cannonball, Graphics g) {

@@ -21,7 +21,7 @@ public class Tank {
 		ypos=ystart;
 		id=identity;
 		boardadjust();
-		barrelAngle=45;
+		barrelAngle=0;
 	}
 
 	public double conversion(double angle){
@@ -79,8 +79,8 @@ public class Tank {
 
 	public void barrelrotate(int angledisplacement){
 		barrelAngle+=angledisplacement;
-		if (barrelAngle>180)
-			barrelAngle=180;
+		if (barrelAngle>40)
+			barrelAngle=40;
 		else if(barrelAngle<0)
 			barrelAngle=0;
 	}
