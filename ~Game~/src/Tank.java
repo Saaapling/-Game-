@@ -31,18 +31,18 @@ public class Tank {
 	public void movement(int direction, int[][] board){
 		clearboard();
 		if (direction==1){
-			if (Tester.board.board[ypos][xpos+5]==0){
+			if (Tester.board.board[ypos][xpos+8]==0){
 				xpos+=1;
 			}else{
-				if (Tester.board.board[ypos-1][xpos+5]==0){
+				if (Tester.board.board[ypos-1][xpos+8]==0){
 					xpos+=1;
 					ypos-=1;
 				}else{
-					if (Tester.board.board[ypos-2][xpos+5]==0){
+					if (Tester.board.board[ypos-2][xpos+8]==0){
 						xpos+=1;
 						ypos-=2;
 					}else{
-						if (Tester.board.board[ypos-3][xpos+5]==0){
+						if (Tester.board.board[ypos-3][xpos+8]==0){
 							xpos+=1;
 							ypos-=3;
 						}
@@ -102,7 +102,8 @@ public class Tank {
 		int increase=0;
 		inner: while (Tester.board.board[ypos+1][xpos]==0&&Tester.board.board[ypos+1][xpos+1]==0
 				&&Tester.board.board[ypos+1][xpos+2]==0&&Tester.board.board[ypos+1][xpos+3]==0
-				&&Tester.board.board[ypos+1][xpos+4]==0){
+				&&Tester.board.board[ypos+1][xpos+4]==0&&Tester.board.board[ypos+1][xpos+5]==0
+				&&Tester.board.board[ypos+1][xpos+6]==0&&Tester.board.board[ypos+1][xpos+7]==0){
 			ypos+=1;
 			increase+=1;
 			if (ypos>248){
