@@ -131,6 +131,12 @@ public class Tester implements KeyListener{
 		case KeyEvent.VK_SPACE : 
 			cannonballFlying = true;
 			break;
+		case KeyEvent.VK_Q : 
+			tank.barrelrotate(1);;
+			break;
+		case KeyEvent.VK_E : 
+			tank.barrelrotate(-1);;
+			break;
 		}
 	}
 

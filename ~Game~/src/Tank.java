@@ -77,6 +77,14 @@ public class Tank {
 		boardadjust();
 	}
 
+	public void barrelrotate(int angledisplacement){
+		barrelAngle+=angledisplacement;
+		if (barrelAngle>180)
+			barrelAngle=180;
+		else if(barrelAngle<0)
+			barrelAngle=0;
+	}
+	
 	public void clearboard(){
 		for (int i=0; i<5;i++){
 			Tester.board.board[ypos][xpos+i]=0;
