@@ -16,29 +16,34 @@ public class Tester implements KeyListener{
 	static JFrame frame=new JFrame("Garn");
 	static Board board=new Board();
 	static Tank tank;
-	static Cannonball cannonball;
+//	static Cannonball cannonball;
 	private static boolean cannonballFlying = false;
 
 
 	static ActionListener timertask = new ActionListener() {
 		public void actionPerformed(ActionEvent evt) {
-			if (cannonballFlying) {
-				cannonballFlying = cannonball.movement(1, board.board);
-			} else {
-				cannonballFlying = false;
+//			if (cannonballFlying) {
+//				cannonballFlying = cannonball.movement(1);
+//			} else {
+//				cannonballFlying = false;
+//			}
+			for (Cannonball cannonball:Tester.tank.cannonballs){
+				if (cannonball.cannonballFlying)
+					cannonball.movement();
 			}
-			refresh();
 			tank.falling();
+			tank.disposal();
+			refresh();
 		}
 	};
 	static int interval=50;
-	static Timer timer=new Timer(interval, timertask)	;
+	static Timer timer=new Timer(interval, timertask);
 
 	public Tester(){
 		terraingeneration();
 
-		tank=new Tank(49,300,10);
-		cannonball = new Cannonball(149,50,1,45,63);
+		tank=new Tank(149,50,10);
+//		cannonball = new Cannonball(149,50,1,45,63,1);
 
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		board.setPreferredSize(new Dimension(1200,500));
@@ -103,10 +108,11 @@ public class Tester implements KeyListener{
 		}if (keyboard.getKeyCode()==39){
 			tank.movement(1, board.board);
 		}if (keyboard.getKeyCode()==32) {
-			cannonballFlying = true;
-		}if (keyboard.getKeyCode()==81) {
+//			cannonballFlying = true;
+			tank.fire();
+		}if (keyboard.getKeyCode()==38) {
 			tank.barrelrotate(1);
-		}if (keyboard.getKeyCode()==61) {
+		}if (keyboard.getKeyCode()==40) {
 			tank.barrelrotate(-1);
 		}
 	}

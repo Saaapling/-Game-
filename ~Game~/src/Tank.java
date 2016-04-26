@@ -1,36 +1,63 @@
 import java.awt.Color;
-  
+import java.util.ArrayList;
+
 
 public class Tank {
 
 	Color tankColor;
 
-	//double tankHorizontalSpeed;
-	//double tankVerticalSpeed;
-
-	double barrelSpeed;
-	double barrelAngle;
-
+	int barrelAngle;
 	int xpos;				 //Coordinate defined as bottom left hand corner of tank
 	int ypos;
-
 	int id;
+	int cannonballsfired;
+	int orientation;
+
+	ArrayList<Cannonball> cannonballs=new ArrayList<Cannonball>();
 
 	public Tank(int ystart, int xstart, int identity){
 		xpos=xstart;
 		ypos=ystart;
 		id=identity;
+		orientation=1;
 		boardadjust();
 		barrelAngle=0;
+		cannonballsfired=0;
 	}
 
 	public double conversion(double angle){
 		return angle/180*Math.PI;
 	}
-	
+
+	public void fire(){
+		cannonballsfired+=1;
+		if (orientation==1)
+			cannonballs.add(new Cannonball((int)((ypos*2-6-(9*Math.sin(conversion(barrelAngle))-.5))/2),
+					(int)((xpos*2+12+(9*Math.cos(conversion(barrelAngle)))+.5)/2), cannonballsfired, barrelAngle, 63, orientation));
+		else
+			cannonballs.add(new Cannonball((int)((ypos*2-6-(9*Math.sin(conversion(barrelAngle))-.5))/2),
+					(int)((xpos*2+(16-(12+(9*Math.cos(conversion(barrelAngle)))))+.5)/2), cannonballsfired, barrelAngle, 63, orientation));
+	}
+
+	public void disposal(){
+		ArrayList<Integer> tobedisposed=new ArrayList<Integer>();
+		for (Cannonball cannonball:Tester.tank.cannonballs){
+			if (cannonball.dispose)
+				tobedisposed.add(cannonball.id);
+		}
+		for (int tag:tobedisposed)
+			for (int i=cannonballs.size()-1;i>=0;i--){
+				if (cannonballs.get(i).id==tag){
+					cannonballs.get(i).explosion();
+					cannonballs.remove(i);
+				}
+			}
+	}
+
 	public void movement(int direction, int[][] board){
 		clearboard();
 		if (direction==1){
+			orientation=1;
 			if (Tester.board.board[ypos][xpos+8]==0){
 				xpos+=1;
 			}else{
@@ -50,6 +77,7 @@ public class Tank {
 				}
 			}
 		}else{
+			orientation=2;
 			if (Tester.board.board[ypos][xpos-1]==0){
 				xpos-=1;
 			}else{
@@ -84,7 +112,7 @@ public class Tank {
 		else if(barrelAngle<0)
 			barrelAngle=0;
 	}
-	
+
 	public void clearboard(){
 		for (int i=0; i<8;i++){
 			Tester.board.board[ypos][xpos+i]=0;
