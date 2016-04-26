@@ -15,7 +15,7 @@ public class Cannonball {
 	int ystart;
 	int xpos;				//Coordinate defined as bottom left hand corner of tank
 	int ypos;
-	
+
 	private final int MAX_POWER;
 	private double totalFlightTime;
 	private double flightTimer = 0;
@@ -27,7 +27,7 @@ public class Cannonball {
 	private int totalHorizontalDistanceTraveled;
 	private double radian = angle * (Math.PI / 180);
 
-	public Cannonball(int xstartpos, int ystartpos, int identity, int newangle, int power){
+	public Cannonball(int ystartpos, int xstartpos, int identity, int newangle, int power){
 		xstart=xstartpos;
 		ystart=ystartpos;
 		xpos=xstart;
@@ -42,11 +42,11 @@ public class Cannonball {
 	}
 
 	//http://www.wired.com/2010/09/maximum-range-in-projectile-motion/
-	
+
 	public double conversion(double angle){
 		return angle/180*Math.PI;
 	}
-	
+
 	public void debugstats(){
 		System.out.println("XPOS: "+xpos);
 		System.out.println("YPos: "+ ypos);
@@ -56,23 +56,28 @@ public class Cannonball {
 		System.out.println("TotalHorz " + totalHorizontalDistanceTraveled);
 		System.out.println("\n\n\n");
 	}
-	
+
 	public boolean movement(int direction, int[][] board){
-		xpos = (int)(xstart + (xVelocity * flightTimer));
-		ypos = (int)(ystart + (-(yVelocity * flightTimer)+ (0.5 * GRAVITY * (Math.pow(flightTimer, 2)))));
+		int newxpos = (int)(xstart + (xVelocity * flightTimer));
+		int newypos = (int)(ystart + (-(yVelocity * flightTimer)+ (0.5 * GRAVITY * (Math.pow(flightTimer, 2)))));
 
 		flightTimer *=1000;
 		flightTimer += ((double)(Tester.interval));
 		flightTimer /=1000;
-		
-		if (flightTimer > totalFlightTime) {
-			cannonballFlying = false;
-			flightTimer = 0;
-		} else {
-			cannonballFlying  = true;
+
+		if (!collision(newxpos,newypos)){
+			xpos=newxpos;
+			ypos=newypos;
 		}
-		
 		return(cannonballFlying);
 	}
 
+	public boolean collision(int xposition, int yposition){
+		if (Tester.board.board[yposition][xposition]!=0){
+			cannonballFlying = false;
+			return true;
+		}else
+			cannonballFlying = true;
+		return false;
+	}
 }
