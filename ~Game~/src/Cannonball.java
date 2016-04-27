@@ -71,7 +71,7 @@ public class Cannonball {
 		else
 			newxpos = (int)(xstart - (xVelocity * flightTimer));
 		flightTimer *=1000;
-		flightTimer += ((double)(Tester.interval));
+		flightTimer += ((double)(4*Tester.interval));
 		flightTimer /=1000;
 
 		if (!disposecheck(newxpos,newypos)){
@@ -91,21 +91,27 @@ public class Cannonball {
 				cannonballFlying = true;
 		}catch (Exception E){
 			System.out.println(xposition+", "+yposition);
+			cannonballFlying = false;
+			dispose=true;
 		}
 		return false;
 	}
-	
+
 	public void explosion(){
 		for (int x=xpos-5;x<xpos+5;x++){
 			for (int y=ypos-5;y<ypos+5;y++){
 				double distance= Math.sqrt(Math.pow(x-xpos,2) + Math.pow(y-ypos,2));
 				if (distance<=4){
-					Tester.board.board[y][x]=0;
+					if (x>=0&&x<600){
+						if (y>=0&&y<250){
+							Tester.board.board[y][x]=0;
+						}
+					}
 				}
 			}
 		}
 	}
-	
+
 	public boolean disposecheck(int xpos, int ypos){
 		collision(xpos,ypos);
 		if (xpos<0||xpos>600)

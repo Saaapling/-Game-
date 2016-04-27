@@ -36,7 +36,7 @@ public class Tester implements KeyListener{
 			refresh();
 		}
 	};
-	static int interval=50;
+	static int interval=10;
 	static Timer timer=new Timer(interval, timertask);
 
 	public Tester(){
