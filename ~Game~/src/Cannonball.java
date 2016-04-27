@@ -98,10 +98,10 @@ public class Cannonball {
 	}
 
 	public void explosion(){
-		for (int x=xpos-5;x<xpos+5;x++){
-			for (int y=ypos-5;y<ypos+5;y++){
+		for (int x=xpos-50;x<xpos+50;x++){
+			for (int y=ypos-50;y<ypos+50;y++){
 				double distance= Math.sqrt(Math.pow(x-xpos,2) + Math.pow(y-ypos,2));
-				if (distance<=4){
+				if (distance<=40){
 					if (x>=0&&x<600){
 						if (y>=0&&y<250){
 							Tester.board.board[y][x]=0;

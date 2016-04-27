@@ -28,6 +28,7 @@ public class Board extends JPanel{
 	}
 
 	public void updatebackground(int xpos, int ypos, int id){
+		int fallen=0;
 		if (ypos<249)
 			inner: while (Tester.board.board[ypos+1][xpos]==0){
 				Tester.board.board[ypos][xpos]=0;
@@ -35,16 +36,20 @@ public class Board extends JPanel{
 				if (ypos>=250){
 					ypos=249;
 					break inner;
-				}
+				}else if (fallen>=3)
+					break inner;
 				Tester.board.board[ypos][xpos]=id;
+				fallen+=1;
 			}
 	}
 
 	public void drawbackground(Graphics g){
-		for (int x=0;x<600;x++){
-			for (int y=0;y<250;y++){
+		for (int x=599;x>=0;x--)
+			for (int y=249;y>=0;y--)
 				if (board[y][x]>0&&board[y][x]<10)
 					updatebackground(x, y, board[y][x]);
+		for (int x=0;x<600;x++){
+			for (int y=0;y<250;y++){
 				if (board[y][x]==1){
 					g.setColor(Color.GREEN);
 				}else if(board[y][x]==2){
