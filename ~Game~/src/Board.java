@@ -29,18 +29,20 @@ public class Board extends JPanel{
 
 	public void updatebackground(int xpos, int ypos, int id){
 		int fallen=0;
-		if (ypos<249)
+		if (ypos<249){
 			inner: while (Tester.board.board[ypos+1][xpos]==0){
-				Tester.board.board[ypos][xpos]=0;
 				ypos+=1;
-				if (ypos>=250){
-					ypos=249;
+				if (ypos>248){
+					ypos=248;
 					break inner;
-				}else if (fallen>=3)
+				}else if (fallen>=3){
 					break inner;
+				}
+				Tester.board.board[ypos-1][xpos]=0;
 				Tester.board.board[ypos][xpos]=id;
 				fallen+=1;
 			}
+		}
 	}
 
 	public void drawbackground(Graphics g){
