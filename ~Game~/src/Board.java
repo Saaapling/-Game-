@@ -17,7 +17,8 @@ import java.util.ArrayList;
 public class Board extends JPanel{
 
 	public int[][] board = new int[250][600];  //0-Empty, 1 terrain, 2 shot values, 10+ players
-
+	public ArrayList<int[]> bakahatsu=new ArrayList<int[]>();
+	
 	public Board(){
 		super();
 		for (int x=0;x<600;x++){ 
@@ -27,6 +28,10 @@ public class Board extends JPanel{
 		}
 	}
 
+	public void Bakahutsu(Graphics g, int xpos, int ypos){
+		
+	}
+	
 	public void updatebackground(int xpos, int ypos, int id){
 		int fallen=0;
 		if (ypos<249){
