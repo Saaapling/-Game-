@@ -18,7 +18,7 @@ public class Cannonball {
 	int id;
 	int direction;
 	boolean dispose;
-	int radius =50;
+	int radius =10;
 
 	private final int MAX_POWER;
 	private double totalFlightTime;
@@ -84,7 +84,7 @@ public class Cannonball {
 
 	public boolean collision(int xposition, int yposition){
 		try{
-			if (Tester.board.board[yposition][xposition]!=0){
+			if (Tester.board.board[yposition][xposition]!=0&&Tester.board.board[yposition][xposition]!=3){
 				cannonballFlying = false;
 				dispose=true;
 				return true;
@@ -105,7 +105,8 @@ public class Cannonball {
 				if (distance<=radius){
 					if (x>=0&&x<600){
 						if (y>=0&&y<250){
-							Tester.board.board[y][x]=0;
+							//Tester.board.board[y][x]=0;
+							Tester.board.board[y][x]=3;
 						}
 					}
 				}

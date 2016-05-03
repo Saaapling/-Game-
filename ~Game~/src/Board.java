@@ -28,8 +28,11 @@ public class Board extends JPanel{
 		}
 	}
 
-	public void Bakahutsu(Graphics g, int xpos, int ypos){
-		
+	public void BakahutsuClear(){
+		for (int x=599;x>=0;x--)
+			for (int y=249;y>=0;y--)
+				if (board[y][x]==3)
+					board[y][x]=0;
 	}
 	
 	public void updatebackground(int xpos, int ypos, int id){
@@ -61,6 +64,8 @@ public class Board extends JPanel{
 					g.setColor(Color.GREEN);
 				}else if(board[y][x]==2){
 					g.setColor(Color.GRAY);
+				}else if(board[y][x]==3){
+					g.setColor(new Color(255, 153, 51, 20));
 				}else if(board[y][x]>=10){
 					//g.setColor(Color.BLUE);
 				}else{
@@ -99,7 +104,7 @@ public class Board extends JPanel{
 		}
 	}
 
-	public void drawCannonball(Cannonball cannonball, Graphics g) {
+	public void drawCannonball(Cannonball cannonball, Graphics g){
 		g.setColor(Color.black);
 		g.fillRect(cannonball.xpos*2,cannonball.ypos*2, 2, 2);
 		//System.out.println(cannonball.xpos*2+", "+cannonball.ypos*2);

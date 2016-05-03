@@ -135,7 +135,7 @@ public class Tank {
 			ypos+=1;
 			increase+=1;
 			if (ypos>248){
-				ypos=248;
+				ypos=248; 
 				break inner;
 			}
 			if (increase>3)

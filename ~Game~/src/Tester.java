@@ -16,12 +16,14 @@ public class Tester implements KeyListener{
 	static JFrame frame=new JFrame("Garn");
 	static Board board=new Board();
 	static Tank tank;
+	static int frames=0;
 //	static Cannonball cannonball;
 	private static boolean cannonballFlying = false;
 
 
 	static ActionListener timertask = new ActionListener() {
 		public void actionPerformed(ActionEvent evt) {
+			frames+=1;
 //			if (cannonballFlying) {
 //				cannonballFlying = cannonball.movement(1);
 //			} else {
@@ -31,6 +33,8 @@ public class Tester implements KeyListener{
 				if (cannonball.cannonballFlying)
 					cannonball.movement();
 			}
+			if (frames%2==0)
+				board.BakahutsuClear();
 			tank.falling();
 			tank.disposal();
 			refresh();
