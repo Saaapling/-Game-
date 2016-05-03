@@ -13,6 +13,11 @@ public class Tank {
 	int cannonballsfired;
 	int orientation;
 
+	//FOR THE HUD
+	int health;
+	int gas;
+	String name;
+	
 	ArrayList<Cannonball> cannonballs=new ArrayList<Cannonball>();
 
 	public Tank(int ystart, int xstart, int identity){
