@@ -6,7 +6,6 @@ public class Tank {
 
 	Color tankColor;
 
-	int barrelAngle;
 	int xpos;				 //Coordinate defined as bottom left hand corner of tank
 	int ypos;
 	int id;
@@ -17,6 +16,10 @@ public class Tank {
 	int health;
 	int gas;
 	String name;
+	int barrelAngle;
+	int power;
+	int weapon;
+	int shottimer;
 	
 	ArrayList<Cannonball> cannonballs=new ArrayList<Cannonball>();
 
