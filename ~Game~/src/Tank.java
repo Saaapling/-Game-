@@ -30,6 +30,7 @@ public class Tank {
 		orientation=1;
 		boardadjust();
 		barrelAngle=0;
+		power=100;
 		cannonballsfired=0;
 	}
 
@@ -41,10 +42,10 @@ public class Tank {
 		cannonballsfired+=1;
 		if (orientation==1)
 			cannonballs.add(new Cannonball((int)((ypos*2-6-(9*Math.sin(conversion(barrelAngle))-.5))/2),
-					(int)((xpos*2+12+(9*Math.cos(conversion(barrelAngle)))+.5)/2), cannonballsfired, barrelAngle, 63, orientation));
+					(int)((xpos*2+12+(9*Math.cos(conversion(barrelAngle)))+.5)/2), cannonballsfired, barrelAngle, power*63/100, orientation));
 		else
 			cannonballs.add(new Cannonball((int)((ypos*2-6-(9*Math.sin(conversion(barrelAngle))-.5))/2),
-					(int)((xpos*2+(16-(12+(9*Math.cos(conversion(barrelAngle)))))+.5)/2), cannonballsfired, barrelAngle, 63, orientation));
+					(int)((xpos*2+(16-(12+(9*Math.cos(conversion(barrelAngle)))))+.5)/2), cannonballsfired, barrelAngle, power*63/100, orientation));
 	}
 
 	public void disposal(){
@@ -121,6 +122,14 @@ public class Tank {
 			barrelAngle=0;
 	}
 
+	public void poweradjust(int i){
+		power+=i;
+		if (power>100)
+			power=100;
+		if (power<0)
+			power=0;
+	}
+	
 	public void clearboard(){
 		for (int i=0; i<8;i++){
 			Tester.board.board[ypos][xpos+i]=0;

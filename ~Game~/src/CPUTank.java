@@ -14,14 +14,11 @@ import java.io.IOException;
 import java.awt.Color;
 import java.util.ArrayList;
 
-public class PlayerTank extends Tank{
+public class CPUTank extends Tank{
 
-	public PlayerTank(int xstart, int ystart, Board board, int identity){
-		super(xstart, ystart, board, identity);
+	public CPUTank(int xstart, int ystart, Board board, int identity){
+		super(xstart, ystart, identity);
 	}
 	
-	public static void main(String[] args) {
-		
-	}
-
+	
 }
