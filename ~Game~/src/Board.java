@@ -112,11 +112,11 @@ public class Board extends JPanel{
 
 	public void paintComponent(Graphics g){
 		drawbackground(g);
-		for (Cannonball cannonball:Tester.tank.cannonballs){
+		for (Cannonball cannonball:Tester.playertank.cannonballs){
 			drawCannonball(cannonball, g);
 		}
 		g.setColor(new Color(47,170,42));
-		drawtank(Tester.tank, g);
+		drawtank(Tester.playertank, g);
 	}
 
 }
