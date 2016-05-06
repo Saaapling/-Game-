@@ -117,6 +117,8 @@ public class Board extends JPanel{
 		}
 		g.setColor(new Color(47,170,42));
 		drawtank(Tester.playertank, g);
+		g.setColor(Color.BLACK);
+		drawtank(Tester.CPUtank, g);
 	}
 
 }

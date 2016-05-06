@@ -15,9 +15,14 @@ import java.util.ArrayList;
 
 public class CPUTank extends Tank{
 
-	public CPUTank(int xstart, int ystart, Board board, int identity){
+	public CPUTank(int xstart, int ystart, int identity){
 		super(xstart, ystart, identity);
+		orientation=2;
+		barrelAngle=60;
 	}
 	
-	
+	public void aimbot(int xtarget, int ytarget){
+		int x=xtarget-xpos;
+		power=(int)Math.sqrt((10*Math.pow(x, 2))/(ypos-ytarget+x));
+	}
 }
