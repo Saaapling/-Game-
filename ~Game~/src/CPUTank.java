@@ -18,7 +18,7 @@ public class CPUTank extends Tank{
 	public CPUTank(int xstart, int ystart, int identity){
 		super(xstart, ystart, identity);
 		orientation=2;
-		barrelAngle=60;
+		barrelAngle=45;
 	}
 	
 	public void aimbot(int xtarget, int ytarget){
