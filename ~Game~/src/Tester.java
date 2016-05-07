@@ -16,7 +16,7 @@ public class Tester implements KeyListener{
 	static JFrame frame=new JFrame("Garn");
 	static Board board=new Board();
 	static Tank playertank;
-	static Tank CPUtank;
+	static CPUTank CPUtank;
 	static int frames=0;
 	private static boolean cannonballFlying = false;
 
@@ -37,6 +37,8 @@ public class Tester implements KeyListener{
 			playertank.falling();
 			playertank.disposal();
 			CPUtank.falling();
+			if (frames%10==0)
+				CPUtank.aimbot(playertank.xpos,playertank.ypos);
 			CPUtank.disposal();
 			refresh();
 		}
@@ -47,6 +49,7 @@ public class Tester implements KeyListener{
 	public Tester(){
 		terraingeneration();
 		playertank=new PlayerTank(149,50,10);
+		//playertank=new PlayerTank(74,300,10);
 		CPUtank=new CPUTank(149,550,11);
 
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

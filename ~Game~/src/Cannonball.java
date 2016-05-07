@@ -72,7 +72,7 @@ public class Cannonball {
 		else
 			newxpos = (int)(xstart - (xVelocity * flightTimer));
 		flightTimer *=1000;
-		flightTimer += ((double)(4*Tester.interval));
+		flightTimer += ((double)(10*Tester.interval));
 		flightTimer /=1000;
 
 		if (!disposecheck(newxpos,newypos)){
@@ -101,7 +101,7 @@ public class Cannonball {
 	public void explosion(){
 		for (int x=xpos-radius;x<xpos+radius;x++){
 			for (int y=ypos-radius;y<ypos+radius;y++){
-				double distance= Math.sqrt(Math.pow(x-xpos,2) + Math.pow(y-ypos,2));
+				double distance= Math.sqrt(Math.pow(x-xpos,2) + Math.pow(y*2-ypos*2,2));
 				if (distance<=radius){
 					if (x>=0&&x<600){
 						if (y>=0&&y<250){

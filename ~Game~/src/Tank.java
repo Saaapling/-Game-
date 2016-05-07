@@ -111,6 +111,7 @@ public class Tank {
 			if (increase>3)
 				break inner;
 		}
+		boardadjust();
 	}
 
 	public void boardadjust(){
