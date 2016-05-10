@@ -6,7 +6,7 @@ public class PlayerTank extends Tank{
 	}
 
 	public void movement(int direction, int[][] board){
-		if(fuel>0){
+		if(fuel<260){
 			fuel-=1;
 			clearboard();
 			if (direction==1){

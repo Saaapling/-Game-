@@ -37,7 +37,7 @@ public class Tester implements KeyListener{
 			playertank.falling();
 			playertank.disposal();
 			CPUtank.falling();
-			if (frames%10==0)
+			if (frames%1==0)
 				CPUtank.aimbot(playertank.xpos,playertank.ypos);
 			CPUtank.disposal();
 			if (frames%5==0){
