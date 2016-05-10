@@ -14,7 +14,7 @@ public class Tank {
 
 	//FOR THE HUD
 	int health;
-	int gas;
+	int fuel;
 	String name;
 	int barrelAngle;
 	int power;
@@ -32,6 +32,7 @@ public class Tank {
 		barrelAngle=0;
 		power=100;
 		cannonballsfired=0;
+		fuel=250;
 	}
 
 	public double conversion(double angle){

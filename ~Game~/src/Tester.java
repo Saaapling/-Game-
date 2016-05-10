@@ -40,6 +40,12 @@ public class Tester implements KeyListener{
 			if (frames%10==0)
 				CPUtank.aimbot(playertank.xpos,playertank.ypos);
 			CPUtank.disposal();
+			if (frames%5==0){
+				if (playertank.fuel>250)
+					playertank.fuel+=1;
+				if (CPUtank.fuel>250)
+					CPUtank.fuel+=1;
+			}
 			refresh();
 		}
 	};
