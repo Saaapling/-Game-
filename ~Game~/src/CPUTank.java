@@ -26,7 +26,7 @@ public class CPUTank extends Tank{
 			aimbot(xtarget, ytarget);
 	}
 	
-	public void aimbot(int xtarget, int ytarget){
+	private void aimbot(int xtarget, int ytarget){
 		//To Make it Random;
 		int x=Math.abs(xtarget-xpos);
 		xtarget=xtarget-x/10+(int)(Math.random()*x/5+0.5);
@@ -36,5 +36,8 @@ public class CPUTank extends Tank{
 		power=power*100/63;
 		fire();
 	}
-	
+
+	private void AImovement(){
+		
+	}
 }

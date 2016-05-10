@@ -37,8 +37,7 @@ public class Tester implements KeyListener{
 			playertank.falling();
 			playertank.disposal();
 			CPUtank.falling();
-			if (frames%1==0)
-				CPUtank.aimbot(playertank.xpos,playertank.ypos);
+			CPUtank.AIcontrol(playertank.xpos,playertank.ypos,frames);
 			CPUtank.disposal();
 			if (frames%5==0){
 				if (playertank.fuel<250)
@@ -117,9 +116,9 @@ public class Tester implements KeyListener{
 	public void keyPressed(KeyEvent keyboard) {
 		//System.out.println("In keypressed: "+keyboard.getKeyCode());
 		if (keyboard.getKeyCode()==37){
-			playertank.movement(2, board.board);
+			playertank.movement(2);
 		}if (keyboard.getKeyCode()==39){
-			playertank.movement(1, board.board);
+			playertank.movement(1);
 		}if (keyboard.getKeyCode()==32) {
 			playertank.fire();
 		}if (keyboard.getKeyCode()==38) {
