@@ -38,6 +38,8 @@ public class CPUTank extends Tank{
 	}
 
 	private void AImovement(){
-		
+		if(fuel<260){
+			
+		}
 	}
 }
