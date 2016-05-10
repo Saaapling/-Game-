@@ -11,13 +11,16 @@ import javax.swing.Timer;
 
 
 public class Tester implements KeyListener{
-
+	
 	static Tester test;
 	static JFrame frame=new JFrame("Garn");
 	static Board board=new Board();
 	static Tank playertank;
 	static CPUTank CPUtank;
 	static int frames=0;
+ 
+	
+	
 	private static boolean cannonballFlying = false;
 
 
@@ -55,6 +58,9 @@ public class Tester implements KeyListener{
 	public Tester(){
 		terraingeneration();
 		playertank=new PlayerTank(149,50,10);
+		
+		HUD hud = new HUD(playertank);
+		
 		//playertank=new PlayerTank(74,300,10);
 		CPUtank=new CPUTank(149,550,11);
 
