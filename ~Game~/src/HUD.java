@@ -13,7 +13,7 @@ import java.awt.event.*;
 
 public class HUD extends JPanel{
 
-	Tank theTank;
+	Tank theTank; 
 
 	playertankHudPanel playertankHud;
 	JPanel cputankHud;
@@ -38,7 +38,7 @@ public class HUD extends JPanel{
 
 		this.setLayout(new FlowLayout(FlowLayout.LEFT));
 
-		//this.setLayout(new BorderLayout());
+		//this.setLayout(new BorderLayout()); 
 
 		//playertankHud.setLayout(new GridLayout(3,7,10,10));
 		//cputankHud.setLayout(new GridLayout(3,7,10,10));
