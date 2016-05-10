@@ -20,7 +20,7 @@ public class Tank {
 	int power;
 	int weapon;
 	int shottimer;
-	
+
 	ArrayList<Cannonball> cannonballs=new ArrayList<Cannonball>();
 
 	public Tank(int ystart, int xstart, int identity){
@@ -64,8 +64,58 @@ public class Tank {
 			}
 	}
 
-	public void movement(int direction, int[][] board){
-		
+	public void movement(int direction){
+		if(fuel<260){
+			fuel-=1;
+			clearboard();
+			if (direction==1){
+				orientation=1;
+				if (Tester.board.board[ypos][xpos+8]==0){
+					xpos+=1;
+				}else{
+					if (Tester.board.board[ypos-1][xpos+8]==0){
+						xpos+=1;
+						ypos-=1;
+					}else{
+						if (Tester.board.board[ypos-2][xpos+8]==0){
+							xpos+=1;
+							ypos-=2;
+						}else{
+							if (Tester.board.board[ypos-3][xpos+8]==0){
+								xpos+=1;
+								ypos-=3;
+							}
+						}
+					}
+				}
+			}else{
+				orientation=2;
+				if (Tester.board.board[ypos][xpos-1]==0){
+					xpos-=1;
+				}else{
+					if (Tester.board.board[ypos-1][xpos-1]==0){
+						xpos-=1;
+						ypos-=1;
+					}else{
+						if (Tester.board.board[ypos-2][xpos-1]==0){
+							xpos-=1;
+							ypos-=2;
+						}else{
+							if (Tester.board.board[ypos-3][xpos-1]==0){
+								xpos-=1;
+								ypos-=3;
+							}
+						}
+					}
+				}
+			}
+
+			if (xpos>595)
+				xpos=595;
+			if (xpos<1)
+				xpos=1;
+			boardadjust();
+		}
 	}
 
 	public void barrelrotate(int angledisplacement){
@@ -83,7 +133,7 @@ public class Tank {
 		if (power<0)
 			power=0;
 	}
-	
+
 	public void clearboard(){
 		for (int i=0; i<8;i++){
 			Tester.board.board[ypos][xpos+i]=0;
