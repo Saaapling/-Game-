@@ -15,6 +15,7 @@ public class Tester implements KeyListener{
 	static Tester test;
 	static JFrame frame=new JFrame("Garn");
 	static Board board=new Board();
+	static HUD hud;
 	static Tank playertank;
 	static CPUTank CPUtank;
 	static int frames=0;
@@ -56,12 +57,14 @@ public class Tester implements KeyListener{
 		playertank=new PlayerTank(149,50,10);
 		//playertank=new PlayerTank(74,300,10);
 		CPUtank=new CPUTank(149,550,11);
-		HUD hud=new HUD(playertank);
+		hud=new HUD(playertank);
 		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		board.setPreferredSize(new Dimension(1200,500));
 		frame.addKeyListener(this);
 
+		hud.setPreferredSize(new Dimension(200,500));
+		frame.add(hud);
 		frame.add(board);
 		frame.pack();
 		frame.setVisible(true);
