@@ -21,25 +21,20 @@ public class CPUTank extends Tank{
 		barrelAngle=45;
 	}
 	
+	public void AIcontrol(int xtarget, int ytarget, int frames){
+		if (frames%1==0)
+			aimbot(xtarget, ytarget);
+	}
+	
 	public void aimbot(int xtarget, int ytarget){
 		//To Make it Random;
 		int x=Math.abs(xtarget-xpos);
 		xtarget=xtarget-x/10+(int)(Math.random()*x/5+0.5);
 		x=Math.abs(xtarget-xpos);
-		int y=ypos-ytarget;
-//		System.out.println(xtarget);
-//		System.out.println(ytarget);
-//		System.out.println(xpos);
-//		System.out.println(ypos);
-		//System.out.println(x);
-		//System.out.println(y);
-		
+		int y=ypos-ytarget;		
 		power=(int)(Math.sqrt((10*Math.pow(x, 2))/(x-y))+0.5);
-		//System.out.println(power);
 		power=power*100/63;
-		//System.out.println(power*Math.sqrt(2)/10);
-		//System.out.println(10*Math.pow(x, 2));
-		//System.out.println((y+x));
 		fire();
 	}
+	
 }
