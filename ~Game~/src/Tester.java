@@ -123,9 +123,9 @@ public class Tester implements KeyListener{
 	public void keyPressed(KeyEvent keyboard) {
 		//System.out.println("In keypressed: "+keyboard.getKeyCode());
 		if (keyboard.getKeyCode()==37){
-			playertank.movement(2, board.board);
+			playertank.movement(2);
 		}if (keyboard.getKeyCode()==39){
-			playertank.movement(1, board.board);
+			playertank.movement(1);
 		}if (keyboard.getKeyCode()==32) {
 			playertank.fire();
 		}if (keyboard.getKeyCode()==38) {
