@@ -71,13 +71,18 @@ public class Cannonball {
 			newxpos = (int)(xstart + (xVelocity * flightTimer));
 		else
 			newxpos = (int)(xstart - (xVelocity * flightTimer));
-		flightTimer *=1000;
-		flightTimer += ((double)(10*Tester.interval));
-		flightTimer /=1000;
-
 		if (!disposecheck(newxpos,newypos)){
 			xpos=newxpos;
 			ypos=newypos;
+			flightTimer *=1000;
+			flightTimer += ((double)(10*Tester.interval));
+			flightTimer /=1000;
+		}else{
+			dispose=false;
+			flightTimer *=1000;
+			flightTimer -= ((double)(10*Tester.interval));
+			flightTimer /=1000;
+			bakhatsuprep();
 		}
 		return(cannonballFlying);
 	}
@@ -91,11 +96,37 @@ public class Cannonball {
 			}else
 				cannonballFlying = true;
 		}catch (Exception E){
-			System.out.println(xposition+", "+yposition);
+			//System.out.println(xposition+", "+yposition);
 			cannonballFlying = false;
 			dispose=true;
 		}
 		return false;
+	}
+
+	public void bakhatsuprep(){
+//		int newzypos = (int)(ystart + (-(yVelocity * flightTimer)+ (0.5 * GRAVITY * (Math.pow(flightTimer, 2)))));
+//		int newzxpos = (int)(xstart - (xVelocity * flightTimer));
+//		System.out.println(disposecheck(newzxpos,newzypos));
+		int repeat=0;
+		boolean stop=false;
+		while (repeat<10&&!stop){
+			int newypos = (int)(ystart + (-(yVelocity * flightTimer)+ (0.5 * GRAVITY * (Math.pow(flightTimer, 2)))));
+			int newxpos;
+			if (direction==1)
+				newxpos = (int)(xstart + (xVelocity * flightTimer));
+			else
+				newxpos = (int)(xstart - (xVelocity * flightTimer));
+			flightTimer *=1000;
+			flightTimer += ((double)(1*Tester.interval));
+			flightTimer /=1000;
+			if (!disposecheck(newxpos,newypos)){
+				xpos=newxpos;
+				ypos=newypos;
+			}else{
+				stop=true;
+			}
+			repeat+=1;
+		}
 	}
 
 	public void explosion(){
