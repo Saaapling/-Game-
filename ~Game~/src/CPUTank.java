@@ -23,7 +23,7 @@ public class CPUTank extends Tank{
 		barrelAngle=45;
 	}
 
-	public void AIcontrol(int xtarget, int ytarget, int frames){
+	public void control(int xtarget, int ytarget, int frames){
 		aimbot(xtarget, ytarget);
 		if(movement==0){
 			if(xtarget<xpos)

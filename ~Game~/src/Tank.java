@@ -39,6 +39,10 @@ public class Tank {
 		return angle/180*Math.PI;
 	}
 
+	public void control(){
+		
+	}
+	
 	public void fire(){
 		cannonballsfired+=1;
 		if (orientation==1)
