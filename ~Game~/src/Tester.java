@@ -56,9 +56,9 @@ public class Tester implements KeyListener{
 
 	public Tester(){
 		terraingeneration();
-		playertank=new PlayerTank(149,50,10);
+		playertank=new PlayerTank(149,550,10);
 		//playertank=new PlayerTank(74,300,10);
-		CPUtank=new CPUTank(149,550,11);
+		CPUtank=new CPUTank(149,50,11);
 
 		playertankHud = new playertankHudPanel(hud, playertank);
 		hud=new HUD(playertank, playertankHud);
