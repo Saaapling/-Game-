@@ -16,7 +16,7 @@ public class Tester implements KeyListener{
 	static JFrame frame=new JFrame("Garn");
 	static Board board=new Board();
 	static HUD hud;
-	static Tank playertank;
+	static PlayerTank playertank;
 	static CPUTank CPUtank;
 	static int frames=0;
 	private static boolean cannonballFlying = false;
@@ -121,21 +121,7 @@ public class Tester implements KeyListener{
 
 	public void keyPressed(KeyEvent keyboard) {
 		//System.out.println("In keypressed: "+keyboard.getKeyCode());
-		if (keyboard.getKeyCode()==37){
-			playertank.movement(2);
-		}if (keyboard.getKeyCode()==39){
-			playertank.movement(1);
-		}if (keyboard.getKeyCode()==32) {
-			playertank.fire();
-		}if (keyboard.getKeyCode()==38) {
-			playertank.barrelrotate(1);
-		}if (keyboard.getKeyCode()==40) {
-			playertank.barrelrotate(-1);
-		}if (keyboard.getKeyCode()==81) {
-			playertank.poweradjust(-1);
-		}if (keyboard.getKeyCode()==69) {
-			playertank.poweradjust(1);
-		}
+		playertank.control(keyboard.getKeyCode());
 	}
 
 	public void keyReleased(KeyEvent keyboard){

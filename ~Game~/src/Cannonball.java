@@ -19,6 +19,7 @@ public class Cannonball {
 	int direction;
 	boolean dispose;
 	int radius =10;
+	int timer;
 
 	private final int MAX_POWER;
 	private double totalFlightTime;

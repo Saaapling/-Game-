@@ -21,6 +21,7 @@ public class Tank {
 	int weapon;
 	int shottimer;
 
+	double[] specialdata;
 	ArrayList<Cannonball> cannonballs=new ArrayList<Cannonball>();
 
 	public Tank(int ystart, int xstart, int identity){
@@ -33,6 +34,7 @@ public class Tank {
 		power=100;
 		cannonballsfired=0;
 		fuel=250;
+		specialdata=new double[]{0,0};
 	}
 
 	public double conversion(double angle){
