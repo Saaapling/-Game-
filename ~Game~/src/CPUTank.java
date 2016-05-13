@@ -56,9 +56,4 @@ public class CPUTank extends Tank{
 		power=power*100/63;
 	}
 
-	private void AImovement(){
-		if(fuel<260){
-
-		}
-	}
 }

@@ -63,7 +63,7 @@ public class Tester implements KeyListener{
 		board.setPreferredSize(new Dimension(1200,500));
 		frame.addKeyListener(this);
 
-		hud.setPreferredSize(new Dimension(200,500));
+		//hud.setPreferredSize(new Dimension(1200,100));
 		frame.add(hud);
 		frame.add(board);
 		frame.pack();
@@ -91,6 +91,7 @@ public class Tester implements KeyListener{
 	}
 
 	public static void refresh(){
+		frame.remove(hud);
 		frame.remove(board);
 		int[][] tempboard=new int[250][600];
 		for (int x=0;x<600;x++)											//Copying the board over
@@ -99,6 +100,8 @@ public class Tester implements KeyListener{
 		board=new Board();
 		board.setPreferredSize(new Dimension(1200,500));
 		board.board=tempboard;
+		hud=new HUD(playertank);
+		frame.add(hud);
 		frame.add(board);
 		frame.pack();
 		//printgrid();
