@@ -65,7 +65,7 @@ public class Tank {
 	}
 
 	public void movement(int direction){
-		if(fuel<260){
+		if(fuel>0){
 			fuel-=1;
 			clearboard();
 			if (direction==1){

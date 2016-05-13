@@ -138,31 +138,6 @@ public class Tester implements KeyListener{
 		}
 	}
 
-	/*
-public void keyPressed(KeyEvent e) {
-
-int keyCode = e.getKeyCode();
-
-switch( keyCode ) { 
-case KeyEvent.VK_LEFT:
-tank.movement(2, board.board);
-break;
-case KeyEvent.VK_RIGHT :
-tank.movement(1, board.board);
-break;
-case KeyEvent.VK_SPACE : 
-cannonballFlying = true;
-break;
-case KeyEvent.VK_Q : 
-tank.barrelrotate(1);
-break;
-case KeyEvent.VK_E : 
-tank.barrelrotate(-1);
-break;
-}
-}
-	 */
-
 	public void keyReleased(KeyEvent keyboard){
 
 	}
