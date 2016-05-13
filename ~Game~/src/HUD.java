@@ -7,9 +7,11 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 
 import javax.swing.*;
+import javax.swing.text.LayeredHighlighter.LayerPainter;
 
 import java.awt.*;
 import java.awt.event.*;
+
 
 public class HUD extends JPanel{
 
@@ -18,7 +20,26 @@ public class HUD extends JPanel{
 	playertankHudPanel playertankHud;
 	JPanel cputankHud;
 
+	public HUD(Tank newtank, playertankHudPanel playertankHud){
+		theTank=newtank;
+		this.setPreferredSize(new Dimension(1200,100));
+		this.setLayout(new FlowLayout(FlowLayout.LEFT));
+		this.add(playertankHud);
 
+	}
+
+	public void paintComponent(Graphics g) {
+
+	}
+
+}
+
+class playertankHudPanel extends JPanel {
+
+	drawHealthPanel healthbar;
+	drawFuelPanel fuelbar;
+
+	Tank theTank;
 
 	JLabel playerName,
 	playerHealth, playerHealthPercent, playerWeapons, playerShotTimer, 
@@ -28,197 +49,142 @@ public class HUD extends JPanel{
 	cpuHealth,cpuHealthPercent,cpuWeapons,cpuShotTimer,
 	cpuFuel,cpuFuelNumber, cpuAngle, cpuPower, cpuPowerNumber;
 
-
-
-	public HUD(Tank newtank){
-		
-		theTank=newtank;
-		
-		this.setPreferredSize(new Dimension(1200,100));
-
-		this.setLayout(new FlowLayout(FlowLayout.LEFT));
-
-		//this.setLayout(new BorderLayout()); 
-
-		//playertankHud.setLayout(new GridLayout(3,7,10,10));
-		//cputankHud.setLayout(new GridLayout(3,7,10,10));
-
-		//this.setLayout(new GridBagLayout());
-		playertankHud = new playertankHudPanel(theTank);
-
-		//this.add(BorderLayout.WEST, playertankHud);
-
-		this.add(playertankHud);
-		
-
-		//this.add(BorderLayout.EAST, cputankHud);
-
-
-	}
-
-	public void paintComponent(Graphics g) {
-
-		System.out.println("In hud paintcom");
-
-		g.setColor(Color.red);
-
-		//playertankHud.paintComponent.fillRect(playertankHud.getLocation().x, playertankHud.getLocation().y, playertankHud.getWidth(), playertankHud.getHeight());
-
-		//g.fillRect(this.getLocation().x, this.getLocation().y, 700, 40);
-
-		//g.fillOval(600,30,60,60);
-
-		//g.fillRect(60, 60, 10, 10);
-
-		//g.fillRect(100, 40, 40, 40);
-
-	}
-
-}
-
-
-
-class playertankHudPanel extends JPanel {
-
-	drawHealth healthbar;
-
-	Tank theTank;
-
-	public playertankHudPanel(Tank tank) {
-
+	public playertankHudPanel(HUD hud, Tank tank) {
 		theTank = tank;
-
 		this.setLayout(new GridBagLayout());
+
+		playerName = new JLabel(theTank.name);
+		playerHealth = new JLabel("Health: ");
+		playerHealthPercent = new JLabel("" + theTank.health + "%");
+		playerWeapons = new JLabel("Weapons: ");
+		playerShotTimer = new JLabel("Shot timer: " + theTank.shottimer + " sec");
+		playerFuel = new JLabel("Fuel: ");
+		playerFuelNumber = new JLabel("" + theTank.fuel);
+		playerAngle = new JLabel("Angle: " + theTank.barrelAngle);
+		playerPower = new JLabel("Power: ");
+		playerPowerNumber = new JLabel("" + theTank.power);		
 
 		GridBagConstraints constr = new GridBagConstraints();
 		constr.gridx = 0;
 		constr.gridy = 0;
 		constr.gridwidth = 1;
 		constr.gridheight = 1;
-		//constr.anchor = GridBagConstraints.FIRST_LINE_START;
 		constr.anchor = GridBagConstraints.EAST;
 		constr.insets = new Insets(0,0,5,5);
 		constr.weightx = 1.0;
 		constr.weighty = 1.0;
 		constr.fill = GridBagConstraints.NONE;
 
-		//playerName = new JLabel(theTank.name);
-
-		//this.add(playerName);
-
-		System.out.println("Tank name: " + theTank.name);
-		
-		this.add(new JLabel(theTank.name), constr);
+		this.add(playerName, constr);
 
 		constr.gridx = 0; constr.gridy = 1;
-		this.add(new JLabel("Health: "), constr);
+		this.add(playerHealth, constr);
 
-
-
-		//constr.fill = GridBagConstraints.HORIZONTAL;
-		//constr.gridwidth = 4; constr.gridheight = 1;
 		constr.gridx = 1; constr.gridy = 1;
-		healthbar = new drawHealth(theTank, constr);
-
+		healthbar = new drawHealthPanel(theTank, constr);
 		this.add(healthbar, constr);
 
-
-
-		constr.gridwidth = 1; constr.gridheight = 1;
 		constr.gridx = 2; constr.gridy = 1;
-		this.add(new JLabel("" + theTank.health + "%"), constr);
-
-		System.out.println("First constrw " + constr.gridwidth );
+		this.add(playerHealthPercent, constr);
 
 		constr.gridx = 3; constr.gridy = 1;
-		this.add(new JLabel("Weapons: "), constr);
+		this.add(playerWeapons, constr);
 
 		constr.gridx = 5; constr.gridy = 1;
-		this.add(new JLabel("Shot timer: " + theTank.shottimer + " sec"), constr);
+		this.add(playerShotTimer, constr);
 
 		constr.gridx = 0; constr.gridy = 2;
-		this.add(new JLabel("Fuel: "), constr);
+		this.add(playerFuel, constr);
 
+		constr.gridx = 1; constr.gridy = 2;
+		fuelbar = new drawFuelPanel(theTank, constr);
+		this.add(fuelbar, constr);
 
 		constr.anchor = GridBagConstraints.WEST;
 		constr.gridx = 2; constr.gridy = 2;
-		this.add(new JLabel("" + theTank.fuel), constr);
+		this.add(playerFuelNumber, constr);
 
 		constr.gridx = 3; constr.gridy = 2;
-		this.add(new JLabel("Angle: " + theTank.barrelAngle), constr);
+		this.add(playerAngle, constr);
 
 		constr.gridx = 4; constr.gridy = 2;
-		this.add(new JLabel("Power: "), constr);
+		this.add(playerPower, constr);
 
 		constr.gridx = 6; constr.gridy = 2;
-		this.add(new JLabel("" + theTank.power), constr);
-
+		this.add(playerPowerNumber, constr);
 	}
+
+	public void updateHud() {
+		playerName.setText(theTank.name);
+		playerHealth.setText("Health: ");
+		playerHealthPercent.setText("" + theTank.health + "%");
+		playerWeapons.setText("Weapons: ");
+		playerShotTimer.setText("Shot timer: " + theTank.shottimer + " sec");
+		playerFuel.setText("Fuel: ");
+		playerFuelNumber.setText("" + theTank.fuel);
+		playerAngle.setText("Angle: " + theTank.barrelAngle);
+		playerPower.setText("Power: ");
+		playerPowerNumber.setText("" + theTank.power);		
+
+		revalidate();
+		repaint();
+	}
+
+
 
 	public void paintComponent(Graphics g) {
 
-
-		g.setColor(Color.red);
-
-
-
-		//g.fillRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
-
 	}
-
 
 }
 
 
 
-class drawHealth extends JPanel {
+class drawHealthPanel extends JPanel {
 
 	int width, height;
-
 	Tank theTank;
 
-	public drawHealth(Tank tank, GridBagConstraints constr) {
-
+	public drawHealthPanel(Tank tank, GridBagConstraints constr) {
 		theTank = tank;
-
 		this.setPreferredSize(new Dimension(150,20));
-
 		width = constr.gridwidth;
-
 		height = constr.gridheight;
-
-		/*
-		 *  panel.setBackground(Color.black);
+		/* panel.setBackground(Color.black);
         panel.setBorder(BorderFactory.createLineBorder(Color.blue, 5));
         panel.setPreferredSize(new Dimension(200, 200)); // for demo purposes only
 		 */
+		this.setBorder(BorderFactory.createLineBorder(Color.red, 1));
+	}
 
-		this.setBorder(BorderFactory.createLineBorder(Color.red, 5));
+	public void paintComponent(Graphics g) {
+		g.setColor(Color.red);
+		double dectankHealth = theTank.health;
+		int healthbarWidth = (int) ( (dectankHealth / 100) * this.getWidth() );
+		g.fillRect(0, 0, healthbarWidth, this.getHeight());
+	}
+}
+
+
+class drawFuelPanel extends JPanel {
+
+	int width, height;
+	Tank theTank;
+
+	public drawFuelPanel(Tank tank, GridBagConstraints constr) {
+		theTank = tank;
+		this.setPreferredSize(new Dimension(150,20));
+		width = constr.gridwidth;
+		height = constr.gridheight;
+		this.setBorder(BorderFactory.createLineBorder(Color.green, 1));
 
 	}
 
 	public void paintComponent(Graphics g) {
-
-		System.out.println("In drawHealth paintcom");
-
-		g.setColor(Color.red);
-
-		System.out.println("theTank.health " + theTank.health);
-
-		double dectankHealth = theTank.health;
-
-		int healthbarWidth = (int) ( (dectankHealth / 100) * this.getWidth() );
-
-		Rectangle healthbar = new Rectangle();
-		healthbar.setBounds(0, 0, healthbarWidth, this.getHeight());
-
-
-		g.fillRect(0, 0, healthbarWidth, this.getHeight());
-
-
-
-
-
+		g.setColor(Color.green);
+		double dectankFuel = theTank.fuel;
+		int fuelbarWidth = (int) ( (dectankFuel / 250) * this.getWidth() );
+		g.fillRect(0, 0, fuelbarWidth, this.getHeight());
 	}
 
 }
