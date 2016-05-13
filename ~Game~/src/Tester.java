@@ -1,4 +1,4 @@
-
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,6 +21,7 @@ public class Tester implements KeyListener{
 	static int frames=0;
 	private static boolean cannonballFlying = false;
 
+	static playertankHudPanel playertankHud;
 
 	static ActionListener timertask = new ActionListener() {
 		public void actionPerformed(ActionEvent evt) {
@@ -35,6 +36,7 @@ public class Tester implements KeyListener{
 			}
 			if (frames%2==0)
 				board.BakahutsuClear();
+
 			playertank.falling();
 			playertank.disposal();
 			CPUtank.falling();
@@ -54,26 +56,23 @@ public class Tester implements KeyListener{
 
 	public Tester(){
 		terraingeneration();
-		playertank=new PlayerTank(149,550,10);
+		playertank=new PlayerTank(149,50,10);
 		//playertank=new PlayerTank(74,300,10);
-		CPUtank=new CPUTank(149,50,11);
-		hud=new HUD(playertank);
-		
+		CPUtank=new CPUTank(149,550,11);
+
+		playertankHud = new playertankHudPanel(hud, playertank);
+		hud=new HUD(playertank, playertankHud);
+
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		board.setPreferredSize(new Dimension(1200,500));
 		frame.addKeyListener(this);
-
-		//hud.setPreferredSize(new Dimension(1200,100));
-		frame.add(hud);
 		frame.add(board);
 		frame.pack();
-		frame.createBufferStrategy(2);
 		frame.setVisible(true);
-
 		timer.start();
 	}
 
-	public  void terraingeneration(){
+	public  void terraingeneration(){ 
 		for (int x=0;x<600;x++){
 			for (int y=150;y<250;y++){
 				board.board[y][x]=1;
@@ -91,17 +90,16 @@ public class Tester implements KeyListener{
 	}
 
 	public static void refresh(){
-		frame.remove(hud);
 		frame.remove(board);
 		int[][] tempboard=new int[250][600];
-		for (int x=0;x<600;x++)											//Copying the board over
+		for (int x=0;x<600;x++) //Copying the board over
 			for (int y=0;y<250;y++)
 				tempboard[y][x]=board.board[y][x];
 		board=new Board();
 		board.setPreferredSize(new Dimension(1200,500));
 		board.board=tempboard;
-		hud=new HUD(playertank);
-		frame.add(hud);
+		playertankHud.updateHud();
+		frame.getContentPane().add(BorderLayout.NORTH, hud);
 		frame.add(board);
 		frame.pack();
 		//printgrid();
@@ -120,7 +118,7 @@ public class Tester implements KeyListener{
 
 	}
 
-	
+
 	public void keyPressed(KeyEvent keyboard) {
 		//System.out.println("In keypressed: "+keyboard.getKeyCode());
 		if (keyboard.getKeyCode()==37){
@@ -139,31 +137,6 @@ public class Tester implements KeyListener{
 			playertank.poweradjust(1);
 		}
 	}
-	 
-/*
-	public void keyPressed(KeyEvent e) {
-
-		int keyCode = e.getKeyCode();
-
-		switch( keyCode ) { 
-		case KeyEvent.VK_LEFT:
-			tank.movement(2, board.board);
-			break;
-		case KeyEvent.VK_RIGHT :
-			tank.movement(1, board.board);
-			break;
-		case KeyEvent.VK_SPACE : 
-			cannonballFlying = true;
-			break;
-		case KeyEvent.VK_Q : 
-			tank.barrelrotate(1);
-			break;
-		case KeyEvent.VK_E : 
-			tank.barrelrotate(-1);
-			break;
-		}
-	}
-*/
 
 	public void keyReleased(KeyEvent keyboard){
 
