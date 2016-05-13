@@ -54,9 +54,9 @@ public class Tester implements KeyListener{
 
 	public Tester(){
 		terraingeneration();
-		playertank=new PlayerTank(149,50,10);
+		playertank=new PlayerTank(149,550,10);
 		//playertank=new PlayerTank(74,300,10);
-		CPUtank=new CPUTank(149,550,11);
+		CPUtank=new CPUTank(149,50,11);
 		hud=new HUD(playertank);
 		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -67,6 +67,7 @@ public class Tester implements KeyListener{
 		frame.add(hud);
 		frame.add(board);
 		frame.pack();
+		frame.createBufferStrategy(2);
 		frame.setVisible(true);
 
 		timer.start();

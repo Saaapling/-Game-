@@ -15,17 +15,37 @@ import java.util.ArrayList;
 
 public class CPUTank extends Tank{
 
+	int movement=0;
+
 	public CPUTank(int xstart, int ystart, int identity){
 		super(xstart, ystart, identity);
 		orientation=2;
 		barrelAngle=45;
 	}
-	
+
 	public void AIcontrol(int xtarget, int ytarget, int frames){
-		if (frames%1==0)
-			aimbot(xtarget, ytarget);
+		aimbot(xtarget, ytarget);
+		if(movement==0){
+			if(xtarget<xpos)
+				orientation=2;
+			else
+				orientation=1;
+			if (frames%1==0)
+				fire();
+			if(fuel>50){
+				if(power>100)
+					movement=(int)(Math.random()*fuel);
+				else if(Math.random()<0.05){
+					orientation=(int)(Math.random()*2+0.5);
+					movement=(int)(Math.random()*fuel/2);
+				}
+			}
+		}else{
+			movement(orientation);
+			movement-=1;
+		}
 	}
-	
+
 	private void aimbot(int xtarget, int ytarget){
 		//To Make it Random;
 		int x=Math.abs(xtarget-xpos);
@@ -34,12 +54,11 @@ public class CPUTank extends Tank{
 		int y=ypos-ytarget;		
 		power=(int)(Math.sqrt((10*Math.pow(x, 2))/(x-y))+0.5);
 		power=power*100/63;
-		fire();
 	}
 
 	private void AImovement(){
 		if(fuel<260){
-			
+
 		}
 	}
 }

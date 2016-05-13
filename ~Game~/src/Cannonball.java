@@ -127,6 +127,7 @@ public class Cannonball {
 			}
 			repeat+=1;
 		}
+		dispose=true;
 	}
 
 	public void explosion(){
