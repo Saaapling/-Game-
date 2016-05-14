@@ -26,34 +26,53 @@ public class Tester implements KeyListener{
 	static ActionListener timertask = new ActionListener() {
 		public void actionPerformed(ActionEvent evt) {
 			frames+=1;
-			for (Cannonball cannonball:Tester.playertank.cannonballs){
-				if (cannonball.cannonballFlying)
-					cannonball.movement();
-			}
-			for (Cannonball cannonball:Tester.CPUtank.cannonballs){
-				if (cannonball.cannonballFlying)
-					cannonball.movement();
-			}
-			if (frames%2==0)
-				board.BakahutsuClear();
-
-			playertank.falling();
-			playertank.disposal();
-			CPUtank.falling();
-			CPUtank.control(playertank.xpos,playertank.ypos,frames);
-			CPUtank.disposal();
-			if (frames%5==0){
-				if (playertank.fuel<250)
-					playertank.fuel+=1;
-				if (CPUtank.fuel<250)
-					CPUtank.fuel+=1;
-			}
+			cannonballcontrol();
+			tankmonitor();
+			tankvariables();
 			refresh();
 		}
 	};
 	static int interval=10;
 	static Timer timer=new Timer(interval, timertask);
 
+	public static void cannonballcontrol(){
+		for (Cannonball cannonball:Tester.playertank.cannonballs){
+			if (cannonball.cannonballFlying)
+				cannonball.movement();
+		}
+		for (Cannonball cannonball:Tester.CPUtank.cannonballs){
+			if (cannonball.cannonballFlying)
+				cannonball.movement();
+		}
+		if (frames%2==0)
+			board.BakahutsuClear();
+	}
+	
+	public static void tankmonitor(){
+		playertank.falling();
+		playertank.disposal();
+		CPUtank.falling();
+		CPUtank.control(playertank.xpos,playertank.ypos,frames);
+		CPUtank.disposal();
+	}
+	
+	public static void tankvariables(){
+		if (frames%5==0){
+			if (playertank.fuel<250)
+				playertank.fuel+=1;
+			if (CPUtank.fuel<250)
+				CPUtank.fuel+=1;
+		}
+		if (playertank.shottimer>0)
+			playertank.shottimer-=0.1;
+		else
+			playertank.shottimer=0;
+		if (CPUtank.shottimer>0)
+			CPUtank.shottimer-=0.1;
+		else
+			CPUtank.shottimer=0;
+	}
+	
 	public Tester(){
 		terraingeneration();
 		playertank=new PlayerTank(149,550,10);

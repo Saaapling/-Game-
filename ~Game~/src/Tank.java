@@ -18,13 +18,15 @@ public class Tank {
 	String name;
 	int barrelAngle;
 	int power;
-	int weapon;
-	int shottimer;
+	int weapon;				//1-Standard, 2-Shotgun, 3-Machine-Gun
+	double shottimer;
 
+	WeaponCatalog catalog;
 	double[] specialdata;
 	ArrayList<Cannonball> cannonballs=new ArrayList<Cannonball>();
 
 	public Tank(int ystart, int xstart, int identity){
+		catalog=new WeaponCatalog();
 		xpos=xstart;
 		ypos=ystart;
 		id=identity;
@@ -34,6 +36,7 @@ public class Tank {
 		power=100;
 		cannonballsfired=0;
 		fuel=250;
+		weapon=2;
 		specialdata=new double[]{0,0};
 	}
 
@@ -42,17 +45,27 @@ public class Tank {
 	}
 
 	public void control(){
-		
+
 	}
-	
+
 	public void fire(){
-		cannonballsfired+=1;
-		if (orientation==1)
-			cannonballs.add(new Cannonball((int)((ypos*2-6-(9*Math.sin(conversion(barrelAngle))-.5))/2),
-					(int)((xpos*2+12+(9*Math.cos(conversion(barrelAngle)))+.5)/2), cannonballsfired, barrelAngle, power*63/100, orientation));
-		else
-			cannonballs.add(new Cannonball((int)((ypos*2-6-(9*Math.sin(conversion(barrelAngle))-.5))/2),
-					(int)((xpos*2+(16-(12+(9*Math.cos(conversion(barrelAngle)))))+.5)/2), cannonballsfired, barrelAngle, power*63/100, orientation));
+		if (shottimer<=0){
+			int xstart;
+			int ystart;
+			if (orientation==1){
+				xstart=(int)((xpos*2+12+(9*Math.cos(conversion(barrelAngle)))+.5)/2);
+				ystart=(int)((ypos*2-6-(9*Math.sin(conversion(barrelAngle))-.5))/2);
+			}else{
+				xstart=(int)((xpos*2+(16-(12+(9*Math.cos(conversion(barrelAngle)))))+.5)/2);
+				ystart=(int)((ypos*2-6-(9*Math.sin(conversion(barrelAngle))-.5))/2);
+			}
+			ArrayList<int[]> cannonballdata=catalog.firingMechanism(xstart, ystart, power, weapon, specialdata);
+			for (int[] cannonball:cannonballdata){
+				cannonballsfired+=1;
+				cannonballs.add(new Cannonball(cannonball[1], cannonball[0], cannonballsfired, barrelAngle, cannonball[2]*63/100, orientation, 10));
+			}
+			shottimer=catalog.getTime(weapon);
+		}
 	}
 
 	public void disposal(){

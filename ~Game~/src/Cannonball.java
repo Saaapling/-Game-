@@ -1,4 +1,5 @@
 import java.math.*;
+import java.util.ArrayList;
 
 //import javax.swing.plaf.basic.BasicInternalFrameTitlePane.MaximizeAction;  
 
@@ -18,8 +19,8 @@ public class Cannonball {
 	int id;
 	int direction;
 	boolean dispose;
-	int radius =10;
-	int timer;
+	int radius;
+	int time;
 
 	private final int MAX_POWER;
 	private double totalFlightTime;
@@ -31,20 +32,20 @@ public class Cannonball {
 	private int angle;
 	private int totalHorizontalDistanceTraveled;
 
-	public Cannonball(int ystartpos, int xstartpos, int identity, int newangle, int power, int newdirection){
+	public Cannonball(int ystartpos, int xstartpos, int identity, int newangle, int power, int newdirection, int newradius){
 		xstart=xstartpos;
 		ystart=ystartpos;
 		xpos=xstart;
 		ypos=ystart;
 		direction=newdirection;
 		id=identity;
+		radius=newradius;
 		cannonballFlying=true;
 		dispose=false;
 		angle=newangle;
 		MAX_POWER=power;
 		xVelocity = Math.cos(conversion(angle)) * MAX_POWER;
 		yVelocity = Math.sin(conversion(angle)) * MAX_POWER;
-		//yVelocity=50;
 		totalFlightTime = (2*yVelocity/GRAVITY);
 		totalHorizontalDistanceTraveled = (int) (xVelocity*totalFlightTime+.5);
 	}
@@ -64,7 +65,7 @@ public class Cannonball {
 		System.out.println("TotalHorz " + totalHorizontalDistanceTraveled);
 		System.out.println("\n\n\n");
 	}
-
+	
 	public boolean movement(){
 		int newypos = (int)(ystart + (-(yVelocity * flightTimer)+ (0.5 * GRAVITY * (Math.pow(flightTimer, 2)))));
 		int newxpos;
@@ -97,7 +98,6 @@ public class Cannonball {
 			}else
 				cannonballFlying = true;
 		}catch (Exception E){
-			//System.out.println(xposition+", "+yposition);
 			cannonballFlying = false;
 			dispose=true;
 		}
@@ -105,9 +105,6 @@ public class Cannonball {
 	}
 
 	public void bakhatsuprep(){
-//		int newzypos = (int)(ystart + (-(yVelocity * flightTimer)+ (0.5 * GRAVITY * (Math.pow(flightTimer, 2)))));
-//		int newzxpos = (int)(xstart - (xVelocity * flightTimer));
-//		System.out.println(disposecheck(newzxpos,newzypos));
 		int repeat=0;
 		boolean stop=false;
 		while (repeat<10&&!stop){
@@ -138,7 +135,6 @@ public class Cannonball {
 				if (distance<=radius){
 					if (x>=0&&x<600){
 						if (y>=0&&y<250){
-							//Tester.board.board[y][x]=0;
 							Tester.board.board[y][x]=3;
 						}
 					}
