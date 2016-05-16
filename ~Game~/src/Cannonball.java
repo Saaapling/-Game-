@@ -145,7 +145,7 @@ public class Cannonball {
 
 	}
 	
-	public double getTime(int weapontype){
+	public double getTime(){
 		return time;
 	}
 }

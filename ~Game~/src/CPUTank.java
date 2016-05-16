@@ -33,7 +33,7 @@ public class CPUTank extends Tank{
 			if (frames%1==0)
 				fire();
 			if(fuel>50){
-				if(power>100)
+				if(power>99)
 					movement=(int)(Math.random()*fuel);
 				else if(Math.random()<0.05){
 					orientation=(int)(Math.random()*2+0.5);

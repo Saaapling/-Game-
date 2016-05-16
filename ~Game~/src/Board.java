@@ -65,7 +65,7 @@ public class Board extends JPanel{
 				}else if(board[y][x]==2){
 					g.setColor(Color.GRAY);
 				}else if(board[y][x]==3){
-					g.setColor(new Color(255, 153, 51, 20));
+					g.setColor(new Color(255, 153, 51, 10));
 				}else if(board[y][x]>=10){
 					//g.setColor(Color.BLUE);
 				}else{

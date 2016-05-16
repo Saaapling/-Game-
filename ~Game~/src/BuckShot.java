@@ -5,7 +5,8 @@ public class BuckShot extends Cannonball{
 
 	public BuckShot(int ystartpos, int xstartpos, int identity,	int newangle, int power, int newdirection, int newradius) {
 		super(ystartpos, xstartpos, identity, newangle, power, newdirection, newradius);
-		time=2.5;
+		time=5;
+		radius=3;
 	}
 
 	public ArrayList<int[]> firingMechanism(int xstart, int ystart, int power, int angle, int weapontype, double[]specialdata){

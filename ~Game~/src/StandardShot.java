@@ -3,7 +3,7 @@ public class StandardShot extends Cannonball{
 
 	public StandardShot(int ystartpos, int xstartpos, int identity,	int newangle, int power, int newdirection, int newradius) {
 		super(ystartpos, xstartpos, identity, newangle, power, newdirection, newradius);
-		time=1;
+		time=2;
 	}
 
 	public void explosion(){

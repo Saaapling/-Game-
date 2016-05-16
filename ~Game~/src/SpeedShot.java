@@ -6,6 +6,7 @@ public class SpeedShot extends Cannonball{
 	public SpeedShot(int ystartpos, int xstartpos, int identity,	int newangle, int power, int newdirection, int newradius) {
 		super(ystartpos, xstartpos, identity, newangle, power, newdirection, newradius);
 		time=0.1;
+		radius=2;
 	}
 
 	public ArrayList<int[]> firingMechanism(int xstart, int ystart, int power, int angle, int weapontype, double[]specialdata){
@@ -23,7 +24,7 @@ public class SpeedShot extends Cannonball{
 		if (randomizer<specialdata[0]){
 			time=0.1;
 		}else{
-			time=4.0;
+			time=8.0;
 			specialdata[0]=0.1;
 		}
 		cannonballdata.add(new int[]{xstart, ystart, newpower, newangle});
