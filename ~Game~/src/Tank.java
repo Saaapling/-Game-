@@ -64,28 +64,28 @@ public class Tank {
 	}
 
 	public void weaponMechanism(int xstart, int ystart){
-//		ArrayList<int[]> cannonballdata=catalog.firingMechanism(xstart, ystart, power, barrelAngle, weapon, specialdata);
-//		if (specialdata[1]!=1){
-//			for (int[] cannonball:cannonballdata){
-//				cannonballsfired+=1;
-//				cannonballs.add(new StandardShot(cannonball[1], cannonball[0], cannonballsfired, barrelAngle, cannonball[2]*63/100, orientation, 10));
-//			}
-//		}
-//		shottimer=catalog.getTime(weapon);
-		if (weapon==1){
-			ArrayList<int[]> cannonballdata=catalog.firingMechanism(xstart, ystart, power, barrelAngle, weapon, specialdata);
-			if (specialdata[1]!=1){
-				for (int[] cannonball:cannonballdata){
-					cannonballsfired+=1;
-					cannonballs.add(new StandardShot(cannonball[1], cannonball[0], cannonballsfired, barrelAngle, cannonball[2]*63/100, orientation, 10));
-				}
+		ArrayList<int[]> cannonballdata=catalog.firingMechanism(xstart, ystart, power, barrelAngle, weapon, specialdata);
+		if (specialdata[1]!=1){
+			for (int[] cannonball:cannonballdata){
+				cannonballsfired+=1;
+				cannonballs.add(new StandardShot(cannonball[1], cannonball[0], cannonballsfired, barrelAngle, cannonball[2]*63/100, orientation, 10));
 			}
-			shottimer=catalog.getTime(weapon);
-		}else if (weapon==2){
-			
-		}else if (weapon==3){
-			
 		}
+		shottimer=catalog.getTime(weapon);
+//		if (weapon==1){
+//			ArrayList<int[]> cannonballdata=catalog.firingMechanism(xstart, ystart, power, barrelAngle, weapon, specialdata);
+//			if (specialdata[1]!=1){
+//				for (int[] cannonball:cannonballdata){
+//					cannonballsfired+=1;
+//					cannonballs.add(new StandardShot(cannonball[1], cannonball[0], cannonballsfired, barrelAngle, cannonball[2]*63/100, orientation, 10));
+//				}
+//			}
+//			shottimer=catalog.getTime(weapon);
+//		}else if (weapon==2){
+//			
+//		}else if (weapon==3){
+//			
+//		}
 	}
 	
 	public void disposal(){

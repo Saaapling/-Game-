@@ -54,6 +54,8 @@ public class CPUTank extends Tank{
 		int y=ypos-ytarget;		
 		power=(int)(Math.sqrt((10*Math.pow(x, 2))/(x-y))+0.5);
 		power=power*100/63;
+		if (power>100)
+			power=100;
 	}
 
 }
