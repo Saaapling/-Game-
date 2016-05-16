@@ -59,7 +59,7 @@ public class Tank {
 				xstart=(int)((xpos*2+(16-(12+(9*Math.cos(conversion(barrelAngle)))))+.5)/2);
 				ystart=(int)((ypos*2-6-(9*Math.sin(conversion(barrelAngle))-.5))/2);
 			}
-			ArrayList<int[]> cannonballdata=catalog.firingMechanism(xstart, ystart, power, weapon, specialdata);
+			ArrayList<int[]> cannonballdata=catalog.firingMechanism(xstart, ystart, power, weapon, barrelAngle, specialdata);
 			for (int[] cannonball:cannonballdata){
 				cannonballsfired+=1;
 				cannonballs.add(new Cannonball(cannonball[1], cannonball[0], cannonballsfired, barrelAngle, cannonball[2]*63/100, orientation, 10));
