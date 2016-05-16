@@ -20,7 +20,7 @@ public class Cannonball {
 	int direction;
 	boolean dispose;
 	int radius;
-	int time;
+	double time;
 
 	private final int MAX_POWER;
 	private double totalFlightTime;
@@ -65,7 +65,7 @@ public class Cannonball {
 		System.out.println("TotalHorz " + totalHorizontalDistanceTraveled);
 		System.out.println("\n\n\n");
 	}
-	
+
 	public boolean movement(){
 		int newypos = (int)(ystart + (-(yVelocity * flightTimer)+ (0.5 * GRAVITY * (Math.pow(flightTimer, 2)))));
 		int newxpos;
@@ -128,25 +128,24 @@ public class Cannonball {
 		dispose=true;
 	}
 
-	public void explosion(){
-		for (int x=xpos-radius;x<xpos+radius;x++){
-			for (int y=ypos-radius;y<ypos+radius;y++){
-				double distance= Math.sqrt(Math.pow(x-xpos,2) + Math.pow(y*2-ypos*2,2));
-				if (distance<=radius){
-					if (x>=0&&x<600){
-						if (y>=0&&y<250){
-							Tester.board.board[y][x]=3;
-						}
-					}
-				}
-			}
-		}
+	public ArrayList<int[]> firingMechanism(int xstart, int ystart, int power, int angle, int weapontype, double[]specialdata){
+		ArrayList<int[]> cannonballdata=new ArrayList<int[]>();
+		cannonballdata.add(new int[]{xstart, ystart, power, angle});
+		return cannonballdata;
 	}
-
+	
 	public boolean disposecheck(int xpos, int ypos){
 		collision(xpos,ypos);
 		if (xpos<0||xpos>600)
 			dispose=true;
 		return dispose;
+	}
+
+	public void explosion(){
+
+	}
+	
+	public double getTime(int weapontype){
+		return time;
 	}
 }
