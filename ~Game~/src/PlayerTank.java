@@ -20,6 +20,10 @@ public class PlayerTank extends Tank{
 			poweradjust(-1);
 		}if (keycode==69) {
 			poweradjust(1);
+		}if (keycode==68) {
+			weaponadjust(1);
+		}if (keycode==65) {
+			weaponadjust(-1);
 		}
 	}
 }

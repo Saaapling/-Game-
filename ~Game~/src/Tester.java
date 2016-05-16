@@ -139,7 +139,7 @@ public class Tester implements KeyListener{
 
 
 	public void keyPressed(KeyEvent keyboard) {
-		//System.out.println("In keypressed: "+keyboard.getKeyCode());
+		//.out.println("In keypressed: "+keyboard.getKeyCode());
 		playertank.control(keyboard.getKeyCode());
 	}
 

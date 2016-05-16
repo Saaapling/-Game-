@@ -30,13 +30,13 @@ public class Tank {
 		xpos=xstart;
 		ypos=ystart;
 		id=identity;
-		orientation=1;
+		orientation=2;
 		boardadjust();
-		barrelAngle=0;
+		barrelAngle=40;
 		power=100;
 		cannonballsfired=0;
 		fuel=250;
-		weapon=2;
+		weapon=3;
 		specialdata=new double[]{0,0};
 	}
 
@@ -59,10 +59,12 @@ public class Tank {
 				xstart=(int)((xpos*2+(16-(12+(9*Math.cos(conversion(barrelAngle)))))+.5)/2);
 				ystart=(int)((ypos*2-6-(9*Math.sin(conversion(barrelAngle))-.5))/2);
 			}
-			ArrayList<int[]> cannonballdata=catalog.firingMechanism(xstart, ystart, power, weapon, barrelAngle, specialdata);
-			for (int[] cannonball:cannonballdata){
-				cannonballsfired+=1;
-				cannonballs.add(new Cannonball(cannonball[1], cannonball[0], cannonballsfired, barrelAngle, cannonball[2]*63/100, orientation, 10));
+			ArrayList<int[]> cannonballdata=catalog.firingMechanism(xstart, ystart, power, barrelAngle, weapon, specialdata);
+			if (specialdata[1]!=1){
+				for (int[] cannonball:cannonballdata){
+					cannonballsfired+=1;
+					cannonballs.add(new Cannonball(cannonball[1], cannonball[0], cannonballsfired, barrelAngle, cannonball[2]*63/100, orientation, 10));
+				}
 			}
 			shottimer=catalog.getTime(weapon);
 		}
@@ -153,6 +155,14 @@ public class Tank {
 			power=0;
 	}
 
+	public void weaponadjust(int i){
+		weapon+=i;
+		if (weapon>3)
+			weapon=3;
+		if (weapon<0)
+			weapon=0;
+	}
+	
 	public void clearboard(){
 		for (int i=0; i<8;i++){
 			Tester.board.board[ypos][xpos+i]=0;
