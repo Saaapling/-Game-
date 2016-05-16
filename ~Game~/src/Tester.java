@@ -6,6 +6,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
+import javax.swing.*;
 import javax.swing.JFrame;
 import javax.swing.Timer;
 
@@ -22,6 +23,9 @@ public class Tester implements KeyListener{
 	private static boolean cannonballFlying = false;
 
 	static playertankHudPanel playertankHud;
+	static CPUtankHudPanel CPUtankHud;
+
+	static JPanel bothBoardAndHud = new JPanel();
 
 	static ActionListener timertask = new ActionListener() {
 		public void actionPerformed(ActionEvent evt) {
@@ -47,7 +51,7 @@ public class Tester implements KeyListener{
 		if (frames%2==0)
 			board.BakahutsuClear();
 	}
-	
+
 	public static void tankmonitor(){
 		playertank.falling();
 		playertank.disposal();
@@ -55,7 +59,7 @@ public class Tester implements KeyListener{
 		CPUtank.control(playertank.xpos,playertank.ypos,frames);
 		CPUtank.disposal();
 	}
-	
+
 	public static void tankvariables(){
 		if (frames%5==0){
 			if (playertank.fuel<250)
@@ -72,7 +76,7 @@ public class Tester implements KeyListener{
 		else
 			CPUtank.shottimer=0;
 	}
-	
+
 	public Tester(){
 		terraingeneration();
 		playertank=new PlayerTank(149,550,10);
@@ -80,7 +84,8 @@ public class Tester implements KeyListener{
 		CPUtank=new CPUTank(149,50,11);
 
 		playertankHud = new playertankHudPanel(hud, playertank);
-		hud=new HUD(playertank, playertankHud);
+		CPUtankHud = new CPUtankHudPanel(hud, CPUtank);
+		hud=new HUD(playertank, playertankHud, CPUtankHud);
 
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		board.setPreferredSize(new Dimension(1200,500));
@@ -118,8 +123,12 @@ public class Tester implements KeyListener{
 		board.setPreferredSize(new Dimension(1200,500));
 		board.board=tempboard;
 		playertankHud.updateHud();
-		frame.getContentPane().add(BorderLayout.NORTH, hud);
-		frame.add(board);
+		CPUtankHud.updateHud();
+		bothBoardAndHud.setLayout(new BoxLayout(bothBoardAndHud, BoxLayout.PAGE_AXIS));
+		bothBoardAndHud.add(hud);
+		bothBoardAndHud.add(board);
+
+		frame.setContentPane(bothBoardAndHud);
 		frame.pack();
 		//printgrid();
 	}
