@@ -20,6 +20,7 @@ public class Tank {
 	int power;
 	int weapon;				//1-Standard, 2-Shotgun, 3-Machine-Gun
 	double shottimer;
+	double maxshottimer;
 
 	WeaponCatalog catalog;
 	double[] specialdata;
@@ -93,8 +94,36 @@ public class Tank {
 					cannonballs.add(new SpreadShot(cannonball[1], cannonball[0], cannonballsfired, barrelAngle, cannonball[2]*63/100, orientation, 10));
 				}
 			}
+		}else if (weapon==4){
+			standard=new WideShot(1, 1, 1, 1, 1, 1, 1);
+			cannonballdata=standard.firingMechanism(xstart, ystart, power, barrelAngle, weapon, specialdata);
+			if (specialdata[1]!=1){
+				for (int[] cannonball:cannonballdata){
+					cannonballsfired+=1;
+					cannonballs.add(new WideShot(cannonball[1], cannonball[0], cannonballsfired, barrelAngle, cannonball[2]*63/100, orientation, 10));
+				}
+			}
+		}else if (weapon==5){
+			standard=new AtomicShot(1, 1, 1, 1, 1, 1, 1);
+			cannonballdata=standard.firingMechanism(xstart, ystart, power, barrelAngle, weapon, specialdata);
+			if (specialdata[1]!=1){
+				for (int[] cannonball:cannonballdata){
+					cannonballsfired+=1;
+					cannonballs.add(new AtomicShot(cannonball[1], cannonball[0], cannonballsfired, barrelAngle, cannonball[2]*63/100, orientation, 10));
+				}
+			}
+		}else if (weapon==6){
+			standard=new LevelingShot(1, 1, 1, 1, 1, 1, 1);
+			cannonballdata=standard.firingMechanism(xstart, ystart, power, barrelAngle, weapon, specialdata);
+			if (specialdata[1]!=1){
+				for (int[] cannonball:cannonballdata){
+					cannonballsfired+=1;
+					cannonballs.add(new LevelingShot(cannonball[1], cannonball[0], cannonballsfired, barrelAngle, cannonball[2]*63/100, orientation, 10));
+				}
+			}
 		}
 		shottimer=standard.getTime();
+		maxshottimer=standard.getTime();
 	}
 	
 	public void disposal(){
@@ -184,10 +213,10 @@ public class Tank {
 
 	public void weaponadjust(int i){
 		weapon+=i;
-		if (weapon>3)
-			weapon=3;
-		if (weapon<0)
-			weapon=0;
+		if (weapon>9)
+			weapon=9;
+		if (weapon<1)
+			weapon=1;
 	}
 	
 	public void clearboard(){

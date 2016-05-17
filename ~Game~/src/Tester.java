@@ -14,7 +14,7 @@ import javax.swing.Timer;
 public class Tester implements KeyListener{
 
 	static Tester test;
-	static JFrame frame=new JFrame("Garn");
+	static JFrame frame=new JFrame("Ooooohhhdyr, ~Garn");
 	static Board board=new Board();
 	static HUD hud;
 	static PlayerTank playertank;
