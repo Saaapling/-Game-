@@ -1,9 +1,9 @@
 import java.util.ArrayList;
 
 
-public class SpeedShot extends Cannonball{
+public class SpreadShot extends Cannonball{
 
-	public SpeedShot(int ystartpos, int xstartpos, int identity,	int newangle, int power, int newdirection, int newradius) {
+	public SpreadShot(int ystartpos, int xstartpos, int identity,	int newangle, int power, int newdirection, int newradius) {
 		super(ystartpos, xstartpos, identity, newangle, power, newdirection, newradius);
 		time=0.1;
 		radius=2;

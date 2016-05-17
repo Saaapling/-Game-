@@ -60,28 +60,41 @@ public class Tank {
 				xstart=(int)((xpos*2+(16-(12+(9*Math.cos(conversion(barrelAngle)))))+.5)/2);
 				ystart=(int)((ypos*2-6-(9*Math.sin(conversion(barrelAngle))-.5))/2);
 			}
-			ArrayList<int[]> cannonballdata=weaponMechanism(xstart, ystart);
+			weaponMechanism(xstart, ystart);
+		}
+	}
+
+	public void weaponMechanism(int xstart, int ystart){
+		ArrayList<int[]> cannonballdata;
+		if (weapon==1){
+			standard=new StandardShot(1, 1, 1, 1, 1, 1, 1);
+			cannonballdata=standard.firingMechanism(xstart, ystart, power, barrelAngle, weapon, specialdata);
 			if (specialdata[1]!=1){
 				for (int[] cannonball:cannonballdata){
 					cannonballsfired+=1;
 					cannonballs.add(new StandardShot(cannonball[1], cannonball[0], cannonballsfired, barrelAngle, cannonball[2]*63/100, orientation, 10));
 				}
 			}
-		}
-	}
-
-	public ArrayList<int[]> weaponMechanism(int xstart, int ystart){
-		ArrayList<int[]> cannonballdata;
-		if (weapon==1){
-			standard=new StandardShot(1, 1, 1, 1, 1, 1, 1);
 		}else if (weapon==2){
 			standard=new BuckShot(1, 1, 1, 1, 1, 1, 1);
+			cannonballdata=standard.firingMechanism(xstart, ystart, power, barrelAngle, weapon, specialdata);
+			if (specialdata[1]!=1){
+				for (int[] cannonball:cannonballdata){
+					cannonballsfired+=1;
+					cannonballs.add(new BuckShot(cannonball[1], cannonball[0], cannonballsfired, barrelAngle, cannonball[2]*63/100, orientation, 10));
+				}
+			}
 		}else if (weapon==3){
-			standard=new SpeedShot(1, 1, 1, 1, 1, 1, 1);
+			standard=new SpreadShot(1, 1, 1, 1, 1, 1, 1);
+			cannonballdata=standard.firingMechanism(xstart, ystart, power, barrelAngle, weapon, specialdata);
+			if (specialdata[1]!=1){
+				for (int[] cannonball:cannonballdata){
+					cannonballsfired+=1;
+					cannonballs.add(new SpreadShot(cannonball[1], cannonball[0], cannonballsfired, barrelAngle, cannonball[2]*63/100, orientation, 10));
+				}
+			}
 		}
-		cannonballdata=standard.firingMechanism(xstart, ystart, power, barrelAngle, weapon, specialdata);
 		shottimer=standard.getTime();
-		return cannonballdata;
 	}
 	
 	public void disposal(){
