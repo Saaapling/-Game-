@@ -3,7 +3,7 @@ public class AirStrikeFlare extends Cannonball{
 
 	public AirStrikeFlare(int ystartpos, int xstartpos, int identity,	int newangle, int power, int newdirection) {
 		super(ystartpos, xstartpos, identity, newangle, power, newdirection);
-		radius=1;
+		radius=0;
 		time=15;
 	}
 
@@ -20,10 +20,10 @@ public class AirStrikeFlare extends Cannonball{
 				}
 			}
 		}
-		for (int y=-15;y<=0;y+=5){
-			for (int x=-10;x<=10;x+=5){
+		for (int y=-60;y<=-30;y+=10){
+			for (int x=-21;x<=21;x+=7){
 				Tester.GODtank.cannonballsfired+=1;
-				Tester.GODtank.cannonballs.add(new StandardShot(y, xpos-x, Tester.GODtank.cannonballsfired, 0, 0, 1));
+				Tester.GODtank.cannonballs.add(new StandardShot(y, xpos-x, Tester.GODtank.cannonballsfired, 0, 0, 1, 4));
 			}
 		}
 	}
