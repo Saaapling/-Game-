@@ -40,6 +40,7 @@ class playertankHudPanel extends JPanel {
 	drawHealthPanel healthbar;
 	drawFuelPanel fuelbar;
 	drawPowerPanel powerbar;
+	drawShotTimerPanel shottimerbar;
 
 	Tank theTank;
 
@@ -94,7 +95,9 @@ class playertankHudPanel extends JPanel {
 		this.add(playerWeaponsSlot, constr);
 
 		constr.gridx = 5; constr.gridy = 1;
-		this.add(playerShotTimer, constr);
+		shottimerbar = new drawShotTimerPanel(theTank, constr);
+		this.add(shottimerbar, constr);
+		//this.add(playerShotTimer, constr);
 
 		constr.gridx = 0; constr.gridy = 2;
 		this.add(playerFuel, constr);
@@ -127,7 +130,7 @@ class playertankHudPanel extends JPanel {
 		playerWeapons.setText("Weapons: ");
 		playerWeaponsSlot.setText("" + theTank.weapon);
 
-		playerShotTimer.setText("Shot timer: " + theTank.shottimer + " sec");
+		playerShotTimer.setText("Shot timer: ");
 		playerFuel.setText("Fuel: ");
 		playerFuelNumber.setText("" + theTank.fuel);
 		playerAngle.setText("Angle: " + theTank.barrelAngle);
@@ -152,15 +155,23 @@ class CPUtankHudPanel extends JPanel {
 	drawHealthPanel healthbar;
 	drawFuelPanel fuelbar; 
 	drawPowerPanel powerbar;
+	//drawShotTimerPanel shottimerbar;
 
 	Tank theTank;
 
 	JLabel CPUName,
-	CPUHealth, CPUHealthPercent, CPUWeapons, CPUWeaponsSlot, CPUShotTimer, 
+	CPUHealth, CPUHealthPercent, CPUWeapons, CPUWeaponsSlot, CPUShotTimer, CPUShotTimerNumber,
 	CPUFuel, CPUFuelNumber, CPUAngle, CPUPower, CPUPowerNumber;
+
+	JProgressBar shottimerprogressbar;
+
+	int intMaxShotTimer, intShotTimer;
 
 	public CPUtankHudPanel(HUD hud, Tank tank) {
 		theTank = tank;
+
+		intMaxShotTimer = (int) theTank.maxshottimer;
+		intShotTimer = (int) theTank.shottimer;
 
 		GridBagLayout tree = new GridBagLayout();
 		this.setLayout(tree);
@@ -170,7 +181,8 @@ class CPUtankHudPanel extends JPanel {
 		CPUHealthPercent = new JLabel("" + theTank.health + "%");
 		CPUWeapons = new JLabel("Weapons: ");
 		CPUWeaponsSlot = new JLabel("" + theTank.weapon);
-		CPUShotTimer = new JLabel("Shot timer: " + theTank.shottimer + " sec");
+		//CPUShotTimer = new JLabel("Shot timer: ");
+		CPUShotTimerNumber = new JLabel("" + theTank.shottimer);
 		CPUFuel = new JLabel("Fuel: ");
 		CPUFuelNumber = new JLabel("" + theTank.fuel);
 		CPUAngle = new JLabel("Angle: " + theTank.barrelAngle);
@@ -207,8 +219,27 @@ class CPUtankHudPanel extends JPanel {
 		constr.gridx = 4; constr.gridy = 1;
 		this.add(CPUWeaponsSlot, constr);
 
+		//constr.gridx = 5; constr.gridy = 1;
+		//this.add(CPUShotTimer, constr);
+
 		constr.gridx = 5; constr.gridy = 1;
-		this.add(CPUShotTimer, constr);
+
+		shottimerprogressbar = new JProgressBar(0, intMaxShotTimer);
+		shottimerprogressbar.setValue(0);
+		shottimerprogressbar.setStringPainted(true);
+
+		//	shottimerprogressbar.setIndeterminate(true);
+		//shottimerprogressbar.setMaximum(intMaxShotTimer);
+		//shottimerprogressbar.setValue(intShotTimer);
+		//UIManager.put("ProgressBar.background", Color.ORANGE);
+		//shottimerprogressbar.setIndeterminate(false);
+		this.add(shottimerprogressbar, constr);
+
+
+		//this.add(CPUShotTimer, constr);
+
+		//constr.gridx = 7; constr.gridy = 1;
+		//this.add(CPUShotTimerNumber, constr);
 
 		constr.gridx = 0; constr.gridy = 2;
 		this.add(CPUFuel, constr);
@@ -236,12 +267,19 @@ class CPUtankHudPanel extends JPanel {
 	}
 
 	public void updateHud() {
+
+		intMaxShotTimer = (int) theTank.maxshottimer;
+		intShotTimer = (int) theTank.shottimer;
+
 		CPUName.setText(theTank.name);
 		CPUHealth.setText("Health: ");
 		CPUHealthPercent.setText("" + theTank.health + "%");
 		CPUWeapons.setText("Weapons: ");
 		CPUWeaponsSlot.setText("" + theTank.weapon);
-		CPUShotTimer.setText("Shot timer: " + theTank.shottimer + " sec");
+		//CPUShotTimer.setText("Shot timer: ");
+		//CPUShotTimerNumber.setText("" + theTank.shottimer);
+		shottimerprogressbar.setValue(intShotTimer);
+		shottimerprogressbar.setString("" + intShotTimer);
 		CPUFuel.setText("Fuel: ");
 		CPUFuelNumber.setText("" + theTank.fuel);
 		CPUAngle.setText("Angle: " + theTank.barrelAngle);
@@ -333,3 +371,31 @@ class drawPowerPanel extends JPanel {
 	}
 
 }
+
+
+class drawShotTimerPanel extends JPanel {
+
+	int width, height;
+	Tank theTank;
+
+	public drawShotTimerPanel(Tank tank, GridBagConstraints constr) {
+		theTank = tank;
+		this.setPreferredSize(new Dimension(120,20));
+		width = constr.gridwidth;
+		height = constr.gridheight;
+		this.setBorder(BorderFactory.createLineBorder(Color.orange, 1));
+
+	}
+
+	public void paintComponent(Graphics g) {
+		g.setColor(Color.orange);
+		double decpower = theTank.shottimer;
+		int shottimerbarWidth = (int) ( (decpower / 10) * this.getWidth() );
+		g.fillRect(0, 0, shottimerbarWidth, this.getHeight());
+	}
+
+}
+
+
+
+
