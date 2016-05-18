@@ -21,14 +21,14 @@ public class VolcanicShot extends Cannonball{
 			}
 		}
 		Tester.GODtank.cannonballsfired+=1;
-		Tester.GODtank.cannonballs.add(new StandardShot(ypos, xpos, Tester.GODtank.cannonballsfired, 30, 20, 1));
+		Tester.GODtank.cannonballs.add(new StandardShot(ypos, xpos, Tester.GODtank.cannonballsfired, 30, 20, 1, 10));
 		Tester.GODtank.cannonballsfired+=1;
-		Tester.GODtank.cannonballs.add(new StandardShot(ypos, xpos, Tester.GODtank.cannonballsfired, 60, 20, 1));
+		Tester.GODtank.cannonballs.add(new StandardShot(ypos, xpos, Tester.GODtank.cannonballsfired, 60, 20, 1, 10));
 		Tester.GODtank.cannonballsfired+=1;
-		Tester.GODtank.cannonballs.add(new StandardShot(ypos, xpos, Tester.GODtank.cannonballsfired, 90, 20, 1));
+		Tester.GODtank.cannonballs.add(new StandardShot(ypos, xpos, Tester.GODtank.cannonballsfired, 90, 20, 1, 10));
 		Tester.GODtank.cannonballsfired+=1;
-		Tester.GODtank.cannonballs.add(new StandardShot(ypos, xpos, Tester.GODtank.cannonballsfired, 120, 20, 1));
+		Tester.GODtank.cannonballs.add(new StandardShot(ypos, xpos, Tester.GODtank.cannonballsfired, 120, 20, 1, 10));
 		Tester.GODtank.cannonballsfired+=1;
-		Tester.GODtank.cannonballs.add(new StandardShot(ypos, xpos, Tester.GODtank.cannonballsfired, 150, 20, 1));
+		Tester.GODtank.cannonballs.add(new StandardShot(ypos, xpos, Tester.GODtank.cannonballsfired, 150, 20, 1, 10));
 	}
 }

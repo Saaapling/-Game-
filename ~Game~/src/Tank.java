@@ -35,11 +35,11 @@ public class Tank {
 			id=identity;
 			orientation=2;
 			boardadjust();
-			barrelAngle=40;
+			barrelAngle=0;
 			power=100;
 			cannonballsfired=0;
 			fuel=250;
-			weapon=3;
+			weapon=8;
 			specialdata=new double[]{0,0};
 		}
 	}
@@ -70,12 +70,12 @@ public class Tank {
 	public void weaponMechanism(int xstart, int ystart){
 		ArrayList<int[]> cannonballdata;
 		if (weapon==1){
-			standard=new StandardShot(1, 1, 1, 1, 1, 1);
+			standard=new StandardShot(1, 1, 1, 1, 1, 1, 10);
 			cannonballdata=standard.firingMechanism(xstart, ystart, power, barrelAngle, weapon, specialdata);
 			if (specialdata[1]!=1){
 				for (int[] cannonball:cannonballdata){
 					cannonballsfired+=1;
-					cannonballs.add(new StandardShot(cannonball[1], cannonball[0], cannonballsfired, barrelAngle, cannonball[2]*63/100, orientation));
+					cannonballs.add(new StandardShot(cannonball[1], cannonball[0], cannonballsfired, barrelAngle, cannonball[2]*63/100, orientation, 10));
 				}
 			}
 		}else if (weapon==2){

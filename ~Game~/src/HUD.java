@@ -23,7 +23,8 @@ public class HUD extends JPanel{
 
 	public HUD(Tank newtank, playertankHudPanel playertankHud, CPUtankHudPanel CPUtankHud) {
 		theTank=newtank;
-		this.setPreferredSize(new Dimension(1200,90));
+		this.setPreferredSize(new Dimension(1200,100));
+		this.setBorder(BorderFactory.createEmptyBorder(10, 10, 0, 0));
 		this.setLayout(new BorderLayout());
 		this.add(BorderLayout.WEST, playertankHud);
 		this.add(BorderLayout.EAST, CPUtankHud);

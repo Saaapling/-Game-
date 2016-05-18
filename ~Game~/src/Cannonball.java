@@ -97,8 +97,11 @@ public class Cannonball {
 			}else
 				cannonballFlying = true;
 		}catch (Exception E){
-			cannonballFlying = false;
-			dispose=true;
+			if (yposition>500){
+				System.out.println(yposition);
+				cannonballFlying = false;
+				dispose=true;
+			}
 		}
 		return false;
 	}
@@ -132,7 +135,7 @@ public class Cannonball {
 		cannonballdata.add(new int[]{xstart, ystart, power, angle});
 		return cannonballdata;
 	}
-	
+
 	public boolean disposecheck(int xpos, int ypos){
 		collision(xpos,ypos);
 		if (xpos<0||xpos>600)
@@ -143,7 +146,7 @@ public class Cannonball {
 	public void explosion(){
 
 	}
-	
+
 	public double getTime(){
 		return time;
 	}
