@@ -28,18 +28,20 @@ public class Tank {
 	ArrayList<Cannonball> cannonballs=new ArrayList<Cannonball>();
 
 	public Tank(int ystart, int xstart, int identity){
-		catalog=new WeaponCatalog();
-		xpos=xstart;
-		ypos=ystart;
-		id=identity;
-		orientation=2;
-		boardadjust();
-		barrelAngle=40;
-		power=100;
-		cannonballsfired=0;
-		fuel=250;
-		weapon=3;
-		specialdata=new double[]{0,0};
+		if (id!=100){
+			catalog=new WeaponCatalog();
+			xpos=xstart;
+			ypos=ystart;
+			id=identity;
+			orientation=2;
+			boardadjust();
+			barrelAngle=40;
+			power=100;
+			cannonballsfired=0;
+			fuel=250;
+			weapon=3;
+			specialdata=new double[]{0,0};
+		}
 	}
 
 	public double conversion(double angle){
@@ -125,7 +127,7 @@ public class Tank {
 		shottimer=standard.getTime();
 		maxshottimer=standard.getTime();
 	}
-	
+
 	public void disposal(){
 		ArrayList<Integer> tobedisposed=new ArrayList<Integer>();
 		for (Cannonball cannonball:this.cannonballs){
@@ -218,7 +220,7 @@ public class Tank {
 		if (weapon<1)
 			weapon=1;
 	}
-	
+
 	public void clearboard(){
 		for (int i=0; i<8;i++){
 			Tester.board.board[ypos][xpos+i]=0;

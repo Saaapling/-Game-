@@ -19,6 +19,7 @@ public class Tester implements KeyListener{
 	static HUD hud;
 	static PlayerTank playertank;
 	static CPUTank CPUtank;
+	static Tank GODTank;
 	static int frames=0;
 	private static boolean cannonballFlying = false;
 
@@ -82,7 +83,8 @@ public class Tester implements KeyListener{
 		playertank=new PlayerTank(149,550,10);
 		//playertank=new PlayerTank(74,300,10);
 		CPUtank=new CPUTank(149,50,11);
-
+		GODTank=new Tank(1,1,100);
+		
 		playertankHud = new playertankHudPanel(hud, playertank);
 		CPUtankHud = new CPUtankHudPanel(hud, CPUtank);
 		hud=new HUD(playertank, playertankHud, CPUtankHud);
