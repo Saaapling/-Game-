@@ -222,7 +222,7 @@ class CPUtankHudPanel extends JPanel {
 		//constr.gridx = 5; constr.gridy = 1;
 		//this.add(CPUShotTimer, constr);
 
-		constr.gridx = 5; constr.gridy = 1;
+		constr.gridx = 5; constr.gridy = 1;                            
 
 		shottimerprogressbar = new JProgressBar(0, intMaxShotTimer);
 		shottimerprogressbar.setValue(0);
