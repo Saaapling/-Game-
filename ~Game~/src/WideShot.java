@@ -1,8 +1,8 @@
 
 public class WideShot extends Cannonball{
 
-	public WideShot(int ystartpos, int xstartpos, int identity,	int newangle, int power, int newdirection, int newradius) {
-		super(ystartpos, xstartpos, identity, newangle, power, newdirection, newradius);
+	public WideShot(int ystartpos, int xstartpos, int identity,	int newangle, int power, int newdirection) {
+		super(ystartpos, xstartpos, identity, newangle, power, newdirection);
 		radius=15;
 		time=6.5;
 	}

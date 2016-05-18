@@ -3,8 +3,8 @@ import java.util.ArrayList;
 
 public class SpreadShot extends Cannonball{
 
-	public SpreadShot(int ystartpos, int xstartpos, int identity,	int newangle, int power, int newdirection, int newradius) {
-		super(ystartpos, xstartpos, identity, newangle, power, newdirection, newradius);
+	public SpreadShot(int ystartpos, int xstartpos, int identity,	int newangle, int power, int newdirection) {
+		super(ystartpos, xstartpos, identity, newangle, power, newdirection);
 		time=0.1;
 		radius=2;
 	}

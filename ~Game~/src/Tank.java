@@ -70,57 +70,57 @@ public class Tank {
 	public void weaponMechanism(int xstart, int ystart){
 		ArrayList<int[]> cannonballdata;
 		if (weapon==1){
-			standard=new StandardShot(1, 1, 1, 1, 1, 1, 1);
+			standard=new StandardShot(1, 1, 1, 1, 1, 1);
 			cannonballdata=standard.firingMechanism(xstart, ystart, power, barrelAngle, weapon, specialdata);
 			if (specialdata[1]!=1){
 				for (int[] cannonball:cannonballdata){
 					cannonballsfired+=1;
-					cannonballs.add(new StandardShot(cannonball[1], cannonball[0], cannonballsfired, barrelAngle, cannonball[2]*63/100, orientation, 10));
+					cannonballs.add(new StandardShot(cannonball[1], cannonball[0], cannonballsfired, barrelAngle, cannonball[2]*63/100, orientation));
 				}
 			}
 		}else if (weapon==2){
-			standard=new BuckShot(1, 1, 1, 1, 1, 1, 1);
+			standard=new BuckShot(1, 1, 1, 1, 1, 1);
 			cannonballdata=standard.firingMechanism(xstart, ystart, power, barrelAngle, weapon, specialdata);
 			if (specialdata[1]!=1){
 				for (int[] cannonball:cannonballdata){
 					cannonballsfired+=1;
-					cannonballs.add(new BuckShot(cannonball[1], cannonball[0], cannonballsfired, barrelAngle, cannonball[2]*63/100, orientation, 10));
+					cannonballs.add(new BuckShot(cannonball[1], cannonball[0], cannonballsfired, barrelAngle, cannonball[2]*63/100, orientation));
 				}
 			}
 		}else if (weapon==3){
-			standard=new SpreadShot(1, 1, 1, 1, 1, 1, 1);
+			standard=new SpreadShot(1, 1, 1, 1, 1, 1);
 			cannonballdata=standard.firingMechanism(xstart, ystart, power, barrelAngle, weapon, specialdata);
 			if (specialdata[1]!=1){
 				for (int[] cannonball:cannonballdata){
 					cannonballsfired+=1;
-					cannonballs.add(new SpreadShot(cannonball[1], cannonball[0], cannonballsfired, barrelAngle, cannonball[2]*63/100, orientation, 10));
+					cannonballs.add(new SpreadShot(cannonball[1], cannonball[0], cannonballsfired, barrelAngle, cannonball[2]*63/100, orientation));
 				}
 			}
 		}else if (weapon==4){
-			standard=new WideShot(1, 1, 1, 1, 1, 1, 1);
+			standard=new WideShot(1, 1, 1, 1, 1, 1);
 			cannonballdata=standard.firingMechanism(xstart, ystart, power, barrelAngle, weapon, specialdata);
 			if (specialdata[1]!=1){
 				for (int[] cannonball:cannonballdata){
 					cannonballsfired+=1;
-					cannonballs.add(new WideShot(cannonball[1], cannonball[0], cannonballsfired, barrelAngle, cannonball[2]*63/100, orientation, 10));
+					cannonballs.add(new WideShot(cannonball[1], cannonball[0], cannonballsfired, barrelAngle, cannonball[2]*63/100, orientation));
 				}
 			}
 		}else if (weapon==5){
-			standard=new AtomicShot(1, 1, 1, 1, 1, 1, 1);
+			standard=new AtomicShot(1, 1, 1, 1, 1, 1);
 			cannonballdata=standard.firingMechanism(xstart, ystart, power, barrelAngle, weapon, specialdata);
 			if (specialdata[1]!=1){
 				for (int[] cannonball:cannonballdata){
 					cannonballsfired+=1;
-					cannonballs.add(new AtomicShot(cannonball[1], cannonball[0], cannonballsfired, barrelAngle, cannonball[2]*63/100, orientation, 10));
+					cannonballs.add(new AtomicShot(cannonball[1], cannonball[0], cannonballsfired, barrelAngle, cannonball[2]*63/100, orientation));
 				}
 			}
 		}else if (weapon==6){
-			standard=new LevelingShot(1, 1, 1, 1, 1, 1, 1);
+			standard=new LevelingShot(1, 1, 1, 1, 1, 1);
 			cannonballdata=standard.firingMechanism(xstart, ystart, power, barrelAngle, weapon, specialdata);
 			if (specialdata[1]!=1){
 				for (int[] cannonball:cannonballdata){
 					cannonballsfired+=1;
-					cannonballs.add(new LevelingShot(cannonball[1], cannonball[0], cannonballsfired, barrelAngle, cannonball[2]*63/100, orientation, 10));
+					cannonballs.add(new LevelingShot(cannonball[1], cannonball[0], cannonballsfired, barrelAngle, cannonball[2]*63/100, orientation));
 				}
 			}
 		}

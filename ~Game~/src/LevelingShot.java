@@ -1,8 +1,8 @@
 
 public class LevelingShot extends Cannonball{
 
-	public LevelingShot(int ystartpos, int xstartpos, int identity,	int newangle, int power, int newdirection, int newradius) {
-		super(ystartpos, xstartpos, identity, newangle, power, newdirection, newradius);
+	public LevelingShot(int ystartpos, int xstartpos, int identity,	int newangle, int power, int newdirection) {
+		super(ystartpos, xstartpos, identity, newangle, power, newdirection);
 		radius=5;
 		time=10;
 	}

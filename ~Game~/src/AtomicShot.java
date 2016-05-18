@@ -1,8 +1,8 @@
 
 public class AtomicShot extends Cannonball{
 
-	public AtomicShot(int ystartpos, int xstartpos, int identity,	int newangle, int power, int newdirection, int newradius) {
-		super(ystartpos, xstartpos, identity, newangle, power, newdirection, newradius);
+	public AtomicShot(int ystartpos, int xstartpos, int identity,	int newangle, int power, int newdirection) {
+		super(ystartpos, xstartpos, identity, newangle, power, newdirection);
 		radius=30;
 		time=30;
 	}
