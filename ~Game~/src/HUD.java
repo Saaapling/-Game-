@@ -24,8 +24,7 @@ public class HUD extends JPanel{
 	public HUD(Tank newtank, playertankHudPanel playertankHud, CPUtankHudPanel CPUtankHud) {
 		theTank=newtank;
 		this.setPreferredSize(new Dimension(1200,100));
-		BorderLayout tree = new BorderLayout();
-		this.setLayout(tree);
+		this.setLayout(new BorderLayout());
 		this.add(BorderLayout.WEST, playertankHud);
 		this.add(BorderLayout.EAST, CPUtankHud);
 	}
@@ -45,8 +44,8 @@ class playertankHudPanel extends JPanel {
 	Tank theTank;
 
 	JLabel playerName,
-	playerHealth, playerHealthPercent, playerWeapons, playerWeaponsSlot, playerShotTimer, 
-	playerFuel, playerFuelNumber, playerAngle, playerPower, playerPowerNumber;
+	playerHealth, playerWeapons, playerShotTimer, 
+	playerFuel, playerAngle, playerPower;
 
 	public playertankHudPanel(HUD hud, Tank tank) {
 		theTank = tank;
@@ -55,15 +54,11 @@ class playertankHudPanel extends JPanel {
 
 		playerName = new JLabel(theTank.name);
 		playerHealth = new JLabel("Health: ");
-		playerHealthPercent = new JLabel("" + theTank.health + "%");
-		playerWeapons = new JLabel("Weapons: ");
-		playerWeaponsSlot = new JLabel("" + theTank.weapon);
+		playerWeapons = new JLabel("Weapons: " + theTank.weapon);
 		playerShotTimer = new JLabel("Shot timer: " + theTank.shottimer + " sec");
 		playerFuel = new JLabel("Fuel: ");
-		playerFuelNumber = new JLabel("" + theTank.fuel);
 		playerAngle = new JLabel("Angle: " + theTank.barrelAngle);
 		playerPower = new JLabel("Power: ");
-		playerPowerNumber = new JLabel("" + theTank.power);		
 
 		GridBagConstraints constr = new GridBagConstraints();
 		constr.gridx = 0;
@@ -86,18 +81,14 @@ class playertankHudPanel extends JPanel {
 		this.add(healthbar, constr);
 
 		constr.gridx = 2; constr.gridy = 1;
-		this.add(playerHealthPercent, constr);
-
-		constr.gridx = 3; constr.gridy = 1;
 		this.add(playerWeapons, constr);
 
-		constr.gridx = 4; constr.gridy = 1;
-		this.add(playerWeaponsSlot, constr);
+		constr.gridx = 3; constr.gridy = 1;
+		this.add(playerShotTimer, constr);
 
-		constr.gridx = 5; constr.gridy = 1;
+		constr.gridx = 4; constr.gridy = 1;
 		shottimerbar = new drawShotTimerPanel(theTank, constr);
 		this.add(shottimerbar, constr);
-		//this.add(playerShotTimer, constr);
 
 		constr.gridx = 0; constr.gridy = 2;
 		this.add(playerFuel, constr);
@@ -107,38 +98,26 @@ class playertankHudPanel extends JPanel {
 		this.add(fuelbar, constr);
 
 		constr.gridx = 2; constr.gridy = 2;
-		this.add(playerFuelNumber, constr);
-
-		constr.gridx = 3; constr.gridy = 2;
 		this.add(playerAngle, constr);
 
-		constr.gridx = 4; constr.gridy = 2;
+		constr.gridx = 3; constr.gridy = 2;
 		this.add(playerPower, constr);
 
-		constr.gridx = 5; constr.gridy = 2;
+		constr.gridx = 4; constr.gridy = 2;
 		powerbar = new drawPowerPanel(theTank, constr);
 		this.add(powerbar, constr);
 
-		constr.gridx = 6; constr.gridy = 2;
-		this.add(playerPowerNumber, constr);
 	}
 
 	public void updateHud() {
 		playerName.setText(theTank.name);
 		playerHealth.setText("Health: ");
-		playerHealthPercent.setText("" + theTank.health + "%");
-		playerWeapons.setText("Weapons: ");
-		playerWeaponsSlot.setText("" + theTank.weapon);
-
+		playerWeapons.setText("Weapons: " + theTank.weapon);
 		playerShotTimer.setText("Shot timer: ");
 		playerFuel.setText("Fuel: ");
-		playerFuelNumber.setText("" + theTank.fuel);
 		playerAngle.setText("Angle: " + theTank.barrelAngle);
 		playerPower.setText("Power: ");
-		playerPowerNumber.setText("" + theTank.power);		
 
-		revalidate();
-		repaint();
 	}
 
 
@@ -155,13 +134,13 @@ class CPUtankHudPanel extends JPanel {
 	drawHealthPanel healthbar;
 	drawFuelPanel fuelbar; 
 	drawPowerPanel powerbar;
-	//drawShotTimerPanel shottimerbar;
+	drawShotTimerPanel shottimerbar;
 
 	Tank theTank;
 
 	JLabel CPUName,
-	CPUHealth, CPUHealthPercent, CPUWeapons, CPUWeaponsSlot, CPUShotTimer, CPUShotTimerNumber,
-	CPUFuel, CPUFuelNumber, CPUAngle, CPUPower, CPUPowerNumber;
+	CPUHealth, CPUWeapons, CPUShotTimer,
+	CPUFuel, CPUAngle, CPUPower;
 
 	JProgressBar shottimerprogressbar;
 
@@ -173,22 +152,15 @@ class CPUtankHudPanel extends JPanel {
 		intMaxShotTimer = (int) theTank.maxshottimer;
 		intShotTimer = (int) theTank.shottimer;
 
-		GridBagLayout tree = new GridBagLayout();
-		this.setLayout(tree);
+		this.setLayout(new GridBagLayout());
 
 		CPUName = new JLabel(theTank.name);
 		CPUHealth = new JLabel("Health: ");
-		CPUHealthPercent = new JLabel("" + theTank.health + "%");
-		CPUWeapons = new JLabel("Weapons: ");
-		CPUWeaponsSlot = new JLabel("" + theTank.weapon);
-		//CPUShotTimer = new JLabel("Shot timer: ");
-		CPUShotTimerNumber = new JLabel("" + theTank.shottimer);
+		CPUWeapons = new JLabel("Weapons: " + theTank.weapon);
+		CPUShotTimer = new JLabel("Shot timer: ");
 		CPUFuel = new JLabel("Fuel: ");
-		CPUFuelNumber = new JLabel("" + theTank.fuel);
 		CPUAngle = new JLabel("Angle: " + theTank.barrelAngle);
 		CPUPower = new JLabel("Power: ");
-		CPUPowerNumber = new JLabel("" + theTank.power);	
-
 
 		GridBagConstraints constr = new GridBagConstraints();
 		constr.gridx = 0;
@@ -211,35 +183,14 @@ class CPUtankHudPanel extends JPanel {
 		this.add(healthbar, constr);
 
 		constr.gridx = 2; constr.gridy = 1;
-		this.add(CPUHealthPercent, constr);
-
-		constr.gridx = 3; constr.gridy = 1;
 		this.add(CPUWeapons, constr);
 
+		constr.gridx = 3; constr.gridy = 1;
+		this.add(CPUShotTimer, constr);
+
 		constr.gridx = 4; constr.gridy = 1;
-		this.add(CPUWeaponsSlot, constr);
-
-		//constr.gridx = 5; constr.gridy = 1;
-		//this.add(CPUShotTimer, constr);
-
-		constr.gridx = 5; constr.gridy = 1;                            
-
-		shottimerprogressbar = new JProgressBar(0, intMaxShotTimer);
-		shottimerprogressbar.setValue(0);
-		shottimerprogressbar.setStringPainted(true);
-
-		//	shottimerprogressbar.setIndeterminate(true);
-		//shottimerprogressbar.setMaximum(intMaxShotTimer);
-		//shottimerprogressbar.setValue(intShotTimer);
-		//UIManager.put("ProgressBar.background", Color.ORANGE);
-		//shottimerprogressbar.setIndeterminate(false);
-		this.add(shottimerprogressbar, constr);
-
-
-		//this.add(CPUShotTimer, constr);
-
-		//constr.gridx = 7; constr.gridy = 1;
-		//this.add(CPUShotTimerNumber, constr);
+		shottimerbar = new drawShotTimerPanel(theTank, constr);
+		this.add(shottimerbar, constr);
 
 		constr.gridx = 0; constr.gridy = 2;
 		this.add(CPUFuel, constr);
@@ -249,20 +200,14 @@ class CPUtankHudPanel extends JPanel {
 		this.add(fuelbar, constr);
 
 		constr.gridx = 2; constr.gridy = 2;
-		this.add(CPUFuelNumber, constr);
-
-		constr.gridx = 3; constr.gridy = 2;
 		this.add(CPUAngle, constr);
 
-		constr.gridx = 4; constr.gridy = 2;
+		constr.gridx = 3; constr.gridy = 2;
 		this.add(CPUPower, constr);
 
-		constr.gridx = 5; constr.gridy = 2;
+		constr.gridx = 4; constr.gridy = 2;
 		powerbar = new drawPowerPanel(theTank, constr);
 		this.add(powerbar, constr);
-
-		constr.gridx = 6; constr.gridy = 2;
-		this.add(CPUPowerNumber, constr);
 
 	}
 
@@ -273,21 +218,11 @@ class CPUtankHudPanel extends JPanel {
 
 		CPUName.setText(theTank.name);
 		CPUHealth.setText("Health: ");
-		CPUHealthPercent.setText("" + theTank.health + "%");
-		CPUWeapons.setText("Weapons: ");
-		CPUWeaponsSlot.setText("" + theTank.weapon);
-		//CPUShotTimer.setText("Shot timer: ");
-		//CPUShotTimerNumber.setText("" + theTank.shottimer);
-		shottimerprogressbar.setValue(intShotTimer);
-		shottimerprogressbar.setString("" + intShotTimer);
+		CPUWeapons.setText("Weapons: " + theTank.weapon);
 		CPUFuel.setText("Fuel: ");
-		CPUFuelNumber.setText("" + theTank.fuel);
 		CPUAngle.setText("Angle: " + theTank.barrelAngle);
 		CPUPower.setText("Power: ");
-		CPUPowerNumber.setText("" + theTank.power);		
 
-		revalidate();
-		repaint();
 	}
 
 
@@ -299,23 +234,18 @@ class CPUtankHudPanel extends JPanel {
 }
 
 
-
-
 class drawHealthPanel extends JPanel {
 
 	int width, height;
 	Tank theTank;
 
+	JLabel healthLabel = new JLabel();
+
 	public drawHealthPanel(Tank tank, GridBagConstraints constr) {
 		theTank = tank;
 		this.setPreferredSize(new Dimension(150,20));
-		width = constr.gridwidth;
-		height = constr.gridheight;
-		/* panel.setBackground(Color.black);
-        panel.setBorder(BorderFactory.createLineBorder(Color.blue, 5));
-        panel.setPreferredSize(new Dimension(200, 200)); // for demo purposes only
-		 */
 		this.setBorder(BorderFactory.createLineBorder(Color.red, 1));
+		this.add(healthLabel);
 	}
 
 	public void paintComponent(Graphics g) {
@@ -323,6 +253,7 @@ class drawHealthPanel extends JPanel {
 		double dectankHealth = theTank.health;
 		int healthbarWidth = (int) ( (dectankHealth / 100) * this.getWidth() );
 		g.fillRect(0, 0, healthbarWidth, this.getHeight());
+		healthLabel.setText("" + theTank.health);
 	}
 }
 
@@ -332,12 +263,13 @@ class drawFuelPanel extends JPanel {
 	int width, height;
 	Tank theTank;
 
+	JLabel fuelLabel = new JLabel();
+
 	public drawFuelPanel(Tank tank, GridBagConstraints constr) {
 		theTank = tank;
 		this.setPreferredSize(new Dimension(150,20));
-		width = constr.gridwidth;
-		height = constr.gridheight;
 		this.setBorder(BorderFactory.createLineBorder(Color.green, 1));
+		this.add(fuelLabel);
 
 	}
 
@@ -346,6 +278,7 @@ class drawFuelPanel extends JPanel {
 		double dectankFuel = theTank.fuel;
 		int fuelbarWidth = (int) ( (dectankFuel / 250) * this.getWidth() );
 		g.fillRect(0, 0, fuelbarWidth, this.getHeight());
+		fuelLabel.setText("" + theTank.fuel);
 	}
 }
 
@@ -354,20 +287,22 @@ class drawPowerPanel extends JPanel {
 	int width, height;
 	Tank theTank;
 
+	JLabel powerLabel = new JLabel();
+
 	public drawPowerPanel(Tank tank, GridBagConstraints constr) {
 		theTank = tank;
 		this.setPreferredSize(new Dimension(150,20));
-		width = constr.gridwidth;
-		height = constr.gridheight;
-		this.setBorder(BorderFactory.createLineBorder(Color.black, 1));
+		this.setBorder(BorderFactory.createLineBorder(Color.pink, 1));
+		this.add(powerLabel);
 
 	}
 
 	public void paintComponent(Graphics g) {
-		g.setColor(Color.black);
+		g.setColor(Color.pink);
 		double decpower = theTank.power;
 		int powerbarWidth = (int) ( (decpower / 100) * this.getWidth() );
 		g.fillRect(0, 0, powerbarWidth, this.getHeight());
+		powerLabel.setText("" + theTank.power);
 	}
 
 }
@@ -378,20 +313,29 @@ class drawShotTimerPanel extends JPanel {
 	int width, height;
 	Tank theTank;
 
+	int intMaxShotTimer;
+	int intShotTimer;
+	JLabel shotTimerLabel = new JLabel();
+
 	public drawShotTimerPanel(Tank tank, GridBagConstraints constr) {
 		theTank = tank;
-		this.setPreferredSize(new Dimension(120,20));
-		width = constr.gridwidth;
-		height = constr.gridheight;
+		this.setPreferredSize(new Dimension(150,20));
 		this.setBorder(BorderFactory.createLineBorder(Color.orange, 1));
+		this.add(shotTimerLabel);
 
 	}
 
 	public void paintComponent(Graphics g) {
+
+		intMaxShotTimer = (int) theTank.maxshottimer;
+		intShotTimer = (int) theTank.shottimer;
+
 		g.setColor(Color.orange);
 		double decpower = theTank.shottimer;
-		int shottimerbarWidth = (int) ( (decpower / 10) * this.getWidth() );
+		int shottimerbarWidth = (int) ( (decpower / intMaxShotTimer) * this.getWidth() );
 		g.fillRect(0, 0, shottimerbarWidth, this.getHeight());
+		shotTimerLabel.setText("" + intShotTimer);
+
 	}
 
 }
