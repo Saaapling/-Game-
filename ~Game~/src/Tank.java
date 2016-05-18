@@ -28,7 +28,7 @@ public class Tank {
 	ArrayList<Cannonball> cannonballs=new ArrayList<Cannonball>();
 
 	public Tank(int ystart, int xstart, int identity){
-		if (id!=100){
+		if (identity!=100){
 			catalog=new WeaponCatalog();
 			xpos=xstart;
 			ypos=ystart;
@@ -121,6 +121,24 @@ public class Tank {
 				for (int[] cannonball:cannonballdata){
 					cannonballsfired+=1;
 					cannonballs.add(new LevelingShot(cannonball[1], cannonball[0], cannonballsfired, barrelAngle, cannonball[2]*63/100, orientation));
+				}
+			}
+		}else if (weapon==7){
+			standard=new VolcanicShot(1, 1, 1, 1, 1, 1);
+			cannonballdata=standard.firingMechanism(xstart, ystart, power, barrelAngle, weapon, specialdata);
+			if (specialdata[1]!=1){
+				for (int[] cannonball:cannonballdata){
+					cannonballsfired+=1;
+					cannonballs.add(new VolcanicShot(cannonball[1], cannonball[0], cannonballsfired, barrelAngle, cannonball[2]*63/100, orientation));
+				}
+			}
+		}else if (weapon==8){
+			standard=new AirStrikeFlare(1, 1, 1, 1, 1, 1);
+			cannonballdata=standard.firingMechanism(xstart, ystart, power, barrelAngle, weapon, specialdata);
+			if (specialdata[1]!=1){
+				for (int[] cannonball:cannonballdata){
+					cannonballsfired+=1;
+					cannonballs.add(new AirStrikeFlare(cannonball[1], cannonball[0], cannonballsfired, barrelAngle, cannonball[2]*63/100, orientation));
 				}
 			}
 		}

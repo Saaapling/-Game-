@@ -118,6 +118,9 @@ public class Board extends JPanel{
 		for (Cannonball cannonball:Tester.CPUtank.cannonballs){
 			drawCannonball(cannonball, g);
 		}
+		for (Cannonball cannonball:Tester.GODtank.cannonballs){
+			drawCannonball(cannonball, g);
+		}
 		g.setColor(new Color(47,170,42));
 		drawtank(Tester.playertank, g);
 		g.setColor(Color.BLACK);
