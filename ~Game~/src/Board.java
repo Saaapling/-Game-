@@ -37,7 +37,7 @@ public class Board extends JPanel{
 	
 	public void updatebackground(int xpos, int ypos, int id){
 		int fallen=0;
-		if (ypos<249){
+		if (ypos<249&&id!=3){
 			inner: while (Tester.board.board[ypos+1][xpos]==0){
 				ypos+=1;
 				if (ypos>248){
@@ -116,6 +116,9 @@ public class Board extends JPanel{
 			drawCannonball(cannonball, g);
 		}
 		for (Cannonball cannonball:Tester.CPUtank.cannonballs){
+			drawCannonball(cannonball, g);
+		}
+		for (Cannonball cannonball:Tester.GODtank.cannonballs){
 			drawCannonball(cannonball, g);
 		}
 		g.setColor(new Color(47,170,42));

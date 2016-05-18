@@ -3,8 +3,8 @@ import java.util.ArrayList;
 
 public class BuckShot extends Cannonball{
 
-	public BuckShot(int ystartpos, int xstartpos, int identity,	int newangle, int power, int newdirection, int newradius) {
-		super(ystartpos, xstartpos, identity, newangle, power, newdirection, newradius);
+	public BuckShot(int ystartpos, int xstartpos, int identity,	int newangle, int power, int newdirection) {
+		super(ystartpos, xstartpos, identity, newangle, power, newdirection);
 		time=5;
 		radius=3;
 	}

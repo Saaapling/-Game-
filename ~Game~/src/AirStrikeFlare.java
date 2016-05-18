@@ -1,10 +1,10 @@
 
-public class WideShot extends Cannonball{
+public class AirStrikeFlare extends Cannonball{
 
-	public WideShot(int ystartpos, int xstartpos, int identity,	int newangle, int power, int newdirection) {
+	public AirStrikeFlare(int ystartpos, int xstartpos, int identity,	int newangle, int power, int newdirection) {
 		super(ystartpos, xstartpos, identity, newangle, power, newdirection);
-		radius=15;
-		time=6.5;
+		radius=1;
+		time=15;
 	}
 
 	public void explosion(){
@@ -18,6 +18,12 @@ public class WideShot extends Cannonball{
 						}
 					}
 				}
+			}
+		}
+		for (int y=-15;y<=0;y+=5){
+			for (int x=-10;x<=10;x+=5){
+				Tester.GODtank.cannonballsfired+=1;
+				Tester.GODtank.cannonballs.add(new StandardShot(y, xpos-x, Tester.GODtank.cannonballsfired, 0, 0, 1));
 			}
 		}
 	}

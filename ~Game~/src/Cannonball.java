@@ -32,14 +32,13 @@ public class Cannonball {
 	private int angle;
 	private int totalHorizontalDistanceTraveled;
 
-	public Cannonball(int ystartpos, int xstartpos, int identity, int newangle, int power, int newdirection, int newradius){
+	public Cannonball(int ystartpos, int xstartpos, int identity, int newangle, int power, int newdirection){
 		xstart=xstartpos;
 		ystart=ystartpos;
 		xpos=xstart;
 		ypos=ystart;
 		direction=newdirection;
 		id=identity;
-		radius=newradius;
 		cannonballFlying=true;
 		dispose=false;
 		angle=newangle;
