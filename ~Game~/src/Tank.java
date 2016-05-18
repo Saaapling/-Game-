@@ -143,6 +143,7 @@ public class Tank {
 			}
 		}
 		shottimer=standard.getTime();
+		shottimer=0;
 		maxshottimer=standard.getTime();
 	}
 

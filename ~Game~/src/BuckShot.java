@@ -38,7 +38,10 @@ public class BuckShot extends Cannonball{
 				if (distance<=radius){
 					if (x>=0&&x<600){
 						if (y>=0&&y<250){
-							Tester.board.board[y][x]=3;
+							if (Math.random()>0.35)
+								Tester.board.board[y][x]=3;
+							if (Tester.board.board[y][x]==0)
+								Tester.board.board[y][x]=3;
 						}
 					}
 				}

@@ -14,7 +14,10 @@ public class LevelingShot extends Cannonball{
 				if (distance<=radius){
 					if (x>=0&&x<600){
 						if (y>=0&&y<250){
-							Tester.board.board[y][x]=3;
+							if (Math.random()>0.1)
+								Tester.board.board[y][x]=3;
+							if (Tester.board.board[y][x]==0)
+								Tester.board.board[y][x]=3;
 						}
 					}
 				}
@@ -26,7 +29,10 @@ public class LevelingShot extends Cannonball{
 				if (distance<=radius){
 					if (x>=0&&x<600){
 						if (y>=0&&y<250){
-							Tester.board.board[y][x]=3;
+							if (Math.random()>0.1)
+								Tester.board.board[y][x]=3;
+							if (Tester.board.board[y][x]==0)
+								Tester.board.board[y][x]=3;
 						}
 					}
 				}
@@ -34,7 +40,10 @@ public class LevelingShot extends Cannonball{
 		}
 		for (int x=xpos-20;x<xpos+20;x++){
 			for (int y=ypos-radius;y<ypos+radius;y++){
-				Tester.board.board[y][x]=3;
+				if (Math.random()>0.1)
+					Tester.board.board[y][x]=3;
+				if (Tester.board.board[y][x]==0)
+					Tester.board.board[y][x]=3;
 			}
 		}
 	}
