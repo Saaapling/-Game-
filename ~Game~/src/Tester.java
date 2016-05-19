@@ -22,6 +22,7 @@ public class Tester implements KeyListener{
 	static Tank GODtank;
 	static ArrayList<Tank> tanks;
 	static int frames=0;
+	static int gamestatus=2;
 	private static boolean cannonballFlying = false;
 
 	static playertankHudPanel playertankHud;
@@ -32,15 +33,26 @@ public class Tester implements KeyListener{
 	static ActionListener timertask = new ActionListener() {
 		public void actionPerformed(ActionEvent evt) {
 			frames+=1;
-			cannonballcontrol();
-			tankmonitor();
-			tankvariables();
+			if (gamestatus==0){
+				cannonballcontrol();
+				tankmonitor();
+				tankvariables();
+				gamestatuscheck();
+			}
 			refresh();
 		}
 	};
 	static int interval=10;
 	static Timer timer=new Timer(interval, timertask);
 
+	
+	public static void gamestatuscheck(){
+		if (playertank.health<0)
+			gamestatus=2;
+		if (CPUtank.health<0)
+			gamestatus=1;
+	}
+	
 	public static void cannonballcontrol(){
 		for (Cannonball cannonball:Tester.playertank.cannonballs){
 			if (cannonball.cannonballFlying)
@@ -92,7 +104,7 @@ public class Tester implements KeyListener{
 		GODtank=new Tank(1,1,100,"GodTank");
 		tanks.add(playertank);
 		tanks.add(CPUtank);
-		
+
 		playertankHud = new playertankHudPanel(hud, playertank);
 		CPUtankHud = new CPUtankHudPanel(hud, CPUtank);
 		hud=new HUD(playertank, playertankHud, CPUtankHud);

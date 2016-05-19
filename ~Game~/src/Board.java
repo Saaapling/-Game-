@@ -18,7 +18,7 @@ public class Board extends JPanel{
 
 	public int[][] board = new int[250][600];  //0-Empty, 1 terrain, 2 shot values, 10+ players
 	public ArrayList<int[]> bakahatsu=new ArrayList<int[]>();
-	
+
 	public Board(){
 		super();
 		for (int x=0;x<600;x++){ 
@@ -34,7 +34,7 @@ public class Board extends JPanel{
 				if (board[y][x]==3)
 					board[y][x]=0;
 	}
-	
+
 	public void updatebackground(int xpos, int ypos, int id){
 		int fallen=0;
 		if (ypos<249&&id!=3){
@@ -111,20 +111,34 @@ public class Board extends JPanel{
 	}
 
 	public void paintComponent(Graphics g){
-		drawbackground(g);
-		for (Cannonball cannonball:Tester.playertank.cannonballs){
-			drawCannonball(cannonball, g);
+		if (Tester.gamestatus==0){
+			drawbackground(g);
+			for (Cannonball cannonball:Tester.playertank.cannonballs){
+				drawCannonball(cannonball, g);
+			}
+			for (Cannonball cannonball:Tester.CPUtank.cannonballs){
+				drawCannonball(cannonball, g);
+			}
+			for (Cannonball cannonball:Tester.GODtank.cannonballs){
+				drawCannonball(cannonball, g);
+			}
+			g.setColor(new Color(47,170,42));
+			drawtank(Tester.playertank, g);
+			g.setColor(Color.BLACK);
+			drawtank(Tester.CPUtank, g);
+		}else if(Tester.gamestatus==1){
+			g.setFont(new Font("Georgia", Font.BOLD, 50));
+			g.setColor(Color.GREEN);
+			g.fillRect(0, 0, 1200, 500);
+			g.setColor(Color.BLACK);
+			g.drawString("You Win", 500, 240);
+		}else{
+			g.setFont(new Font("Georgia", Font.BOLD, 50));
+			g.setColor(Color.RED);
+			g.fillRect(0, 0, 1200, 500);
+			g.setColor(Color.BLACK);
+			g.drawString("You Lose", 500, 240);
 		}
-		for (Cannonball cannonball:Tester.CPUtank.cannonballs){
-			drawCannonball(cannonball, g);
-		}
-		for (Cannonball cannonball:Tester.GODtank.cannonballs){
-			drawCannonball(cannonball, g);
-		}
-		g.setColor(new Color(47,170,42));
-		drawtank(Tester.playertank, g);
-		g.setColor(Color.BLACK);
-		drawtank(Tester.CPUtank, g);
 	}
 
 }
