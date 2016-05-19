@@ -17,8 +17,8 @@ public class CPUTank extends Tank{
 
 	int movement=0;
 
-	public CPUTank(int xstart, int ystart, int identity){
-		super(xstart, ystart, identity);
+	public CPUTank(int xstart, int ystart, int identity, String newname){
+		super(xstart, ystart, identity, newname);
 		orientation=2;
 		barrelAngle=45;
 	}
@@ -30,15 +30,19 @@ public class CPUTank extends Tank{
 				orientation=2;
 			else
 				orientation=1;
-			if (frames%1==0)
-				fire();
 			if(fuel>50){
-				if(power>99)
+				if(power>99){
 					movement=(int)(Math.random()*fuel);
-				else if(Math.random()<0.05){
+				}else if(Math.random()<0.05){
 					orientation=(int)(Math.random()*2+0.5);
 					movement=(int)(Math.random()*fuel/2);
 				}
+			}
+			if (weapon==3&&shottimer<1)
+				fire();
+			if (movement==0&&shottimer==0){
+				weaponadjust((int)(1+Math.random()*8+0.5));
+				fire();
 			}
 		}else{
 			movement(orientation);

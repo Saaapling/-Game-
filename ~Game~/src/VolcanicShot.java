@@ -4,7 +4,8 @@ public class VolcanicShot extends Cannonball{
 	public VolcanicShot(int ystartpos, int xstartpos, int identity,	int newangle, int power, int newdirection) {
 		super(ystartpos, xstartpos, identity, newangle, power, newdirection);
 		radius=5;
-		time=7;
+		time=3.5;
+		damage=1;
 	}
 
 	public void explosion(){
@@ -17,20 +18,16 @@ public class VolcanicShot extends Cannonball{
 							if (Math.random()>0.7)
 								Tester.board.board[y][x]=3;
 							if (Tester.board.board[y][x]==0)
-								Tester.board.board[y][x]=3;						}
+								Tester.board.board[y][x]=3;
+							inflictDMG(Tester.board.board[y][x]);
+						}
 					}
 				}
 			}
 		}
-		Tester.GODtank.cannonballsfired+=1;
-		Tester.GODtank.cannonballs.add(new StandardShot(ypos, xpos, Tester.GODtank.cannonballsfired, 30, 20, 1, 10));
-		Tester.GODtank.cannonballsfired+=1;
-		Tester.GODtank.cannonballs.add(new StandardShot(ypos, xpos, Tester.GODtank.cannonballsfired, 60, 20, 1, 10));
-		Tester.GODtank.cannonballsfired+=1;
-		Tester.GODtank.cannonballs.add(new StandardShot(ypos, xpos, Tester.GODtank.cannonballsfired, 90, 20, 1, 10));
-		Tester.GODtank.cannonballsfired+=1;
-		Tester.GODtank.cannonballs.add(new StandardShot(ypos, xpos, Tester.GODtank.cannonballsfired, 120, 20, 1, 10));
-		Tester.GODtank.cannonballsfired+=1;
-		Tester.GODtank.cannonballs.add(new StandardShot(ypos, xpos, Tester.GODtank.cannonballsfired, 150, 20, 1, 10));
+		for (int angle=30;angle<=150;angle+=30){
+			Tester.GODtank.cannonballsfired+=1;
+			Tester.GODtank.cannonballs.add(new StandardShot(ypos, xpos, Tester.GODtank.cannonballsfired, angle, 20, 1, 10, 0.5));
+		}
 	}
 }

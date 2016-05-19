@@ -5,8 +5,9 @@ public class BuckShot extends Cannonball{
 
 	public BuckShot(int ystartpos, int xstartpos, int identity,	int newangle, int power, int newdirection) {
 		super(ystartpos, xstartpos, identity, newangle, power, newdirection);
-		time=5;
+		time=2.5;
 		radius=3;
+		damage=5;
 	}
 
 	public ArrayList<int[]> firingMechanism(int xstart, int ystart, int power, int angle, int weapontype, double[]specialdata){
@@ -26,11 +27,11 @@ public class BuckShot extends Cannonball{
 					proceed=false;
 			}
 			if (proceed)
-				cannonballdata.add(new int[]{newx, newy, power,newangle});
+				cannonballdata.add(new int[]{newx, newy, newpower,newangle});
 		}
 		return cannonballdata;
 	}
-	
+
 	public void explosion(){
 		for (int x=xpos-radius;x<xpos+radius;x++){
 			for (int y=ypos-radius;y<ypos+radius;y++){
@@ -42,6 +43,7 @@ public class BuckShot extends Cannonball{
 								Tester.board.board[y][x]=3;
 							if (Tester.board.board[y][x]==0)
 								Tester.board.board[y][x]=3;
+							inflictDMG(Tester.board.board[y][x]);
 						}
 					}
 				}

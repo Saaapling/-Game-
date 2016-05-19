@@ -4,7 +4,8 @@ public class AtomicShot extends Cannonball{
 	public AtomicShot(int ystartpos, int xstartpos, int identity,	int newangle, int power, int newdirection) {
 		super(ystartpos, xstartpos, identity, newangle, power, newdirection);
 		radius=30;
-		time=30;
+		time=15;
+		damage=5;
 	}
 
 	public void explosion(){
@@ -18,6 +19,7 @@ public class AtomicShot extends Cannonball{
 								Tester.board.board[y][x]=3;
 							if (Tester.board.board[y][x]==0)
 								Tester.board.board[y][x]=3;
+							inflictDMG(Tester.board.board[y][x]);
 						}
 					}
 				}

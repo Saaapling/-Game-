@@ -20,6 +20,7 @@ public class Tester implements KeyListener{
 	static PlayerTank playertank;
 	static CPUTank CPUtank;
 	static Tank GODtank;
+	static ArrayList<Tank> tanks;
 	static int frames=0;
 	private static boolean cannonballFlying = false;
 
@@ -67,7 +68,7 @@ public class Tester implements KeyListener{
 	}
 
 	public static void tankvariables(){
-		if (frames%5==0){
+		if (frames%3==0){
 			if (playertank.fuel<250)
 				playertank.fuel+=1;
 			if (CPUtank.fuel<250)
@@ -85,10 +86,12 @@ public class Tester implements KeyListener{
 
 	public Tester(){
 		terraingeneration();
-		playertank=new PlayerTank(149,550,10);
-		//playertank=new PlayerTank(74,300,10);
-		CPUtank=new CPUTank(149,50,11);
-		GODtank=new Tank(1,1,100);
+		tanks=new ArrayList<Tank>();
+		playertank=new PlayerTank(10,(int)(450+Math.random()*140+0.5),10,"Player Tank");
+		CPUtank=new CPUTank(10,(int)(Math.random()*140+0.5),11,"CPU Tank");
+		GODtank=new Tank(1,1,100,"GodTank");
+		tanks.add(playertank);
+		tanks.add(CPUtank);
 		
 		playertankHud = new playertankHudPanel(hud, playertank);
 		CPUtankHud = new CPUtankHudPanel(hud, CPUtank);
@@ -123,7 +126,7 @@ public class Tester implements KeyListener{
 	public static void refresh(){
 		frame.remove(board);
 		int[][] tempboard=new int[250][600];
-		for (int x=0;x<600;x++) //Copying the board over
+		for (int x=0;x<600;x++) 							//Copying the board over
 			for (int y=0;y<250;y++)
 				tempboard[y][x]=board.board[y][x];
 		board=new Board();
@@ -155,7 +158,7 @@ public class Tester implements KeyListener{
 
 
 	public void keyPressed(KeyEvent keyboard) {
-		//.out.println("In keypressed: "+keyboard.getKeyCode());
+		//System.out.println("In keypressed: "+keyboard.getKeyCode());
 		playertank.control(keyboard.getKeyCode());
 	}
 

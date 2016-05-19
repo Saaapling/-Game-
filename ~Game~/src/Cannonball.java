@@ -21,7 +21,9 @@ public class Cannonball {
 	boolean dispose;
 	int radius;
 	double time;
+	double damage;
 
+	
 	private final int MAX_POWER;
 	private double totalFlightTime;
 	private double flightTimer = 0;
@@ -97,8 +99,7 @@ public class Cannonball {
 			}else
 				cannonballFlying = true;
 		}catch (Exception E){
-			if (yposition>500){
-				System.out.println(yposition);
+			if (yposition>250){
 				cannonballFlying = false;
 				dispose=true;
 			}
@@ -143,6 +144,14 @@ public class Cannonball {
 		return dispose;
 	}
 
+	public void inflictDMG(int id){
+		if (id>=10){
+			for (Tank tank:Tester.tanks){
+				if (tank.id==id)
+					tank.health-=damage;
+			}
+		}
+	}
 	public void explosion(){
 
 	}

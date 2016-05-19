@@ -3,10 +3,18 @@ public class StandardShot extends Cannonball{
 
 	public StandardShot(int ystartpos, int xstartpos, int identity,	int newangle, int power, int newdirection, int newradius) {
 		super(ystartpos, xstartpos, identity, newangle, power, newdirection);
-		time=2;
+		time=1;
 		radius=newradius;
+		damage=2;
 	}
 
+	public StandardShot(int ystartpos, int xstartpos, int identity,	int newangle, int power, int newdirection, int newradius, double newdamage) {
+		super(ystartpos, xstartpos, identity, newangle, power, newdirection);
+		time=1;
+		radius=newradius;
+		damage=newdamage;
+	}
+	
 	public void explosion(){
 		for (int x=xpos-radius;x<xpos+radius;x++){
 			for (int y=ypos-radius;y<ypos+radius;y++){
@@ -18,6 +26,7 @@ public class StandardShot extends Cannonball{
 								Tester.board.board[y][x]=3;
 							if (Tester.board.board[y][x]==0)
 								Tester.board.board[y][x]=3;
+							inflictDMG(Tester.board.board[y][x]);
 						}
 					}
 				}

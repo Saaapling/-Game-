@@ -4,7 +4,8 @@ public class LevelingShot extends Cannonball{
 	public LevelingShot(int ystartpos, int xstartpos, int identity,	int newangle, int power, int newdirection) {
 		super(ystartpos, xstartpos, identity, newangle, power, newdirection);
 		radius=5;
-		time=10;
+		time=8;
+		damage=0;
 	}
 
 	public void explosion(){
@@ -33,6 +34,7 @@ public class LevelingShot extends Cannonball{
 								Tester.board.board[y][x]=3;
 							if (Tester.board.board[y][x]==0)
 								Tester.board.board[y][x]=3;
+							inflictDMG(Tester.board.board[y][x]);
 						}
 					}
 				}
@@ -40,10 +42,14 @@ public class LevelingShot extends Cannonball{
 		}
 		for (int x=xpos-20;x<xpos+20;x++){
 			for (int y=ypos-radius;y<ypos+radius;y++){
-				if (Math.random()>0.1)
-					Tester.board.board[y][x]=3;
-				if (Tester.board.board[y][x]==0)
-					Tester.board.board[y][x]=3;
+				if (x>=0&&x<600){
+					if (y>=0&&y<250){
+						if (Math.random()>0.1)
+							Tester.board.board[y][x]=3;
+						if (Tester.board.board[y][x]==0)
+							Tester.board.board[y][x]=3;
+					}
+				}
 			}
 		}
 	}

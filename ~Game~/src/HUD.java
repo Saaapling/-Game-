@@ -1,11 +1,3 @@
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Graphics;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
-
 import javax.swing.*;
 import javax.swing.text.LayeredHighlighter.LayerPainter;
 
@@ -56,7 +48,7 @@ class playertankHudPanel extends JPanel {
 		playerName = new JLabel(theTank.name);
 		playerHealth = new JLabel("Health: ");
 		playerWeapons = new JLabel("Weapons: " + theTank.weapon);
-		playerShotTimer = new JLabel("Shot timer: " + theTank.shottimer + " sec");
+		playerShotTimer = new JLabel("Shot timer: ");
 		playerFuel = new JLabel("Fuel: ");
 		playerAngle = new JLabel("Angle: " + theTank.barrelAngle);
 		playerPower = new JLabel("Power: ");
@@ -245,6 +237,8 @@ class drawHealthPanel extends JPanel {
 	public drawHealthPanel(Tank tank, GridBagConstraints constr) {
 		theTank = tank;
 		this.setPreferredSize(new Dimension(150,20));
+		this.setLayout(new GridLayout());
+		healthLabel.setBorder(BorderFactory.createEmptyBorder(0, 65, 0, 0));
 		this.setBorder(BorderFactory.createLineBorder(Color.red, 1));
 		this.add(healthLabel);
 	}
@@ -252,7 +246,7 @@ class drawHealthPanel extends JPanel {
 	public void paintComponent(Graphics g) {
 		g.setColor(Color.red);
 		double dectankHealth = theTank.health;
-		int healthbarWidth = (int) ( (dectankHealth / 100) * this.getWidth() );
+		int healthbarWidth = (int) ( (dectankHealth / 250) * this.getWidth() );
 		g.fillRect(0, 0, healthbarWidth, this.getHeight());
 		healthLabel.setText("" + theTank.health);
 	}
@@ -269,6 +263,8 @@ class drawFuelPanel extends JPanel {
 	public drawFuelPanel(Tank tank, GridBagConstraints constr) {
 		theTank = tank;
 		this.setPreferredSize(new Dimension(150,20));
+		this.setLayout(new GridLayout());
+		fuelLabel.setBorder(BorderFactory.createEmptyBorder(0, 65, 0, 0));
 		this.setBorder(BorderFactory.createLineBorder(Color.green, 1));
 		this.add(fuelLabel);
 
@@ -293,6 +289,8 @@ class drawPowerPanel extends JPanel {
 	public drawPowerPanel(Tank tank, GridBagConstraints constr) {
 		theTank = tank;
 		this.setPreferredSize(new Dimension(150,20));
+		this.setLayout(new GridLayout());
+		powerLabel.setBorder(BorderFactory.createEmptyBorder(0, 65, 0, 0));
 		this.setBorder(BorderFactory.createLineBorder(Color.pink, 1));
 		this.add(powerLabel);
 
@@ -316,13 +314,13 @@ class drawShotTimerPanel extends JPanel {
 
 	int intMaxShotTimer;
 	int intShotTimer;
-	JLabel shotTimerLabel = new JLabel();
+	//JLabel shotTimerLabel = new JLabel();
 
 	public drawShotTimerPanel(Tank tank, GridBagConstraints constr) {
 		theTank = tank;
 		this.setPreferredSize(new Dimension(150,20));
 		this.setBorder(BorderFactory.createLineBorder(Color.orange, 1));
-		this.add(shotTimerLabel);
+		//this.add(shotTimerLabel);
 
 	}
 
@@ -335,7 +333,7 @@ class drawShotTimerPanel extends JPanel {
 		double decpower = theTank.shottimer;
 		int shottimerbarWidth = (int) ( (decpower / intMaxShotTimer) * this.getWidth() );
 		g.fillRect(0, 0, shottimerbarWidth, this.getHeight());
-		shotTimerLabel.setText("" + intShotTimer);
+		//shotTimerLabel.setText("" + intShotTimer);
 
 	}
 

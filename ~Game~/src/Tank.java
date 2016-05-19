@@ -11,6 +11,7 @@ public class Tank {
 	int id;
 	int cannonballsfired;
 	int orientation;
+	boolean falling;
 
 	//FOR THE HUD
 	int health;
@@ -27,19 +28,21 @@ public class Tank {
 	Cannonball standard;
 	ArrayList<Cannonball> cannonballs=new ArrayList<Cannonball>();
 
-	public Tank(int ystart, int xstart, int identity){
+	public Tank(int ystart, int xstart, int identity, String newname){
 		if (identity!=100){
+			name=newname;
 			catalog=new WeaponCatalog();
 			xpos=xstart;
 			ypos=ystart;
 			id=identity;
 			orientation=2;
 			boardadjust();
+			health=250;
 			barrelAngle=0;
 			power=100;
 			cannonballsfired=0;
 			fuel=250;
-			weapon=8;
+			weapon=1;
 			specialdata=new double[]{0,0};
 		}
 	}
@@ -53,7 +56,7 @@ public class Tank {
 	}
 
 	public void fire(){
-		if (shottimer<=0){
+		if (shottimer<=0&&!falling){
 			int xstart;
 			int ystart;
 			if (orientation==1){
@@ -75,7 +78,7 @@ public class Tank {
 			if (specialdata[1]!=1){
 				for (int[] cannonball:cannonballdata){
 					cannonballsfired+=1;
-					cannonballs.add(new StandardShot(cannonball[1], cannonball[0], cannonballsfired, barrelAngle, cannonball[2]*63/100, orientation, 10));
+					cannonballs.add(new StandardShot(cannonball[1], cannonball[0], cannonballsfired, cannonball[3], cannonball[2]*63/100, orientation, 10));
 				}
 			}
 		}else if (weapon==2){
@@ -84,7 +87,7 @@ public class Tank {
 			if (specialdata[1]!=1){
 				for (int[] cannonball:cannonballdata){
 					cannonballsfired+=1;
-					cannonballs.add(new BuckShot(cannonball[1], cannonball[0], cannonballsfired, barrelAngle, cannonball[2]*63/100, orientation));
+					cannonballs.add(new BuckShot(cannonball[1], cannonball[0], cannonballsfired, cannonball[3], cannonball[2]*63/100, orientation));
 				}
 			}
 		}else if (weapon==3){
@@ -93,7 +96,7 @@ public class Tank {
 			if (specialdata[1]!=1){
 				for (int[] cannonball:cannonballdata){
 					cannonballsfired+=1;
-					cannonballs.add(new SpreadShot(cannonball[1], cannonball[0], cannonballsfired, barrelAngle, cannonball[2]*63/100, orientation));
+					cannonballs.add(new SpreadShot(cannonball[1], cannonball[0], cannonballsfired, cannonball[3], cannonball[2]*63/100, orientation));
 				}
 			}
 		}else if (weapon==4){
@@ -102,7 +105,7 @@ public class Tank {
 			if (specialdata[1]!=1){
 				for (int[] cannonball:cannonballdata){
 					cannonballsfired+=1;
-					cannonballs.add(new WideShot(cannonball[1], cannonball[0], cannonballsfired, barrelAngle, cannonball[2]*63/100, orientation));
+					cannonballs.add(new WideShot(cannonball[1], cannonball[0], cannonballsfired, cannonball[3], cannonball[2]*63/100, orientation));
 				}
 			}
 		}else if (weapon==5){
@@ -111,7 +114,7 @@ public class Tank {
 			if (specialdata[1]!=1){
 				for (int[] cannonball:cannonballdata){
 					cannonballsfired+=1;
-					cannonballs.add(new AtomicShot(cannonball[1], cannonball[0], cannonballsfired, barrelAngle, cannonball[2]*63/100, orientation));
+					cannonballs.add(new AtomicShot(cannonball[1], cannonball[0], cannonballsfired, cannonball[3], cannonball[2]*63/100, orientation));
 				}
 			}
 		}else if (weapon==6){
@@ -120,7 +123,7 @@ public class Tank {
 			if (specialdata[1]!=1){
 				for (int[] cannonball:cannonballdata){
 					cannonballsfired+=1;
-					cannonballs.add(new LevelingShot(cannonball[1], cannonball[0], cannonballsfired, barrelAngle, cannonball[2]*63/100, orientation));
+					cannonballs.add(new LevelingShot(cannonball[1], cannonball[0], cannonballsfired, cannonball[3], cannonball[2]*63/100, orientation));
 				}
 			}
 		}else if (weapon==7){
@@ -129,7 +132,7 @@ public class Tank {
 			if (specialdata[1]!=1){
 				for (int[] cannonball:cannonballdata){
 					cannonballsfired+=1;
-					cannonballs.add(new VolcanicShot(cannonball[1], cannonball[0], cannonballsfired, barrelAngle, cannonball[2]*63/100, orientation));
+					cannonballs.add(new VolcanicShot(cannonball[1], cannonball[0], cannonballsfired, cannonball[3], cannonball[2]*63/100, orientation));
 				}
 			}
 		}else if (weapon==8){
@@ -138,12 +141,21 @@ public class Tank {
 			if (specialdata[1]!=1){
 				for (int[] cannonball:cannonballdata){
 					cannonballsfired+=1;
-					cannonballs.add(new AirStrikeFlare(cannonball[1], cannonball[0], cannonballsfired, barrelAngle, cannonball[2]*63/100, orientation));
+					cannonballs.add(new AirStrikeFlare(cannonball[1], cannonball[0], cannonballsfired, cannonball[3], cannonball[2]*63/100, orientation));
+				}
+			}
+		}else if (weapon==9){
+			standard=new JATAGShot(1, 1, 1, 1, 1, 1);
+			cannonballdata=standard.firingMechanism(xstart, ystart, power, barrelAngle, weapon, specialdata);
+			if (specialdata[1]!=1){
+				for (int[] cannonball:cannonballdata){
+					cannonballsfired+=1;
+					cannonballs.add(new JATAGShot(cannonball[1], cannonball[0], cannonballsfired, cannonball[3], cannonball[2]*63/100, orientation));
 				}
 			}
 		}
 		shottimer=standard.getTime();
-		shottimer=0;
+		//shottimer=0;
 		maxshottimer=standard.getTime();
 	}
 
@@ -233,11 +245,7 @@ public class Tank {
 	}
 
 	public void weaponadjust(int i){
-		weapon+=i;
-		if (weapon>9)
-			weapon=9;
-		if (weapon<1)
-			weapon=1;
+		weapon=i;
 	}
 
 	public void clearboard(){
@@ -265,8 +273,14 @@ public class Tank {
 				ypos=248; 
 				break inner;
 			}
-			if (increase>3)
+			if (increase>3){
 				break inner;
+			}
+		}
+		if (increase>3){
+			falling=true;
+		}else{
+			falling=false;
 		}
 		boardadjust();
 	}

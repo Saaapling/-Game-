@@ -7,6 +7,7 @@ public class SpreadShot extends Cannonball{
 		super(ystartpos, xstartpos, identity, newangle, power, newdirection);
 		time=0.1;
 		radius=2;
+		damage=5;
 	}
 
 	public ArrayList<int[]> firingMechanism(int xstart, int ystart, int power, int angle, int weapontype, double[]specialdata){
@@ -24,7 +25,7 @@ public class SpreadShot extends Cannonball{
 		if (randomizer<specialdata[0]){
 			time=0.1;
 		}else{
-			time=8.0;
+			time=4.0;
 			specialdata[0]=0.1;
 		}
 		cannonballdata.add(new int[]{xstart, ystart, newpower, newangle});
@@ -43,6 +44,7 @@ public class SpreadShot extends Cannonball{
 								Tester.board.board[y][x]=3;
 							if (Tester.board.board[y][x]==0)
 								Tester.board.board[y][x]=3;
+							inflictDMG(Tester.board.board[y][x]);
 						}
 					}
 				}
