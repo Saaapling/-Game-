@@ -22,7 +22,7 @@ public class Tester implements KeyListener{
 	static Tank GODtank;
 	static ArrayList<Tank> tanks;
 	static int frames=0;
-	static int gamestatus=2;
+	static int gamestatus=0;
 	private static boolean cannonballFlying = false;
 
 	static playertankHudPanel playertankHud;
