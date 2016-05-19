@@ -109,7 +109,7 @@ public class Tester implements KeyListener{
 		CPUtankHud = new CPUtankHudPanel(hud, CPUtank);
 		hud=new HUD(playertank, playertankHud, CPUtankHud);
 
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		board.setPreferredSize(new Dimension(1200,500));
 		frame.addKeyListener(this);
 		frame.add(board);

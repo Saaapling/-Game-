@@ -13,7 +13,7 @@ public class MenuScreen implements ActionListener {
 	JButton button3;
 	Tester game;
 	WeaponCatalog catalog;
-
+	Instructions instructions;
 	
 	public MenuScreen(){
 		frame= new JFrame("Tanks");
@@ -48,7 +48,7 @@ public class MenuScreen implements ActionListener {
 		if (eventName.equals("Play")){
 			game=new Tester();
 		}else if(eventName.equals("Instructions")){
-
+			instructions=new Instructions();
 		}else if(eventName.equals("Weapon Catalog")){
 			catalog=new WeaponCatalog();
 		}
