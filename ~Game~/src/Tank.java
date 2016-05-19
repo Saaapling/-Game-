@@ -23,7 +23,6 @@ public class Tank {
 	double shottimer;
 	double maxshottimer;
 
-	WeaponCatalog catalog;
 	double[] specialdata;
 	Cannonball standard;
 	ArrayList<Cannonball> cannonballs=new ArrayList<Cannonball>();
@@ -31,7 +30,6 @@ public class Tank {
 	public Tank(int ystart, int xstart, int identity, String newname){
 		if (identity!=100){
 			name=newname;
-			catalog=new WeaponCatalog();
 			xpos=xstart;
 			ypos=ystart;
 			id=identity;

@@ -14,7 +14,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public class WeaponCatalog{
-	static JFrame frame=new JFrame("Instructions");
+	static JFrame frame=new JFrame("Weapon Catalog");
 	static Display panel=new Display();
 	static int page=1;
 
@@ -55,7 +55,7 @@ public class WeaponCatalog{
 	public void paintComponent(Graphics g){	
 		super.paintComponent(g);
 		try {
-			BufferedImage img =ImageIO.read(new File("Pictures//Weapon Catalog Pic.png"));
+			BufferedImage img =ImageIO.read(new File("Pictures//Weapon Catalog Pic.JPG"));
 			g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), null);
 		}catch (Exception e){}
 	}
