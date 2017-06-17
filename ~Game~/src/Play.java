@@ -3,7 +3,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 
-public class MenuScreen implements ActionListener {
+public class Play implements ActionListener {
 
 	JFrame frame;
 	JPanel panel;
@@ -15,7 +15,7 @@ public class MenuScreen implements ActionListener {
 	WeaponCatalog catalog;
 	Instructions instructions;
 	
-	public MenuScreen(){
+	public Play(){
 		frame= new JFrame("Tanks");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);		
 		panel=new JPanel();
@@ -56,7 +56,7 @@ public class MenuScreen implements ActionListener {
 
 	private static void runGUI(){
 		JFrame.setDefaultLookAndFeelDecorated(true);
-		MenuScreen test=new MenuScreen();
+		Play test=new Play();
 	}                                                                                                                                                                                                                                                                                                                                                                                                                                                              
 
 	public static void main(String[]args){
